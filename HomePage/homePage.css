@@ -87,7 +87,7 @@ body {
   text-align: center;
 }
 
-.message, .message2, .message3, .message4 {
+.message, .message1, .message2, .message3, .message4 {
     border: 2px;
     border-radius: 5px;
     border-color: black;
@@ -112,6 +112,18 @@ body {
   background-image: url("../res/profileIcon.jpg");
   background-size: 30px;
 }
+
+.message1::before {
+    content: "";
+    vertical-align: middle;
+    width:30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    margin-right: 1vw;
+    background-image: url("../res/kayla.jpg");
+    background-size: 30px;
+  }
 
 .message2::before {
     content: "";
