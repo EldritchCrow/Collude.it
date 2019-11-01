@@ -1,22 +1,21 @@
 $(document).ready( function() {
     $("#messageSend").click( function() {
-        var message = $.trim($("#userMessage").val());
-        if (message != "") {
-            $(".chatBox").append( "<div class = \"message\">"+ message + "</div>" );
-            $("#userMessage").val("");
-        }
+        sendMessage();
     });
     $(document).on('keyup',function(e) {
     if(e.which == 13) {
-        var message = $.trim($("#userMessage").val());
-        if (message != "") {
-            $(".chatBox").append( "<div class = \"message\">"+ message + "</div>" );
-        }
-        $("#userMessage").val("");
-        $("#userMessage").attr("placeholder", "Type your message here.");
-
+        sendMessage();
     }
   });
+
+  function sendMessage() {
+    var message = $.trim($("#userMessage").val());
+    if (message != "") {
+        $(".chatBox").append( "<div class = \"message\">"+ message + "</div>" );
+    }
+    $("#userMessage").val("");
+    $("#userMessage").attr("placeholder", "Type your message here.");
+  }
 
     $("#timeIcon").click( function() {
       $("#locationIcon").css("background", "#666");
@@ -38,5 +37,12 @@ $(document).ready( function() {
       $("#calendarIcon").css("background", "grey");
       $("#sideBarContent").text("upcoming meetings tab");
       $("#notifBar").text("Request a meeting");
+    });
+
+    $(".expand-close").click( function() {
+        $(".notificationBar").css("display", "none");
+        $(".content").css("display", "none");
+        $(".tabs").css("display", "block");
+        $(".arrow").html("&gt;");
     });
 })
