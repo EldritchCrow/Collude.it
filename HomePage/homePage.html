@@ -20,41 +20,59 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
-        
+
       <div class="collapse navbar-collapse" id="navbarMenu">
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
         </ul>
-      </div>   
+      </div>
     </header>
 
   	<div class="container col-lg-12 d-inline-block" id="mainBody">
       <div class="row">
-        <div class="col-lg-3" id = "sideWindow">
-          <div class = "sideBar">
+        <div class="col-lg-4 nopadding" id = "sideWindow">
+          <div class = "sideBar nopadding">
             <!-- ------------------------------Inside Side Bar Here Please-----------------------------------------  -->
+            <aside class="verticalNavBar">
+              <ul class="tabs nopadding">
+                <li id="profileIcon"></li>
+                <li id="timeIcon"></li>
+                <li id="locationIcon"></li>
+                <li id="calendarIcon"></li>
+              </ul>
+            </aside>
+            <div class="notificationBar">
+              <div class="notif-item notifs nopadding">
+                <h3>Notifications</h3>
+              </div>
+              <div class="notif-item requestButton nopadding">
+                <a href="#">Request a meeting</a>
+              </div>
+            </div>
+            <div class="expand-close nopadding"></div>
+            <div class="content" id="sideBarContent">select tab to display content here</div>
           </div>
         </div>
 
-        <div class="col-lg-9 no-gutters nopadding" id = "contentBar">              
+        <div class="col-lg-8 no-gutters nopadding" id = "contentBar">
           <div class= "chatBox">
             <div class = "message">This is a message</div>
             <!-- ------------------------------Insert Chat Menu Here Please-----------------------------------------  -->
           </div>
-          <div class = "messageBox">
-              <textarea id = "userMessage" placeholder = "Type your message here" cols = "120" rows = "3"></textarea>
+          <div class = "messageBox nopadding">
+              <textarea id = "userMessage" placeholder = "Type your message here" cols = "100" rows = "3"></textarea>
 
               <button id = "messageSend">Send</button>
           </div>
         </div>
-      
+
       </div>
     </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="homePage.js"></script>
   </body>
 </html>
