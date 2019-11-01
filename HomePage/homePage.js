@@ -41,8 +41,9 @@ $(document).ready( function() {
     });
 
     $(".expand-close").click( function() {
-        $(".sideBar").css("display", "none");
-        // $("#contentBar").removeClass("col-lg-8");
-        // $("#contentBar").addClass("col-lg-11");
+        $(".notificationBar").css("display", "none");
+        $(".content").css("display", "none");
+        $(".tabs").css("display", "block");
+        $(".arrow").html("&gt;");
     });
 })
