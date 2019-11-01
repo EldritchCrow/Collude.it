@@ -42,10 +42,6 @@ body {
     background-color: blue;
 }
 
-#sideWindow {
-    background-color: white;
-}
-
 #contentBar {
     height: 90vh;
     background-color: #6F6F88;
@@ -56,10 +52,67 @@ body {
     width: 95%;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 1vh;
     margin-top: 10px;
     border-style: solid;
     background-color: #E5E5F1;
-    overflow: scroll;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+.messageBox {
+    width: 95%;
+    margin-top: 4vh;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#userMessage {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1vw;
+  padding-top: 1vh;
+  border-radius: 1vh;
+}
+
+#messageSend {
+  border-radius: 1vh;
+  width: 10%;
+  height: 5vh;
+  text-align: center;
+}
+
+.message {
+    border: 2px;
+    border-radius: 5px;
+    border-color: black;
+    background-color: white;
+    width: 30%;
+    margin-left: 1vw;
+    margin-top: 2vh;
+    padding: 1%;
+}
+
+.message::before {
+  content: "";
+  width:30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  margin-right: 1vw;
+  background-image: url("./profileIcon.jpg");
+  background-size: 30px;
+}
+
+/* Side Window */
+
+#sideWindow {
+  background-color: white;
 }
 
 .sideBar {
@@ -69,25 +122,6 @@ body {
   height: 100%;
   background-color: grey;
 }
-
-.messageBox {
-    margin-right: auto;
-    margin-left: 2vw;
-}
-
-.message {
-    border: 2px;
-    border-radius: 5px;
-    border-color: black;
-    background-color: white;
-    width: 30%;
-    margin-left: 10px;
-    margin-top: 10px;
-    padding: 5px;
-}
-
-/* Vertical Nav Bar */
-
 .verticalNavBar {
   margin-left: 0;
   margin-top: 0;
@@ -113,15 +147,26 @@ body {
 
 .notificationBar {
   float: left;
-  width: 83%;
+  margin-left: 5%;
+  margin-top: 2vh;
+  width: 73%;
   height: 11%;
   background: lightblue;
+  border-radius: 1vh;
 }
 
 .notif-item {
-  width: 50%;
+  font-size: 1em;
+  font-style: normal;
+  text-decoration: none;
+  line-height: 10vh;
+  width: 100%;
   float: left;
   text-align: center;
+}
+
+.notif-item > a {
+  color: black;
 }
 
 .expand-close {
@@ -129,6 +174,7 @@ body {
   width: 2%;
   height: 100%;
   background: white;
+  padding-top: 55%;
 }
 
 .expand-close:hover {
@@ -140,9 +186,14 @@ body {
   width: 83%;
   height: 100%;
   text-align: center;
+  line-height: 60vh;
 }
 
 .icon {
   margin: 10% 10%;
+  width: 80%;
+}
+
+.arrow {
   width: 80%;
 }
