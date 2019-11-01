@@ -98,6 +98,7 @@ body {
     padding: 1%;
     line-height: 40px;
     vertical-align: middle;
+    margin-bottom: 2vh;
 }
 
 .message::before {
@@ -108,7 +109,7 @@ body {
   border-radius: 50%;
   display: inline-flex;
   margin-right: 1vw;
-  background-image: url("./profileIcon.jpg");
+  background-image: url("../res/profileIcon.jpg");
   background-size: 30px;
 }
 
@@ -180,13 +181,15 @@ body {
   padding-top: 55%;
 }
 
+
+.arrow {
+    background: #white;
+}
+
 .expand-close:hover {
   background: #AFAFAF;
 }
 
-.arrow {
-    background: #AFAFAF;
-}
 
 .content {
   float: left;
