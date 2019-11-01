@@ -44,7 +44,7 @@ body {
 
 #contentBar {
     height: 90vh;
-    background-color: #6F6F88;
+    background-color: #333;
 }
 
 .chatBox {
@@ -131,7 +131,7 @@ body {
   padding-top: 1vh;
   width: 15%;
   height: 100%;
-  background: #6F6F88;
+  background: #333;
   float: left;
 }
 
@@ -159,7 +159,7 @@ body {
 }
 
 .notif-item {
-  font-size: 1em;
+  font-size: 1.5em;
   font-style: normal;
   text-decoration: none;
   line-height: 10vh;
