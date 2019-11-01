@@ -1,22 +1,21 @@
 $(document).ready( function() {
     $("#messageSend").click( function() {
-        var message = $.trim($("#userMessage").val());
-        if (message != "") {
-            $(".chatBox").append( "<div class = \"message\">"+ message + "</div>" );
-            $("#userMessage").val("");
-        }
+        sendMessage();
     });
     $(document).on('keyup',function(e) {
     if(e.which == 13) {
-        var message = $.trim($("#userMessage").val());
-        if (message != "") {
-            $(".chatBox").append( "<div class = \"message\">"+ message + "</div>" );
-        }
-        $("#userMessage").val("");
-        $("#userMessage").attr("placeholder", "Type your message here.");
-
+        sendMessage();
     }
   });
+
+  function sendMessage() {
+    var message = $.trim($("#userMessage").val());
+    if (message != "") {
+        $(".chatBox").append( "<div class = \"message\">"+ message + "</div>" );
+    }
+    $("#userMessage").val("");
+    $("#userMessage").attr("placeholder", "Type your message here.");
+  }
 
     $("#timeIcon").click( function() {
       $("#locationIcon").css("background", "#666");
