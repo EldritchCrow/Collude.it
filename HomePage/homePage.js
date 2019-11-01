@@ -13,7 +13,7 @@ $(document).ready( function() {
             $(".chatBox").append( "<div class = \"message\">"+ message + "</div>" );
         }
         $("#userMessage").val("");
-        $("#userMessage").placeholder("Type your message here.");
+        $("#userMessage").attr("placeholder", "Type your message here.");
 
     }
   });
