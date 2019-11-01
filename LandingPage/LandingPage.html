@@ -47,7 +47,7 @@
 	      <img src="logo.png" class="img-fluid" width="400" height="400" class="rounded" draggable = "false" alt="...">
 		  <div class="justify-content-center">
 		    <div class="text-center mt-2">
-		      <button href="#" data-toggle="modal" data-target="#modalRegisterForm" class="GetStartedBtn">Login</button>
+		      <button href="#" data-toggle="modal" data-target="#modalLoginForm" class="GetStartedBtn">Login</button>
 		    </div>
 		    <div class="text-center mt-2">
 		      <button href="#" data-toggle="modal" data-target="#modalRegisterForm" class="GetStartedBtn">Sign-Up</button>
@@ -119,6 +119,37 @@
 		          <!-- <i class="fas fa-user prefix grey-text"></i> -->
 		          <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password">
 		        </div>
+
+		      </div>
+		      <div class="modal-footer d-flex justify-content-center">
+		        <button class="btn btn-deep-orange">Sign up</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header text-center">
+		        <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body mx-3">
+		        <div class="md-form mb-3">
+		          <!-- <i class="fas fa-envelope prefix grey-text"></i> -->
+		          <label for="inputEmail">Email address:</label>
+		          <input type="email" class="form-control" id="inputEmail" placeholder="Please enter email">
+		        </div>
+		        <div class="md-form mb-3">
+		          <!-- <i class="fas fa-user prefix grey-text"></i> -->
+		          <label for="inputPassword">Password:</label>
+		          <input type="password" class="form-control" id="inputPassword" placeholder="Please enter password">
+		        </div>
+				
 
 		      </div>
 		      <div class="modal-footer d-flex justify-content-center">
