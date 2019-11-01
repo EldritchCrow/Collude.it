@@ -60,9 +60,26 @@ body {
     margin-top: 10px; 
     border-style: solid;
     background-color: yellow;
+    overflow: scroll;
 }
 
 .sideBar {
     width: 90%;
     background-color: blue;
+}
+
+.messageBox {
+    margin-right: auto;
+    margin-left: 30px;
+}
+
+.message {
+    border: 2px;
+    border-radius: 5px;
+    border-color: black;
+    background-color: white;
+    width: 30%;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 5px;
 }
