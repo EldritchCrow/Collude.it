@@ -12,7 +12,7 @@ $(document).ready( function() {
         if (message != "") {
             $(".chatBox").append( "<div class = \"message\">"+ message + "</div>" );
         }
-        $("#userMessage").text("");
+        $("#userMessage").val(" ");
     }
   });
 
