@@ -101,6 +101,11 @@ body {
     margin-bottom: 2vh;
 }
 
+.message {
+    float: right;
+    margin-right: 1vw;
+}
+
 .message::before {
   content: "";
   vertical-align: middle;
