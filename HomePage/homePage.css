@@ -2,7 +2,6 @@ body {
     background-color: #333;
     font-family: 'Montserrat', sans-serif;
     height: 100%;
-  
 }
 
 .headerMenuLink {
@@ -32,24 +31,24 @@ body {
 .navbar-brand  >img {
     padding: 5px;
     height: 100%;
-}   
+}
 
 .nopadding {
     padding: 0;
 }
 
 .container {
-    height: 100%;
+    height: 90%;
     background-color: blue;
 }
 
 #sideWindow {
-    background-color: yellow;
+    background-color: white;
 }
 
 #contentBar {
     height: 90vh;
-    background-color: green;
+    background-color: #6F6F88;
 }
 
 .chatBox {
@@ -57,20 +56,23 @@ body {
     width: 95%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10px; 
+    margin-top: 10px;
     border-style: solid;
-    background-color: yellow;
+    background-color: #E5E5F1;
     overflow: scroll;
 }
 
 .sideBar {
-    width: 90%;
-    background-color: blue;
+  margin-left: 0;
+  padding-left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: grey;
 }
 
 .messageBox {
     margin-right: auto;
-    margin-left: 30px;
+    margin-left: 2vw;
 }
 
 .message {
@@ -82,4 +84,65 @@ body {
     margin-left: 10px;
     margin-top: 10px;
     padding: 5px;
+}
+
+/* Vertical Nav Bar */
+
+.verticalNavBar {
+  margin-left: 0;
+  margin-top: 0;
+  padding-top: 1vh;
+  width: 15%;
+  height: 100%;
+  background: #6F6F88;
+  float: left;
+}
+
+.tabs {
+  list-style: none;
+}
+
+.tabs > li {
+  width: 80%;
+  height: 4vw;
+  background: #666;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2vh;
+}
+
+.notificationBar {
+  float: left;
+  width: 83%;
+  height: 11%;
+  background: lightblue;
+}
+
+.notif-item {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+.expand-close {
+  float: right;
+  width: 2%;
+  height: 100%;
+  background: white;
+}
+
+.expand-close:hover {
+  background: #AFAFAF;
+}
+
+.content {
+  float: left;
+  width: 83%;
+  height: 100%;
+  text-align: center;
+}
+
+.icon {
+  margin: 10% 10%;
+  width: 80%;
 }
