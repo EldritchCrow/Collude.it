@@ -11,10 +11,12 @@ $(document).ready( function() {
   function sendMessage() {
     var message = $.trim($("#userMessage").val());
     if (message != "") {
-        $(".chatBox").append( "<div class = \"message\">"+ message + "</div>" );
+        $(".chatBox").append( "<div class = \"message\" >"+ message + "</div>" );
     }
     $("#userMessage").val("");
     $("#userMessage").attr("placeholder", "Type your message here.");
+    var d = $('.chatBox');
+    d.scrollTop(d.prop("scrollHeight"));
   }
 
     $("#timeIcon").click( function() {
