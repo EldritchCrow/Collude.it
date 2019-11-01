@@ -39,4 +39,10 @@ $(document).ready( function() {
       $("#sideBarContent").text("upcoming meetings tab");
       $("#notifBar").text("Request a meeting");
     });
+
+    $(".expand-close").click( function() {
+        $(".sideBar").css("display", "none");
+        // $("#contentBar").removeClass("col-lg-8");
+        // $("#contentBar").addClass("col-lg-11");
+    });
 })
