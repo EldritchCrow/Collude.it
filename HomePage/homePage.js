@@ -3,16 +3,18 @@ $(document).ready( function() {
         var message = $.trim($("#userMessage").val());
         if (message != "") {
             $(".chatBox").append( "<div class = \"message\">"+ message + "</div>" );
-            $("#userMessage").text("");
+            $("#userMessage").val("");
         }
     });
-    $(document).on('keypress',function(e) {
+    $(document).on('keyup',function(e) {
     if(e.which == 13) {
         var message = $.trim($("#userMessage").val());
         if (message != "") {
             $(".chatBox").append( "<div class = \"message\">"+ message + "</div>" );
         }
-        $("#userMessage").val(" ");
+        $("#userMessage").val("");
+        $("#userMessage").placeholder("Type your message here.");
+
     }
   });
 
