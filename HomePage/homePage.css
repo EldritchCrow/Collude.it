@@ -1,6 +1,7 @@
 body {
     background-color: #333;
     font-family: 'Montserrat', sans-serif;
+    height: 100%;
 }
 
 .headerMenuLink {
@@ -30,5 +31,231 @@ body {
 .navbar-brand  >img {
     padding: 5px;
     height: 100%;
-}   
+}
 
+.nopadding {
+    padding: 0;
+}
+
+.container {
+    height: 90%;
+    background-color: blue;
+}
+
+#contentBar {
+    height: 90vh;
+    background-color: #333;
+}
+
+.chatBox {
+    height: 70%;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1vh;
+    margin-top: 10px;
+    border-style: solid;
+    background-color: #E5E5F1;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+.messageBox {
+    width: 95%;
+    margin-top: 4vh;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#userMessage {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1vw;
+  padding-top: 1vh;
+  border-radius: 1vh;
+}
+
+#messageSend {
+  border-radius: 1vh;
+  width: 10%;
+  height: 5vh;
+  text-align: center;
+}
+
+.message, .message1, .message2, .message3, .message4 {
+    border: 2px;
+    border-radius: 5px;
+    border-color: black;
+    background-color: white;
+    width: 60%;
+    margin-left: 1vw;
+    margin-top: 2vh;
+    padding: 1%;
+    line-height: 40px;
+    vertical-align: middle;
+    margin-bottom: 2vh;
+}
+
+.message {
+    float: right;
+    margin-right: 1vw;
+}
+
+.message::before {
+  content: "";
+  vertical-align: middle;
+  width:30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  margin-right: 1vw;
+  background-image: url("../res/profileIcon.jpg");
+  background-size: 30px;
+}
+
+.message1::before {
+    content: "";
+    vertical-align: middle;
+    width:30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    margin-right: 1vw;
+    background-image: url("../res/kayla.jpg");
+    background-size: 30px;
+  }
+
+.message2::before {
+    content: "";
+    vertical-align: middle;
+    width:30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    margin-right: 1vw;
+    background-image: url("../res/icon2.jpg");
+    background-size: 30px;
+  }
+
+.message3::before {
+content: "";
+vertical-align: middle;
+width:30px;
+height: 30px;
+border-radius: 50%;
+display: inline-flex;
+margin-right: 1vw;
+background-image: url("../res/sean.jpg");
+background-size: 30px;
+}
+
+.message4::before {
+    content: "";
+    vertical-align: middle;
+    width:30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    margin-right: 1vw;
+    background-image: url("../res/doctor.jpg");
+    background-size: 30px;
+}
+
+/* Side Window */
+
+#sideWindow {
+  background-color: white;
+}
+
+.sideBar {
+  margin-left: 0;
+  padding-left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: grey;
+}
+.verticalNavBar {
+  margin-left: 0;
+  margin-top: 0;
+  padding-top: 1vh;
+  width: 15%;
+  height: 100%;
+  background: #333;
+  float: left;
+}
+
+.tabs {
+  list-style: none;
+}
+
+.tabs > li {
+  width: 80%;
+  height: 4vw;
+  background: #666;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2vh;
+}
+
+.notificationBar {
+  float: left;
+  margin-left: 5%;
+  margin-top: 2vh;
+  width: 73%;
+  height: 11%;
+  background: lightblue;
+  border-radius: 1vh;
+}
+
+.notif-item {
+  font-size: 1.5em;
+  font-style: normal;
+  text-decoration: none;
+  line-height: 10vh;
+  width: 100%;
+  float: left;
+  text-align: center;
+}
+
+.notif-item > a {
+  color: black;
+}
+
+.expand-close {
+  float: right;
+  width: 2%;
+  height: 100%;
+  background: white;
+  padding-top: 55%;
+}
+
+
+.arrow {
+    background: #white;
+}
+
+.expand-close:hover {
+  background: #AFAFAF;
+}
+
+.content {
+  float: left;
+  width: 83%;
+  height: 100%;
+  text-align: center;
+  line-height: 60vh;
+}
+
+.icon {
+  margin: 10% 10%;
+  width: 80%;
+}
+
+.arrow {
+  width: 80%;
+}
