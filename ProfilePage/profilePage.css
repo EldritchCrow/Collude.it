@@ -1,0 +1,145 @@
+body {
+  height: 100vh;
+  margin: 0;
+  background-color: #333;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.headerMenuLink {
+    color:gray;
+    text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+  font-size: 65px;
+  color: #868686;
+}
+
+.mainBody{
+    height: 900px;
+}
+
+.headerMenuLink:hover{
+    color: darkgray;
+    text-decoration: none;
+}
+
+.navbar {
+    background-color: #222;
+    color: #868686;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    background-color: #222222;
+    color: #868686;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+.navbar-brand  >img {
+    padding: 5px;
+    height: 100%;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.7;
+}
+
+/* main css starts here */
+
+main {
+  width: 70%;
+  height: 85%;
+  background: #3F3F3F;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.section-header {
+  padding-top: 5%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40%;
+  border-bottom: 2px solid #333;
+}
+
+.section-header > img {
+  width: 20%;
+  float: left;
+  border-radius: 50%;
+}
+
+.section-header > h1 {
+  font-size: 4.75em;
+  letter-spacing: .02em;
+  float: left;
+  line-height: 25vh;
+  text-align: left;
+  margin-left: 5%;
+}
+
+.profile-content {
+  margin-left: 5%;
+  margin-top: 2%;
+}
+
+.profile-content > h1 {
+  text-align: left;
+  font-size: 1.5em;
+}
+
+#email::before {
+  content: "Email: ";
+  margin-right: 80px;
+  text-align: left;
+}
+
+#password::before {
+  content: "Password: ";
+  margin-right: 30px;
+  text-align: left;
+}
+
+#RIN::before {
+  content: "RIN:      ";
+  margin-right: 100px;
+  text-align: left;
+}
+
+#RCS-ID::before {
+  content: "RCS ID:   ";
+  margin-right: 60px;
+
+  text-align: left;
+}
+
+#Height::before {
+  content: "Height:   ";
+  margin-right: 60px;
+
+  text-align: left;
+}
+
+#Weight::before {
+  content: "Weight:   ";
+  margin-right: 55px;
+  text-align: left;
+}
+
+#SSN::before {
+  content: "SSN:      ";
+  margin-right: 95px;
+
+  text-align: left;
+}
+
+#goof::before {
+  content: "3 numbers on the back of my credit card: ";
+  text-align: left;
+}
