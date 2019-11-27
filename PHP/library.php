@@ -10,4 +10,5 @@
     require_once 'logoutUser.php';
     require_once 'requestMeeting.php';
     require_once 'sendMessage.php';
+    require_once 'checkSession.php';
 ?>

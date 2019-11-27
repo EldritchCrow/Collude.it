@@ -15,6 +15,10 @@ if(isset($_POST["add_user"])) {
     echo addUser($_POST["username"], $_POST["real_name"], $_POST["password"]);
 } elseif (isset($_POST["login"])) {
     echo loginUser($_POST["username"], $_POST["password"]);
+} else if (isset($_POST["request_meeting"])) {
+    echo requestMeeting($_POST["meeting_time"], $_POST["meeting_location"]);
+} else if (isset($_POST["get_meetings"])) {
+    echo getMeetings();
 }
 echo "<br>";
 
@@ -38,6 +42,16 @@ echo "<br>";
         <input type="text" name="username">
         <input type="text" name="password">
         <input type="submit" name="login" value="Submit">
+    </form>
+
+    <form method="POST" action="test_page.php">
+        <input type="text" name="meeting_time">
+        <input type="text" name="meeting_location">
+        <input type="submit" name="request_meeting" value="Submit">
+    </form>
+
+    <form method="POST" action="test_page.php">
+    <input type="submit" name="get_meetings" value="Submit">
     </form>
 </body>
 
