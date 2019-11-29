@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 print_r($_SESSION);
 echo "<br>";
 if(isset($_POST["add_user"])) {
-    echo addUser($_POST["username"], $_POST["real_name"], $_POST["password"]);
+    echo registerUser($_POST["username"], $_POST["real_name"], $_POST["password"], $_POST["group_name"], $_POST["group_id"]);
 } elseif (isset($_POST["login"])) {
     echo loginUser($_POST["username"], $_POST["password"]);
 }
@@ -31,6 +31,8 @@ echo "<br>";
         <input type="text" name="username">
         <input type="text" name="real_name">
         <input type="text" name="password">
+        <input type="text" name="group_id">
+        <input type="text" name="group_name">
         <input type="submit" name="add_user" value="Submit">
     </form>
     <br>
