@@ -11,6 +11,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 print_r($_SESSION);
 echo "<br>";
+
+class location {
+    public $location_name;
+    public $ranking;
+}
+
+$firstLocation = new location();
+$firstLocation->location_name = "Student Union";
+$firstLocation->ranking = 2;
+
+$secondLocation = new location();
+$secondLocation->location_name = "Library";
+$secondLocation->ranking = 1;
+
+$locations = array($firstLocation, $secondLocation);
+
 if(isset($_POST["add_user"])) {
     echo addUser($_POST["username"], $_POST["real_name"], $_POST["password"]);
 } elseif (isset($_POST["login"])) {
@@ -19,6 +35,8 @@ if(isset($_POST["add_user"])) {
     echo requestMeeting($_POST["meeting_time"], $_POST["meeting_location"]);
 } else if (isset($_POST["get_meetings"])) {
     echo getMeetings();
+} else if (isset($_POST["submitLocations"])) {
+    echo addLocationPreferences($locations);
 }
 echo "<br>";
 
@@ -52,6 +70,8 @@ echo "<br>";
 
     <form method="POST" action="test_page.php">
     <input type="submit" name="get_meetings" value="Submit">
+
+    <input type="submit" name="submitLocations" value="Submit">
     </form>
 </body>
 
