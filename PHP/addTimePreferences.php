@@ -5,7 +5,7 @@
             foreach($time_list as $value) {
                 $day = $value->day;
                 $start_time = $value->start_time;
-                $end_time = $value->end_time
+                $end_time = $value->end_time;
                 $sql = "INSERT INTO datetime_prefs (user_id, day, start_time, end_time)";
                 $sql.= " VALUES ('" . $_SESSION["user_id"] . "', '"
                 . $day . "', '"

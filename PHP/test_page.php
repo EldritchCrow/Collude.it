@@ -17,15 +17,31 @@ class location {
     public $ranking;
 }
 
+class time {
+    public $start_time;
+    public $end_time;
+    public $day;
+}
+
 $firstLocation = new location();
 $firstLocation->location_name = "Student Union";
 $firstLocation->ranking = 2;
-
 $secondLocation = new location();
 $secondLocation->location_name = "Library";
 $secondLocation->ranking = 1;
 
+$firstDay = new time();
+$firstDay->start_time = 1200;
+$firstDay->end_time = 1400;
+$firstDay->day = "Monday";
+
+$secondDay = new time();
+$secondDay->start_time = 1300;
+$secondDay->end_time = 1500;
+$secondDay->day = "Tuesday";
+
 $locations = array($firstLocation, $secondLocation);
+$days = array($firstDay, $secondDay);
 
 if(isset($_POST["add_user"])) {
     echo addUser($_POST["username"], $_POST["real_name"], $_POST["password"]);
@@ -37,6 +53,8 @@ if(isset($_POST["add_user"])) {
     echo getMeetings();
 } else if (isset($_POST["submitLocations"])) {
     echo addLocationPreferences($locations);
+} else if (isset($_POST["submitTimes"])) {
+    echo addTimePreferences($days);
 }
 echo "<br>";
 
@@ -72,6 +90,7 @@ echo "<br>";
     <input type="submit" name="get_meetings" value="Submit">
 
     <input type="submit" name="submitLocations" value="Submit">
+    <input type="submit" name="submitTimes" value="Submit">
     </form>
 </body>
 
