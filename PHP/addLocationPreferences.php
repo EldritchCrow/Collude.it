@@ -9,12 +9,11 @@
                 $sql.= " VALUES ('" . $_SESSION["user_id"] . "', '"
                 . $location_name . "', '"
                 . $ranking . "');";
-                if ($result = mysqli_query($conn, $sql)) {
-                    echo "Successfully added location preferences";
-                } else {
+                if ($result != mysqli_query($conn, $sql)) {
                     echo "Something fucked up: <br>" . mysqli_error($conn) . "<br>";
                 }
             } 
+            echo "Successfully added location preferences<br>";
             return true;
         } else {
             echo "Session not created <br>";

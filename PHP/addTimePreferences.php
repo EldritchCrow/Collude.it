@@ -11,12 +11,11 @@
                 . $day . "', '"
                 . $start_time . "', '"
                 . $end_time . "');";
-                if ($result = mysqli_query($conn, $sql)) {
-                    echo "Successfully added time preferences";
-                } else {
+                if ($result != mysqli_query($conn, $sql)) {
                     echo "Something fucked up: <br>" . mysqli_error($conn) . "<br>";
                 }
             } 
+            echo "Successfully added time preferences";
             return true;
         } else {
             echo "Session not created <br>";
