@@ -11,8 +11,11 @@
                 . $day . "', '"
                 . $start_time . "', '"
                 . $end_time . "');";
-                if ($result != mysqli_query($conn, $sql)) {
+                if ($result = mysqli_query($conn, $sql)) {
+                    echo "Time preference added <br>";
+                } else {
                     echo "Something fucked up: <br>" . mysqli_error($conn) . "<br>";
+
                 }
             } 
             echo "Successfully added time preferences";

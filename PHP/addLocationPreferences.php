@@ -9,7 +9,9 @@
                 $sql.= " VALUES ('" . $_SESSION["user_id"] . "', '"
                 . $location_name . "', '"
                 . $ranking . "');";
-                if ($result != mysqli_query($conn, $sql)) {
+                if ($result = mysqli_query($conn, $sql)) {
+                    echo "Preference added <br>";
+                } else {
                     echo "Something fucked up: <br>" . mysqli_error($conn) . "<br>";
                 }
             } 
