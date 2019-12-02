@@ -45,7 +45,7 @@ $days = array($firstDay, $secondDay);
 
 $message_data = false;
 if(isset($_POST["add_user"])) {
-    echo addUser($_POST["username"], $_POST["real_name"], $_POST["password"]);
+    echo registerUser($_POST["username"], $_POST["real_name"], $_POST["password"], $_POST["group_name"], $_POST["group_id"]);
 } elseif (isset($_POST["login"])) {
     echo loginUser($_POST["username"], $_POST["password"]);
 } else if (isset($_POST["request_meeting"])) {
