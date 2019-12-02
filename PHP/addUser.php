@@ -5,12 +5,14 @@ function addUser($username, $real_name, $password) {
     if($result = mysqli_query($conn, $sql)){
     
         if (mysqli_num_rows($result) == 1) {
+            echo "USER ALREADY EXISTS DUMBASS<br>";
             return false;
         }
         else {
             $sql = "INSERT INTO users (user_id, username, real_name, password_hash, last_update)";
+            $new_id = bin2hex(random_bytes(12));
             $sql .= "VALUES ('"
-                . bin2hex(random_bytes(12)) . "', '"
+                . $new_id . "', '"
                 . $username . "', '"
                 . $real_name . "', '"
                 . password_hash($password, PASSWORD_BCRYPT) . "', '"
@@ -19,11 +21,13 @@ function addUser($username, $real_name, $password) {
                 echo "Successfully added user<br>";
             } else {
                 echo "Something fucked up:<br>" . mysqli_error($conn) . "<br>";
+                return false;
             }
-            return true;
+            return $new_id;
         }
     } else {
         echo "Something fucked up:<br>" . mysqli_error($conn) . "<br>";
+        return false;
     }
 }
 ?>
