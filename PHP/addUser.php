@@ -5,6 +5,7 @@ function addUser($username, $real_name, $password) {
     if($result = mysqli_query($conn, $sql)){
     
         if (mysqli_num_rows($result) == 1) {
+            echo "USER ALREADY EXISTS DUMBASS<br>";
             return false;
         }
         else {

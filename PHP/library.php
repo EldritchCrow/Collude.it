@@ -13,5 +13,6 @@
     require_once 'requestMeeting.php';
     require_once 'sendMessage.php';
     require_once 'registerUser.php';
+    require_once 'checkSession.php';
     define("CHAT_PATH", "../chats/");
 ?>

@@ -11,11 +11,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 print_r($_SESSION);
 echo "<br>";
+
+class location {
+    public $location_name;
+    public $ranking;
+}
+
+class time {
+    public $start_time;
+    public $end_time;
+    public $day;
+}
+
+$firstLocation = new location();
+$firstLocation->location_name = "Student Union";
+$firstLocation->ranking = 2;
+$secondLocation = new location();
+$secondLocation->location_name = "Library";
+$secondLocation->ranking = 1;
+
+$firstDay = new time();
+$firstDay->start_time = 1200;
+$firstDay->end_time = 1400;
+$firstDay->day = "Monday";
+
+$secondDay = new time();
+$secondDay->start_time = 1300;
+$secondDay->end_time = 1500;
+$secondDay->day = "Tuesday";
+
+$locations = array($firstLocation, $secondLocation);
+$days = array($firstDay, $secondDay);
+
 $message_data = false;
-if (isset($_POST["add_user"])) {
-    echo registerUser($_POST["username"], $_POST["real_name"], $_POST["password"], $_POST["group_name"], $_POST["group_id"]);
+if(isset($_POST["add_user"])) {
+    echo addUser($_POST["username"], $_POST["real_name"], $_POST["password"]);
 } elseif (isset($_POST["login"])) {
     echo loginUser($_POST["username"], $_POST["password"]);
+} else if (isset($_POST["request_meeting"])) {
+    echo requestMeeting($_POST["meeting_time"], $_POST["meeting_location"]);
+} else if (isset($_POST["get_meetings"])) {
+    echo getMeetings();
+} else if (isset($_POST["submitLocations"])) {
+    echo addLocationPreferences($locations);
+} else if (isset($_POST["submitTimes"])) {
+    echo addTimePreferences($days);
 } elseif (isset($_POST["send_message"])) {
     echo sendMessage($_POST["chat_info"]);
 } elseif (isset($_POST["load_messages"])) {
@@ -64,6 +104,18 @@ if (isset($_POST["add_user"])) {
         }
         ?>
     </div>
+    <form method="POST" action="test_page.php">
+        <input type="text" name="meeting_time">
+        <input type="text" name="meeting_location">
+        <input type="submit" name="request_meeting" value="Submit">
+    </form>
+
+    <form method="POST" action="test_page.php">
+    <input type="submit" name="get_meetings" value="Submit">
+
+    <input type="submit" name="submitLocations" value="Submit">
+    <input type="submit" name="submitTimes" value="Submit">
+    </form>
 </body>
 
 </html>
