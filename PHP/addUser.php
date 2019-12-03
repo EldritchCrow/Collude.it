@@ -1,4 +1,5 @@
 <?php
+
 function addUser($username, $real_name, $password) {
     $conn = Database::getConnection();
     $sql = "SELECT username FROM users WHERE username = '" . $username . "' LIMIT 1;";
@@ -30,4 +31,5 @@ function addUser($username, $real_name, $password) {
         return false;
     }
 }
+
 ?>

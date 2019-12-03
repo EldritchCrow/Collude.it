@@ -1,4 +1,5 @@
 <?php
+
 function loginUser($username, $password) {
     $conn = Database::getConnection();
     $sql = "SELECT users.password_hash, users.user_id, group_members.group_id FROM users JOIN group_members ON users.user_id = group_members.user_id WHERE username = '"
@@ -21,4 +22,5 @@ function loginUser($username, $password) {
     }
     return false;
 }
+
 ?>

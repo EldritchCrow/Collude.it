@@ -1,4 +1,5 @@
 <?php
+
 include_once("reportSecurityError.php");
 function sendMessage($message) {
     if(!isset($_SESSION["group_id"]) || !$_SESSION["user_id"]) {
@@ -29,4 +30,5 @@ function sendMessage($message) {
     fclose($fp);
     return true;
 }
+
 ?>

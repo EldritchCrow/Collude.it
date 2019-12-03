@@ -1,4 +1,5 @@
 <?php
+
 include_once("reportSecurityError.php");
 function loadMessages() {
     if(!isset($_SESSION["group_id"]) || !$_SESSION["user_id"]) {
@@ -37,4 +38,5 @@ function loadMessages() {
     }
     return $results;
 }
+
 ?>
