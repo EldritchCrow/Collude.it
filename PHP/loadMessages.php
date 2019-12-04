@@ -1,10 +1,11 @@
 <?php
 
 function loadMessages() {
-    if(checkSession()) {
+    if(!checkSession()) {
         return array("success" => false,
                     "message" => "Session not created");
     }
+    $conn = Database::getConnection();
     $g_id = $_SESSION["group_id"];
     if(!file_exists(CHAT_PATH . $g_id . ".txt")) {
         return array("success" => false,
@@ -26,16 +27,25 @@ function loadMessages() {
     $file_data = explode("\n", fread($_, 10000000));
     fclose($_);
     $results = "";
+    $sql = "SELECT user_id, real_name FROM users;";
+    $userNames = mysqli_query($conn, $sql)
+    $lookup = array();
+    if (!$userNames) {
+    }
+    while($row = mysqli_fetch_assoc($userNames)) {
+        $lookup[$row["user_id"]] = $row["real_name"];
+    }
     foreach($file_data as $line) {
         if($line == "") {
             continue;
         }
         $dat = json_decode($line,true);
-        $results .= $dat["user_id"] . ": " . $dat["message"] . "<br>";
+        $results .= $lookup[$dat["user_id"]] . ": " . $dat["message"] . "<br>";
     }
     return array("success" => true,
                 "message" => "Loaded messages",
                 "data" => $results);
+    
 }
 
 // Called by AJAX
