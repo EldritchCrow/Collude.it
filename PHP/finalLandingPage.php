@@ -1,4 +1,29 @@
-<!doctype html>
+<?php
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once("library.php");
+
+$passwordDuplicate = false;
+
+if(isset($_POST["add_user"])) {
+	if ($_POST["password"] == $_POST["passwordConfirm"]) {
+		$message = "USER ADDED";
+		registerUser($_POST["username"], $_POST["real_name"], $_POST["password"], $_POST["group_name"], $_POST["group_id"]);
+		echo "<script type='text/javascript'>alert('$message');</script>";
+	} else {
+		$passwordDuplicate = true;
+		$message = "PASSWORD FAIL";
+		echo "<script type='text/javascript'>alert('$message');</script>";
+	}
+}
+
+?>
+
+
+<!DOCTYPE HTML>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -7,7 +32,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="landingPage.css">
+    <link rel="stylesheet" href="../landingpage/landingPage.css">
     <title>Collude.IT</title>
   </head>
   <body>
@@ -66,25 +91,23 @@
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
-		      <div class="modal-body mx-3">
+		      <form class="modal-body mx-3" method="POST" action="finalHomePage.php">
 		        <div class="md-form mb-3">
 		          <!-- <i class="fas fa-envelope prefix grey-text"></i> -->
-		          <label for="loginEmail">Email address:</label>
-		          <input type="email" id="loginEmail" class="form-control validate" placeholder="Please enter email">
+		          <label for="loginUsername">Username:</label>
+                  <input type="text" id="loginUsername" class="form-control validate" placeholder="Please enter username" name="username">
 		        </div>
 
 		        <div class="md-form mb-3">
 		          <!-- <i class="fas fa-lock prefix grey-text"></i> -->
 		          <label for="loginPassword">Password:</label>
-		          <input type="password" id="loginPassword" class="form-control validate" placeholder="Please enter password">
-		        </div>
-		        <div class="checkbox">
-            	<label><input type="checkbox">Remember me</label>
-        		</div>
-		      </div>
-		      <div class="modal-footer d-flex justify-content-center">
-		        <button class="btn btn-default" onclick="window.location.href='../HomePage/homePage.html'">Login</button>
-		      </div>
+				  <input type="text" id="loginPassword" class="form-control validate" placeholder="Please enter password" name="password">
+				</div>
+				
+				<div class="modal-footer d-flex justify-content-center">
+		            <input type="submit" class="btn btn-default" name="add_user" value="Log In">
+				</div>
+              </form>
 		    </div>
 		  </div>
 		</div>
@@ -99,35 +122,44 @@
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
-		      <div class="modal-body mx-3">
+		      <form class="modal-body mx-3" method="POST" action="finalLandingPage.PHP">
 		        <div class="md-form mb-3">
 		          <!-- <i class="fas fa-envelope prefix grey-text"></i> -->
-		          <label for="inputEmail">Email address:</label>
-		          <input type="email" class="form-control" id="inputEmail" placeholder="Please enter email">
+		          <label for="inputUsername">Username:</label>
+		          <input type="text" class="form-control" id="inputEmail" placeholder="Please enter username" name="username">
 		        </div>
 		        <div class="md-form mb-3">
 		          <!-- <i class="fas fa-user prefix grey-text"></i> -->
 		          <label for="inputFullName">Name:</label>
-		          <input type="text" class="form-control" id="inputFullName" placeholder="Please enter full name">
+		          <input type="text" class="form-control" id="inputFullName" placeholder="Please enter full name" name="real_name">
 		        </div>
 		        <div class="md-form mb-3">
 		          <!-- <i class="fas fa-user prefix grey-text"></i> -->
 		          <label for="inputPassword">Password:</label>
-		          <input type="password" class="form-control" id="inputPassword" placeholder="Please enter password">
+		          <input type="text" class="form-control" id="inputPassword" placeholder="Please enter password" name="password">
 		        </div>
-						<div class="md-form mb-3">
+				<div class="md-form mb-3">
 		          <!-- <i class="fas fa-user prefix grey-text"></i> -->
-		          <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password">
+		          <input type="text" class="form-control" id="confirmPassword" placeholder="Confirm password" name="passwordConfirm">
+				</div>
+				<div class="md-form mb-3">
+				  <!-- <i class="fas fa-user prefix grey-text"></i> -->
+				  <label for="inputPassword">Group ID: Enter ID for Group</label>
+		          <input type="text" class="form-control" id="inputGroupID" placeholder="Enter Group ID" name="group_id">
+				</div>
+				<div class="md-form mb-3">
+				  <!-- <i class="fas fa-user prefix grey-text"></i> -->
+				  <label for="inputPassword">Group Name: Enter a Name to Create a New Group</label>
+		          <input type="text" class="form-control" id="inputGroupName" placeholder="Enter Group Name" name="group_name">
 		        </div>
-
-		      </div>
-		      <div class="modal-footer d-flex justify-content-center">
-		        <button class="btn btn-deep-orange"  onclick="window.location.href='../HomePage/homePage.html'">Sign up</button>
-		      </div>
+                <div class="modal-footer d-flex justify-content-center">
+		            <input type="submit" class="btn btn-deep-orange" name="add_user" value="Sign Up">
+				</div>
+              </form>
+		      
 		    </div>
 		  </div>
 		</div>
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
