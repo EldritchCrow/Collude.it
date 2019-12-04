@@ -48,7 +48,9 @@ if (isset($_POST["login"])) {
           <li class="nav-item"><a class="nav-link" href="../profilePage/profilePage.html">Profile</a></li>
         </ul>
       </div>
-      <a class="headerMenuLink d-inline-block border border-gray-dark rounded-1 px-2 py-1" href="#" onclick="window.location.href='../LandingPage/landingPage.html'">Log Out</a>
+      <form method="POST" action="finalLandingPage.php">
+        <input type="submit" class="headerMenuLink d-inline-block border border-gray-dark rounded-1 px-2 py-1" name="log_out" value="Log Out">
+      </form>
     </header>
 
   	<div class="container col-lg-12 d-inline-block" id="mainBody">

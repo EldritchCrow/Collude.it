@@ -1,6 +1,6 @@
 <?php
 
-function logout_User() {
+function logoutUser() {
     session_unset();
     session_destroy();
     return array("success" => true,
@@ -13,7 +13,7 @@ if(!defined("MAIN_APP_RUN")) {
         http_response_code(400);
         die();
     }
-    echo json_encode(logout_User());
+    echo json_encode(logoutUser());
     die();
 }
 

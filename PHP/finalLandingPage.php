@@ -6,11 +6,14 @@ require_once("library.php");
 if(isset($_POST["add_user"])) {
 	if ($_POST["password"] == $_POST["passwordConfirm"]) {
 		$successful = registerUser($_POST["username"], $_POST["real_name"], $_POST["password"], $_POST["group_name"], $_POST["group_id"]);
-		echo "<script type='text/javascript'>window.onload = function() { alert('$successful["message"]'); };</script>";
+		$message = $successful["message"];
+		echo "<script type='text/javascript'>window.onload = function() { alert('$message'); };</script>";
 	} else {
-		$message = "PASSWORD FAIL";
+		$message = "Passwords did not match";
 		echo "<script type='text/javascript'>window.onload = function() { alert('$message'); };</script>";
 	}
+} else if (isset($_POST["log_out"])) {
+	$successful = logoutUser();
 }
 
 ?>
