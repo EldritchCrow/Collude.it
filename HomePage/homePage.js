@@ -24,26 +24,31 @@ $(document).ready( function() {
     d.scrollTop(d.prop("scrollHeight"));
   }
 
+  $('#contentTime').hide();
+
     $("#timeIcon").click( function() {
       $("#locationIcon").css("background", "#666");
       $("#calendarIcon").css("background", "#666");
       $("#timeIcon").css("background", "grey");
-      $("#sideBarContent").text("time preferences tab");
       $("#notifBar").text("Notifications");
+      $("#contentDefault").hide();
+      $('#contentTime').show();
     });
     $("#locationIcon").click( function() {
       $("#timeIcon").css("background", "#666");
       $("#calendarIcon").css("background", "#666");
       $("#locationIcon").css("background", "grey");
-      $("#sideBarContent").text("location preferences tab");
       $("#notifBar").text("Notifications");
+      $('#contentTime').hide();
+      $("#contentDefault").show();
     });
     $("#calendarIcon").click( function() {
       $("#locationIcon").css("background", "#666");
       $("#timeIcon").css("background", "#666");
       $("#calendarIcon").css("background", "grey");
-      $("#sideBarContent").text("upcoming meetings tab");
       $("#notifBar").text("Request a meeting");
+      $('#contentTime').hide();
+      $("#contentDefault").show();
     });
 
     $(".expand-close").click( function() {
