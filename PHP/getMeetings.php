@@ -33,7 +33,7 @@ function getMeetings($confirmation) {
 }
 
 // Called by AJAX
-if(!defined(MAIN_APP_RUN)) {
+if(!defined("MAIN_APP_RUN")) {
     if($_SERVER["REQUEST_METHOD"] != "GET" || !isset($_GET["confirmed"])) {
         http_response_code(400);
         die();
