@@ -3,15 +3,10 @@
 define("MAIN_APP_RUN", true);
 require_once("library.php");
 
-$passwordDuplicate = false;
-
 if(isset($_POST["add_user"])) {
 	if ($_POST["password"] == $_POST["passwordConfirm"]) {
-		$message = "USER ADDED";
 		registerUser($_POST["username"], $_POST["real_name"], $_POST["password"], $_POST["group_name"], $_POST["group_id"]);
-		echo "<script type='text/javascript'>window.onload = function() { alert('$message'); };</script>";
 	} else {
-		$passwordDuplicate = true;
 		$message = "PASSWORD FAIL";
 		echo "<script type='text/javascript'>window.onload = function() { alert('$message'); };</script>";
 	}
