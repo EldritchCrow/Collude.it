@@ -5,4 +5,8 @@ function logout_User() {
     session_destroy();
 }
 
+// Called by AJAX
+if(!defined(MAIN_APP_RUN)) {
+}
+
 ?>

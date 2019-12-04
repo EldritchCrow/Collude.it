@@ -18,21 +18,15 @@ function addLocationPreferences($location_list) {
             }
         }
         if(sizeof($failed) != 0) {
-            return json_encode(
-                array("success" => false,
+            return array("success" => false,
                         "message" => "One or more of the location preferences failed to update",
-                        "details" => $failed)
-                    );
+                        "details" => $failed);
         }
-        return json_encode(
-            array("success" => true,
-                    "message" => "Successfully added location preferences")
-                );
+        return array("success" => true,
+                    "message" => "Successfully added location preferences");
     } else {
-        return json_encode(
-            array("success" => false,
-                    "message" => "Session not created")
-                );
+        return array("success" => false,
+                    "message" => "Session not created");
     }
 }
 

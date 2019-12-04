@@ -3,10 +3,8 @@
 function requestMeeting($meeting_time, $meeting_location) {
     if(!validateInput($meeting_time)
         || !validateInput($meeting_location)) {
-        return json_encode(
-            array("success" => false,
-                    "message" => "One of the inputs did not validate")
-                );
+        return array("success" => false,
+                    "message" => "One of the inputs did not validate");
     }
     $conn = Database::getConnection();
     if (checkSession()) {
@@ -18,23 +16,21 @@ function requestMeeting($meeting_time, $meeting_location) {
         . $meeting_location . "', "
         . 0 . ");";
         if($result = mysqli_query($conn, $sql)){
-            return json_encode(
-                array("success" => true,
-                        "message" => "Added meeting to database")
-                    );
+            return array("success" => true,
+                        "message" => "Added meeting to database");
         }
-        return json_encode(
-            array("success" => false,
-                    "message" => "Failed to add meeting to database")
-                );
+        return array("success" => false,
+                    "message" => "Failed to add meeting to database");
     }
     else {
-        return json_encode(
-            array("success" => false,
-                    "message" => "Session not created")
-                );
+        return array("success" => false,
+                    "message" => "Session not created");
     }
 
+}
+
+// Called by AJAX
+if(!defined(MAIN_APP_RUN)) {
 }
 
 ?>

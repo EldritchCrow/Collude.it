@@ -20,21 +20,15 @@ function addTimePreferences($time_list) {
             }
         }
         if(sizeof($failed) != 0) {
-            return json_encode(
-                array("success" => false,
+            return array("success" => false,
                         "message" => "One or more of the time preferences failed to update",
-                        "details" => $failed)
-                    );
+                        "details" => $failed);
         }
-        return json_encode(
-            array("success" => true,
-                    "message" => "Successfully added time preferences")
-                );
+        return array("success" => true,
+                    "message" => "Successfully added time preferences");
     } else {
-        return json_encode(
-            array("success" => false,
-                    "message" => "Session not created")
-                );
+        return array("success" => false,
+                    "message" => "Session not created");
     }
 }
 

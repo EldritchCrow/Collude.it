@@ -5,6 +5,10 @@ if(!defined(MAIN_APP_RUN)) {
     die();
 }
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once 'databaseConnect.php';
 require_once 'addLocationPreferences.php';
 require_once 'addTimePreferences.php';

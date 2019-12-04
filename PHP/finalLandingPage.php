@@ -1,11 +1,6 @@
 <?php
 
 define("MAIN_APP_RUN", true);
-
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
 require_once("library.php");
 
 $passwordDuplicate = false;

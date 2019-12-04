@@ -1,6 +1,7 @@
 <?php
 
 define("MAIN_APP_RUN", true);
+require_once("library.php");
 
 if (isset($_POST["login"])) {
     echo loginUser($_POST["username"], $_POST["password"]);

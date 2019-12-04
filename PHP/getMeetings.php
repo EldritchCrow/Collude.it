@@ -2,10 +2,8 @@
 
 function getMeetings($confirmation) {
     if(!validateInput($confirmation)) {
-        return json_encode(
-            array("success" => false,
-                    "message" => "One of the inputs did not validate")
-                );
+        return array("success" => false,
+                    "message" => "One of the inputs did not validate");
     }
     if (checkSession()) {
         $conn = Database::getConnection();
@@ -20,23 +18,21 @@ function getMeetings($confirmation) {
                     $meetings = array_push($meetings, $_);
                 }
             }
-            return json_encode(
-                array("success" => true,
+            return array("success" => true,
                         "message" => "Meetings retrieved",
-                        "data" => $meetings)
-                    );
+                        "data" => $meetings);
         } else {
-            return json_encode(
-                array("success" => false,
-                        "message" => "Failed to load meetings")
-                    );
+            return array("success" => false,
+                        "message" => "Failed to load meetings");
         }  
     } else {
-        return json_encode(
-            array("success" => false,
-                    "message" => "Session has not been created")
-                );
+        return array("success" => false,
+                    "message" => "Session has not been created");
     }
+}
+
+// Called by AJAX
+if(!defined(MAIN_APP_RUN)) {
 }
 
 ?>

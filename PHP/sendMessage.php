@@ -3,16 +3,12 @@
 include_once("reportSecurityError.php");
 function sendMessage($message) {
     if(!validateInput($message)) {
-        return json_encode(
-            array("success" => false,
-                    "message" => "One of the inputs did not validate")
-                );
+        return array("success" => false,
+                    "message" => "One of the inputs did not validate");
     }
     if(checkSession()) {
-        return json_encode(
-            array("success" => false,
-                    "message" => "Session not created")
-                );
+        return array("success" => false,
+                    "message" => "Session not created");
     }
     $g_id = $_SESSION["group_id"];
     $u_id = $_SESSION["user_id"];
@@ -27,10 +23,8 @@ function sendMessage($message) {
     // Not sure how this is possible, but whatever
     $message = str_replace("\n", " ", $message);
     if(!file_exists(CHAT_PATH . $g_id . ".txt")) {
-        return json_encode(
-            array("success" => false,
-                    "message" => "Could not find group chat file for group id " . $g_id)
-                );
+        return array("success" => false,
+                    "message" => "Could not find group chat file for group id " . $g_id);
     }
     $fp = fopen(CHAT_PATH . $g_id . ".txt", "a");
     $dat = array();
@@ -38,10 +32,12 @@ function sendMessage($message) {
     $dat["message"] = $message;
     fwrite($fp, json_encode($dat) . "\n");
     fclose($fp);
-    return json_encode(
-        array("success" => true,
-                "message" => "Sent message")
-            );
+    return array("success" => true,
+                "message" => "Sent message");
+}
+
+// Called by AJAX
+if(!defined(MAIN_APP_RUN)) {
 }
 
 ?>

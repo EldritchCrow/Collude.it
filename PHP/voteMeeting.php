@@ -3,10 +3,8 @@
 function voteMeeting($meeting_id, $vote) {
     if(!validateInput($meeting_id)
         || !validateInput($vote)) {
-        return json_encode(
-            array("success" => false,
-                    "message" => "One of the inputs did not validate")
-                );
+        return array("success" => false,
+                    "message" => "One of the inputs did not validate");
     }
     $conn = Database::getConnection();
     if (checkSession()) {
@@ -24,23 +22,21 @@ function voteMeeting($meeting_id, $vote) {
             if (($group_count*2/3) < $yes_count) {
                 $sql = "UPDATE meetings SET confirmed = 1 WHERE meeting_id = '" . $meeting_id . "';";
             }
-            return json_encode(
-                array("success" => true,
-                        "message" => "Successfully added voted")
-                    );
+            return array("success" => true,
+                        "message" => "Successfully added voted");
         } else {
-            return json_encode(
-                array("success" => false,
-                        "message" => "Failed vote registration")
-                    );
+            return array("success" => false,
+                        "message" => "Failed vote registration");
         }
         return true;
     } else {
-        return json_encode(
-            array("success" => false,
-                    "message" => "Session not created")
-                );
+        return array("success" => false,
+                    "message" => "Session not created");
     }
+}
+
+// Called by AJAX
+if(!defined(MAIN_APP_RUN)) {
 }
 
 ?>
