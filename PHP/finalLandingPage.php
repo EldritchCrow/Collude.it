@@ -5,7 +5,8 @@ require_once("library.php");
 
 if(isset($_POST["add_user"])) {
 	if ($_POST["password"] == $_POST["passwordConfirm"]) {
-		registerUser($_POST["username"], $_POST["real_name"], $_POST["password"], $_POST["group_name"], $_POST["group_id"]);
+		$successful = registerUser($_POST["username"], $_POST["real_name"], $_POST["password"], $_POST["group_name"], $_POST["group_id"]);
+		echo "<script type='text/javascript'>window.onload = function() { alert('$successful["message"]'); };</script>";
 	} else {
 		$message = "PASSWORD FAIL";
 		echo "<script type='text/javascript'>window.onload = function() { alert('$message'); };</script>";
