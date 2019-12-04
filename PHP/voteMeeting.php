@@ -1,5 +1,6 @@
 <?php
 
+include_once("security.php");
 function voteMeeting($meeting_id, $vote) {
     if(!validateInput($meeting_id)
         || !validateInput($vote)) {
@@ -37,6 +38,14 @@ function voteMeeting($meeting_id, $vote) {
 
 // Called by AJAX
 if(!defined(MAIN_APP_RUN)) {
+    if($_SERVER["REQUEST_METHOD"] != "POST"
+            || !isset($_POST["meeting_id"])
+            || !isset($_POST["vote"])) {
+        http_response_code(400);
+        die();
+    }
+    echo json_encode(getMeetings($_POST["meeting_id"], $_POST["vote"]));
+    die();
 }
 
 ?>

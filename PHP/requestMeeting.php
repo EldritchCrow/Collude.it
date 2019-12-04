@@ -1,5 +1,6 @@
 <?php
 
+include_once("security.php");
 function requestMeeting($meeting_time, $meeting_location) {
     if(!validateInput($meeting_time)
         || !validateInput($meeting_location)) {
@@ -31,6 +32,14 @@ function requestMeeting($meeting_time, $meeting_location) {
 
 // Called by AJAX
 if(!defined(MAIN_APP_RUN)) {
+    if($_SERVER["REQUEST_METHOD"] != "POST"
+        || !isset($_POST["m_time"])
+        || !isset($_POST["m_loc"])) {
+        http_response_code(400);
+        die();
+    }
+    echo json_encode(requestMeeting($_POST["m_time"], $_POST["m_loc"]));
+    die();
 }
 
 ?>

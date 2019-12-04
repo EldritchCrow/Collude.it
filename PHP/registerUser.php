@@ -1,5 +1,6 @@
 <?php
 
+include_once("security.php");
 function registerUser($username, $real_name, $password, $group_name = "", $group_id = "") {
     if(!validateInput($username)
         || !validateInput($real_name)
@@ -42,6 +43,23 @@ function registerUser($username, $real_name, $password, $group_name = "", $group
 
 // Called by AJAX
 if(!defined(MAIN_APP_RUN)) {
+    if($_SERVER["REQUEST_METHOD"] != "POST"
+            || !isset($_POST["username"])
+            || !isset($_POST["real_name"])
+            || !isset($_POST["password"])
+            || !isset($_POST["group_name"])
+            || !isset($_POST["group_id"])) {
+        http_response_code(400);
+        die();
+    }
+    echo json_encode(
+        registerUser(
+            $_POST["username"],
+            $_POST["real_name"],
+            $_POST["password"],
+            $_POST["group_name"],
+            $_POST["group_id"]));
+    die();
 }
 
 ?>

@@ -1,5 +1,6 @@
 <?php
 
+include_once("security.php");
 function getMeetings($confirmation) {
     if(!validateInput($confirmation)) {
         return array("success" => false,
@@ -33,6 +34,12 @@ function getMeetings($confirmation) {
 
 // Called by AJAX
 if(!defined(MAIN_APP_RUN)) {
+    if($_SERVER["REQUEST_METHOD"] != "GET" || !isset($_GET["confirmed"])) {
+        http_response_code(400);
+        die();
+    }
+    echo json_encode(getMeetings($_GET["confirmed"]));
+    die();
 }
 
 ?>

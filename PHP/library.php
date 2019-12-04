@@ -24,7 +24,7 @@ require_once 'requestMeeting.php';
 require_once 'sendMessage.php';
 require_once 'registerUser.php';
 require_once 'checkSession.php';
-require_once 'reportSecurityError.php';
+require_once 'security.php';
 define("CHAT_PATH", "../chats/");
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-include_once("reportSecurityError.php");
+include_once("security.php");
 function sendMessage($message) {
     if(!validateInput($message)) {
         return array("success" => false,
@@ -38,6 +38,12 @@ function sendMessage($message) {
 
 // Called by AJAX
 if(!defined(MAIN_APP_RUN)) {
+    if($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["message"])) {
+        http_response_code(400);
+        die();
+    }
+    echo json_encode(sendMessage($_POST["message"]));
+    die();
 }
 
 ?>

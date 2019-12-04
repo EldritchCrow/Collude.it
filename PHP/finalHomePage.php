@@ -7,8 +7,6 @@ if (isset($_POST["login"])) {
     echo loginUser($_POST["username"], $_POST["password"]);
 } else if (isset($_POST["request_meeting"])) {
     echo requestMeeting($_POST["meeting_time"], $_POST["meeting_location"]);
-} else if (isset($_POST["get_meetings"])) {
-    echo getMeetings(1);
 } else if (isset($_POST["submitLocations"])) {
     echo addLocationPreferences($locations);
 } else if (isset($_POST["submitTimes"])) {
