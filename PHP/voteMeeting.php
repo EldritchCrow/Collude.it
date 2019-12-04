@@ -37,7 +37,7 @@ function voteMeeting($meeting_id, $vote) {
 }
 
 // Called by AJAX
-if(!defined(MAIN_APP_RUN)) {
+if(!defined("MAIN_APP_RUN")) {
     if($_SERVER["REQUEST_METHOD"] != "POST"
             || !isset($_POST["meeting_id"])
             || !isset($_POST["vote"])) {

@@ -42,7 +42,7 @@ function registerUser($username, $real_name, $password, $group_name = "", $group
 }
 
 // Called by AJAX
-if(!defined(MAIN_APP_RUN)) {
+if(!defined("MAIN_APP_RUN")) {
     if($_SERVER["REQUEST_METHOD"] != "POST"
             || !isset($_POST["username"])
             || !isset($_POST["real_name"])

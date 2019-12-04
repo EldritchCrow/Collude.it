@@ -37,7 +37,7 @@ function sendMessage($message) {
 }
 
 // Called by AJAX
-if(!defined(MAIN_APP_RUN)) {
+if(!defined("MAIN_APP_RUN")) {
     if($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["message"])) {
         http_response_code(400);
         die();
