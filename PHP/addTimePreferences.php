@@ -3,6 +3,7 @@
 function addTimePreferences($time_list) {
     $conn = Database::getConnection();
     if (checkSession()) {
+        $failed = array();
         foreach($time_list as $value) {
             $day = $value->day;
             $start_time = $value->start_time;
@@ -13,17 +14,27 @@ function addTimePreferences($time_list) {
             . $start_time . "', '"
             . $end_time . "');";
             if ($result = mysqli_query($conn, $sql)) {
-                echo "Time preference added <br>";
+                // echo "Time preference added <br>";
             } else {
-                echo "Something fucked up: <br>" . mysqli_error($conn) . "<br>";
-
+                $failed = array_push($failed, $day . " : " . $start_time . " - " . $end_time);
             }
-        } 
-        echo "Successfully added time preferences";
-        return true;
+        }
+        if(sizeof($failed) != 0) {
+            return json_encode(
+                array("success" => false,
+                        "message" => "One or more of the time preferences failed to update",
+                        "details" => $failed)
+                    );
+        }
+        return json_encode(
+            array("success" => true,
+                    "message" => "Successfully added time preferences")
+                );
     } else {
-        echo "Session not created <br>";
-        return false;
+        return json_encode(
+            array("success" => false,
+                    "message" => "Session not created")
+                );
     }
 }
 

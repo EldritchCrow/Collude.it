@@ -2,13 +2,18 @@
 
 function registerUser($username, $real_name, $password, $group_name = "", $group_id = "") {
     if($group_id == "" && $group_name == "") {
-        echo "ERROR: Must have either group_name or group_id provided to register";
+        return json_encode(
+            array("success" => false,
+                    "message" => "Must have either group_name or group_id provided to register")
+                );
     }
 
     $user_id = addUser($username, $real_name, $password);
     if(!$user_id) {
-        echo "Error adding user to the database";
-        return false;
+        return json_encode(
+            array("success" => false,
+                    "message" => "Error adding user to the database")
+                );
     }
 
     if($group_id == "") {
@@ -16,16 +21,22 @@ function registerUser($username, $real_name, $password, $group_name = "", $group
     }
 
     if(!$group_id) {
-        echo "ERROR: Failed to create a group_id or one was not provided";
-        return false;
+        return json_encode(
+            array("success" => false,
+                    "message" => "Failed to create a group_id or one was not provided")
+                );
     }
     
     if(addGroupMember($group_id, $user_id)) {
-        echo "Successfully registered new user<br>";
-        return true;
+        return json_encode(
+            array("success" => true,
+                    "message" => "Successfully registered new user")
+                );
     } else {
-        echo "ERROR: Failed to add group membership<br>";
-        return false;
+        return json_encode(
+            array("success" => false,
+                    "message" => "Failed to add group membership")
+                );
     }
 }
 
