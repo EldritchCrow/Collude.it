@@ -1,5 +1,10 @@
 <?php
 
+if(!defined(MAIN_APP_RUN)) {
+    http_response_code(404);
+    die();
+}
+
 require_once 'databaseConnect.php';
 require_once 'addLocationPreferences.php';
 require_once 'addTimePreferences.php';

@@ -1,5 +1,10 @@
 <?php
 
+if(!defined(MAIN_APP_RUN)) {
+    http_response_code(404);
+    die();
+}
+
 function addUser($username, $real_name, $password) {
     $conn = Database::getConnection();
     $sql = "SELECT username FROM users WHERE username = '" . $username . "' LIMIT 1;";
