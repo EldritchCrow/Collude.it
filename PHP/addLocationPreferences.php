@@ -3,6 +3,7 @@
 function addLocationPreferences($location_list) {
     $conn = Database::getConnection();
     if (checkSession()) {
+        $failed = array();
         foreach($location_list as $value) {
             $location_name = $value->location_name;
             $ranking = $value->ranking;
@@ -11,16 +12,27 @@ function addLocationPreferences($location_list) {
             . $location_name . "', '"
             . $ranking . "');";
             if ($result = mysqli_query($conn, $sql)) {
-                echo "Preference added <br>";
+                //echo "Preference added <br>";
             } else {
-                echo "Something fucked up: <br>" . mysqli_error($conn) . "<br>";
+                $failed = array_push($failed, $location_name);
             }
-        } 
-        echo "Successfully added location preferences<br>";
-        return true;
+        }
+        if(sizeof($failed) != 0) {
+            return json_encode(
+                array("success" => false,
+                        "message" => "One or more of the location preferences failed to update",
+                        "details" => $failed)
+                    );
+        }
+        return json_encode(
+            array("success" => true,
+                    "message" => "Successfully added location preferences")
+                );
     } else {
-        echo "Session not created <br>";
-        return false;
+        return json_encode(
+            array("success" => false,
+                    "message" => "Session not created")
+                );
     }
 }
 

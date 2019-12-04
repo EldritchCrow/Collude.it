@@ -6,25 +6,30 @@ function getMeetings($confirmation) {
         $sql = "SELECT m_time, m_location FROM meetings WHERE confirmed = " . $confirmation . " AND group_id = '"
         . $_SESSION["group_id"] . "';";
         if ($result = mysqli_query($conn, $sql)) {
+            $meetings = array();
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "Meeting Time: " 
-                    . $row["m_time"] 
-                    . " Location: "
-                    . $row["m_location"]
-                    . "<br>";
+                    $_ = array("m_time" => $row["m_time"],
+                                "m_location" => $row["m_location"]);
+                    $meetings = array_push($meetings, $_);
                 }
-            } else {
-                echo "0 results <br>";
-            }    
-            return true;
+            }
+            return json_encode(
+                array("success" => true,
+                        "message" => "Meetings retrieved",
+                        "data" => $meetings)
+                    );
         } else {
-            echo "Something fucked up:<br>" . mysqli_error($conn) . "<br>";
-            return false;
+            return json_encode(
+                array("success" => false,
+                        "message" => "Failed to load meetings")
+                    );
         }  
     } else {
-        echo "Session is not created";
-        return false;
+        return json_encode(
+            array("success" => false,
+                    "message" => "Session has not been created")
+                );
     }
 }
 

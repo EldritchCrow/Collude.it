@@ -8,19 +8,25 @@ function loginUser($username, $password) {
     if($result = mysqli_query($conn, $sql)){
     
         if (mysqli_num_rows($result) == 0) {
-            echo "User not found";
-            return false;
+            return json_encode(
+                array("success" => false,
+                        "message" => "Username/Password combination not found")
+                    );
         }
         $row = mysqli_fetch_row($result);
         if (password_verify($password, $row[0])) {
             $_SESSION["user_id"] = $row[1];
             $_SESSION["group_id"] = $row[2];
-            return true;
+            return json_encode(
+                array("success" => true,
+                        "message" => "Successfully logged in")
+                    );
         }
-    } else {
-        echo "Something fucked up:<br>" . mysqli_error($conn) . "<br>";
     }
-    return false;
+    return json_encode(
+        array("success" => false,
+                "message" => "Failed to check database to log in")
+            );
 }
 
 ?>

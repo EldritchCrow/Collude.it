@@ -2,9 +2,11 @@
 
 include_once("reportSecurityError.php");
 function sendMessage($message) {
-    if(!isset($_SESSION["group_id"]) || !$_SESSION["user_id"]) {
-        echo "ERROR: Tried to send a message but no session has been initiated";
-        return false;
+    if(checkSession()) {
+        return json_encode(
+            array("success" => false,
+                    "message" => "Session not created")
+                );
     }
     $g_id = $_SESSION["group_id"];
     $u_id = $_SESSION["user_id"];
@@ -19,8 +21,10 @@ function sendMessage($message) {
     // Not sure how this is possible, but whatever
     $message = str_replace("\n", " ", $message);
     if(!file_exists(CHAT_PATH . $g_id . ".txt")) {
-        echo "ERROR: Could not find group chat file for group id " . $g_id . "<br>";
-        return false;
+        return json_encode(
+            array("success" => false,
+                    "message" => "Could not find group chat file for group id " . $g_id)
+                );
     }
     $fp = fopen(CHAT_PATH . $g_id . ".txt", "a");
     $dat = array();
@@ -28,7 +32,10 @@ function sendMessage($message) {
     $dat["message"] = $message;
     fwrite($fp, json_encode($dat) . "\n");
     fclose($fp);
-    return true;
+    return json_encode(
+        array("success" => true,
+                "message" => "Sent message")
+            );
 }
 
 ?>

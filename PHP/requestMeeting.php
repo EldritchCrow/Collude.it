@@ -11,15 +11,21 @@ function requestMeeting($meeting_time, $meeting_location) {
         . $meeting_location . "', "
         . 0 . ");";
         if($result = mysqli_query($conn, $sql)){
-            echo "Successfully added meeting<br>";
-        } else {
-            echo "Something fucked up:<br>" . mysqli_error($conn) . "<br>";
+            return json_encode(
+                array("success" => true,
+                        "message" => "Added meeting to database")
+                    );
         }
-        return true;
+        return json_encode(
+            array("success" => false,
+                    "message" => "Failed to add meeting to database")
+                );
     }
     else {
-        echo "Session not created";
-        return false;
+        return json_encode(
+            array("success" => false,
+                    "message" => "Session not created")
+                );
     }
 
 }

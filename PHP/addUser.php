@@ -6,8 +6,10 @@ function addUser($username, $real_name, $password) {
     if($result = mysqli_query($conn, $sql)){
     
         if (mysqli_num_rows($result) == 1) {
-            echo "USER ALREADY EXISTS DUMBASS<br>";
-            return false;
+            return json_encode(
+                array("success" => false,
+                        "message" => "User already exists")
+                    );
         }
         else {
             $sql = "INSERT INTO users (user_id, username, real_name, password_hash, last_update)";
@@ -19,16 +21,23 @@ function addUser($username, $real_name, $password) {
                 . password_hash($password, PASSWORD_BCRYPT) . "', '"
                 . (new DateTime('now'))->format("Y-m-d H:i:s") . "');";
             if($result = mysqli_query($conn, $sql)){
-                echo "Successfully added user<br>";
+                return json_encode(
+                    array("success" => true,
+                            "message" => "Successfully added user",
+                            "user_id" => $new_id)
+                        );
             } else {
-                echo "Something fucked up:<br>" . mysqli_error($conn) . "<br>";
-                return false;
+                return json_encode(
+                    array("success" => false,
+                            "message" => "Failed to add user")
+                        );
             }
-            return $new_id;
         }
     } else {
-        echo "Something fucked up:<br>" . mysqli_error($conn) . "<br>";
-        return false;
+        return json_encode(
+            array("success" => false,
+                    "message" => "Failed to check if user exists")
+                );
     }
 }
 
