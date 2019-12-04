@@ -1,6 +1,12 @@
 <?php
 
 function getMeetings($confirmation) {
+    if(!validateInput($confirmation)) {
+        return json_encode(
+            array("success" => false,
+                    "message" => "One of the inputs did not validate")
+                );
+    }
     if (checkSession()) {
         $conn = Database::getConnection();
         $sql = "SELECT m_time, m_location FROM meetings WHERE confirmed = " . $confirmation . " AND group_id = '"

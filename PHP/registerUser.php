@@ -1,6 +1,18 @@
 <?php
 
 function registerUser($username, $real_name, $password, $group_name = "", $group_id = "") {
+    if(!validateInput($username)
+        || !validateInput($real_name)
+        || !validateInput($password)
+        || !validateInput($group_name)
+        || !validateInput($group_id)
+        || strlen($password) < 12) {
+        return json_encode(
+            array("success" => false,
+                    "message" => "One of the registration inputs did not validate")
+                );
+    }
+
     if($group_id == "" && $group_name == "") {
         return json_encode(
             array("success" => false,
@@ -39,5 +51,3 @@ function registerUser($username, $real_name, $password, $group_name = "", $group
                 );
     }
 }
-
-?>

@@ -1,6 +1,13 @@
 <?php
 
 function requestMeeting($meeting_time, $meeting_location) {
+    if(!validateInput($meeting_time)
+        || !validateInput($meeting_location)) {
+        return json_encode(
+            array("success" => false,
+                    "message" => "One of the inputs did not validate")
+                );
+    }
     $conn = Database::getConnection();
     if (checkSession()) {
         $meeting_id = bin2hex(random_bytes(12));
