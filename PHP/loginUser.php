@@ -1,6 +1,13 @@
 <?php
 
 function loginUser($username, $password) {
+    if(!validateInput($username)
+        || !validateInput($password)) {
+        return json_encode(
+            array("success" => false,
+                    "message" => "One of the inputs did not validate")
+                );
+    }
     $conn = Database::getConnection();
     $sql = "SELECT users.password_hash, users.user_id, group_members.group_id FROM users JOIN group_members ON users.user_id = group_members.user_id WHERE username = '"
         . $username

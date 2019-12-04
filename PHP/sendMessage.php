@@ -2,6 +2,12 @@
 
 include_once("reportSecurityError.php");
 function sendMessage($message) {
+    if(!validateInput($message)) {
+        return json_encode(
+            array("success" => false,
+                    "message" => "One of the inputs did not validate")
+                );
+    }
     if(checkSession()) {
         return json_encode(
             array("success" => false,

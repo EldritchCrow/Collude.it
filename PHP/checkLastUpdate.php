@@ -1,6 +1,6 @@
 <?php
 
-function checkLastUpdate($last_update) {
+function checkLastUpdate() {
     return true;
 }
 
