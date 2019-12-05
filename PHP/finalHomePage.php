@@ -100,28 +100,28 @@ $message_data = $message_data["data"]
                 <thead>
                   <tr>
                     <th>
-                    <button class="timeButton" type="button" name="yesterday" onclick="Yesterday(this);">&lt;</button>
+                    <button class="timeButton" type="button" id="yesterdayTime">&lt;</button>
                     <h4 id="day">Sundays</h4>
-                    <button class="timeButton" type="button" name="tomorrow" onclick="Tomorrow(this);">&gt;</button>
+                    <button class="timeButton" type="button" id="tomorrowTime">&gt;</button>
                   </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>8:00 AM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>9:00 AM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>10:00 AM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>11:00 AM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>12:00 PM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>1:00 PM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>2:00 PM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>3:00 PM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>4:00 PM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>5:00 PM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>6:00 PM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>7:00 PM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>8:00 PM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>9:00 PM</td></tr>
-                  <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>10:00 PM</td></tr>
+                  <tr><td>8:00 AM</td></tr>
+                  <tr><td>9:00 AM</td></tr>
+                  <tr><td>10:00 AM</td></tr>
+                  <tr><td>11:00 AM</td></tr>
+                  <tr><td>12:00 PM</td></tr>
+                  <tr><td>1:00 PM</td></tr>
+                  <tr><td>2:00 PM</td></tr>
+                  <tr><td>3:00 PM</td></tr>
+                  <tr><td>4:00 PM</td></tr>
+                  <tr><td>5:00 PM</td></tr>
+                  <tr><td>6:00 PM</td></tr>
+                  <tr><td>7:00 PM</td></tr>
+                  <tr><td>8:00 PM</td></tr>
+                  <tr><td>9:00 PM</td></tr>
+                  <tr><td>10:00 PM</td></tr>
                 </tbody>
               </table>
             </div>

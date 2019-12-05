@@ -82,6 +82,13 @@ $(document).ready( function() {
     $(".chatBox").delay(500).animate({scrollTop: $(".chatBox").prop("scrollHeight")}, "slow");
 
     trs = document.getElementById('timesTable').tBodies[0].getElementsByTagName('tr');
+
+    $("#timesTable > tbody > tr").mousedown(function() {RowClick(this, false)})
+                                  .mouseover(function() {RowOver(this, false)})
+                                  .mouseup(function() {MouseUp(this,false)});
+    
+    $("#yesterdayTime").click(function() {Yesterday(this)});
+    $("#tomorrowTime").click(function() {Tomorrow(this)});
 });
 
 
