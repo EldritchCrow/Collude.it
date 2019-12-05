@@ -245,6 +245,38 @@ background-size: 30px;
   text-align: center;
 }
 
+#timesTable {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2vh;
+}
+
+.timeButton {
+  background: none;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  border: none;
+
+}
+
+tr {
+  border: 1px solid black;
+  height: 2em;
+}
+
+th {
+  display: inline-flex;
+}
+
+tbody:hover {
+  cursor: pointer;
+}
+
+.selected {
+    background: lightBlue;
+}
+
 .icon {
   margin: 10% 10%;
   width: 80%;

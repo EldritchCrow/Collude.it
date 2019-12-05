@@ -1,11 +1,16 @@
+    var lastSelectedRow;
+    var trs;
+    var isMouseDown = false;
+    var days = ["Sundays", "Mondays", "Tuesdays", "Wednesdays", "Thursdays", "Fridays", "Saturdays"];
+
 $(document).ready( function() {
-    $("#messageSend").click( function() {
-        sendMessage();
-    });
-    $(document).on('keyup',function(e) {
-    if(e.which == 13) {
-        sendMessage();
-    }
+  $("#messageSend").click( function() {
+      sendMessage();
+  });
+  $(document).on('keyup',function(e) {
+  if(e.which == 13) {
+      sendMessage();
+  }
   });
 
   function sendMessage() {
@@ -26,6 +31,8 @@ $(document).ready( function() {
       },
     });
   }
+
+  $('#contentTime').hide();
 
     $("#timeIcon").click( function() {
       $("#locationIcon").css("background", "#666");
@@ -61,7 +68,7 @@ $(document).ready( function() {
         $(".tabs").css("display", "block");
         $(".arrow").html("&gt;");
     });
-
+  
     $("#addLocation").click(function() {
       var break_ = false;
       [...$(".locationSelector")].forEach(function(item, index) {
@@ -73,6 +80,8 @@ $(document).ready( function() {
     });
     
     $(".chatBox").delay(500).animate({scrollTop: $(".chatBox").prop("scrollHeight")}, "slow");
+
+    trs = document.getElementById('timesTable').tBodies[0].getElementsByTagName('tr');
 });
 
 function loadMessageLog() {
@@ -96,3 +105,93 @@ function loadMessageLog() {
 }
 
 setInterval(loadMessageLog, 1000);
+
+// disable text selection
+document.onselectstart = function() {
+  return false;
+}
+
+function RowClick(currenttr, lock) {
+
+  if (window.event.ctrlKey) {
+    toggleRow(currenttr);
+    isMouseDown = true;
+  }
+
+  if (window.event.button === 0) {
+    if (!window.event.ctrlKey && !window.event.shiftKey) {
+      clearAll();
+      toggleRow(currenttr);
+      isMouseDown = true;
+    }
+
+    if (window.event.shiftKey) {
+      selectRowsBetweenIndexes([lastSelectedRow.rowIndex, currenttr.rowIndex])
+    }
+  }
+}
+
+function RowOver(e, lock){
+  if(isMouseDown){
+    toggleRow(e);
+  }
+}
+
+function MouseUp(e, lock){
+  isMouseDown = false;
+}
+
+function toggleRow(row) {
+  row.className = row.className == 'selected' ? '' : 'selected';
+  lastSelectedRow = row;
+}
+
+function selectRowsBetweenIndexes(indexes) {
+  indexes.sort(function(a, b) {
+    return a - b;
+  });
+
+  for (var i = indexes[0]; i <= indexes[1]; i++) {
+    trs[i-1].className = 'selected';
+  }
+}
+
+function clearAll() {
+  for (var i = 0; i < trs.length; i++) {
+    trs[i].className = '';
+  }
+}
+
+function Tomorrow(e){
+  var string = $('#day').text();
+  var index = getIndex(string);
+  if (index == 6){
+    $('#day').text(days[0]);
+  }else{
+    $('#day').text(days[index+1]);
+  }
+  clearAll();
+}
+
+function Yesterday(e){
+  var string = $('#day').text();
+  var index = getIndex(string);
+  if (index == 0){
+    $('#day').text(days[6]);
+  }else{
+    $('#day').text(days[index-1]);
+  }
+  clearAll();
+}
+
+function getIndex(query){
+  var ret = 0;
+  var i = 0;
+  days.forEach(function(item){
+    if (item == query ){
+      ret = i;
+    }
+    i++;
+  });
+  return ret;
+}
