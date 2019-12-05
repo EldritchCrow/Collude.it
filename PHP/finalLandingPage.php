@@ -47,7 +47,6 @@ if(isset($_POST["add_user"])) {
       <div class="collapse navbar-collapse" id="navbarMenu">
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="../homepage/homePage.html">About Us</a></li>
         </ul>
         <!--Log in and Sign up link-->
 
