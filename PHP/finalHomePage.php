@@ -95,7 +95,36 @@ $message_data = $message_data["data"]
               <div class="arrow nopadding" alt="time">&lt;</div>
               <div class="arrow nopadding" alt="time">&lt;</div>
             </div>
-            <div class="content" style="display: none" id="sideBarTimes">Enter time preferences here</div>
+            <div class="content" style="display: none" id="sideBarTimes">
+              <table id="timesTable">
+                <thead>
+                  <tr>
+                    <th>
+                    <button class="timeButton" type="button" id="yesterdayTime">&lt;</button>
+                    <h4 id="day">Sundays</h4>
+                    <button class="timeButton" type="button" id="tomorrowTime">&gt;</button>
+                  </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>8:00 AM</td></tr>
+                  <tr><td>9:00 AM</td></tr>
+                  <tr><td>10:00 AM</td></tr>
+                  <tr><td>11:00 AM</td></tr>
+                  <tr><td>12:00 PM</td></tr>
+                  <tr><td>1:00 PM</td></tr>
+                  <tr><td>2:00 PM</td></tr>
+                  <tr><td>3:00 PM</td></tr>
+                  <tr><td>4:00 PM</td></tr>
+                  <tr><td>5:00 PM</td></tr>
+                  <tr><td>6:00 PM</td></tr>
+                  <tr><td>7:00 PM</td></tr>
+                  <tr><td>8:00 PM</td></tr>
+                  <tr><td>9:00 PM</td></tr>
+                  <tr><td>10:00 PM</td></tr>
+                </tbody>
+              </table>
+            </div>
             <div class="content" style="display: none" id="sideBarLocs">
               <ol>
                 <li><input type="text" class="locationSelector" id="locationOne" name="locationOne"></li>
