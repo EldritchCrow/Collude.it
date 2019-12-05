@@ -95,7 +95,18 @@ $message_data = $message_data["data"]
               <div class="arrow nopadding" alt="time">&lt;</div>
               <div class="arrow nopadding" alt="time">&lt;</div>
             </div>
-            <div class="content" id="sideBarContent">select tab to display content here</div>
+            <div class="content" style="display: none" id="sideBarTimes">Enter time preferences here</div>
+            <div class="content" style="display: none" id="sideBarLocs">
+              <ol>
+                <li><input type="text" class="locationSelector" id="locationOne" name="locationOne"></li>
+                <li><input type="text" class="locationSelector" id="locationTwo" name="locationTwo"></li>
+                <li><input type="text" class="locationSelector" id="locationThree" name="locationThree"></li>
+                <li><input type="text" class="locationSelector" id="locationFour" name="locationFour"></li>
+                <li><input type="text" class="locationSelector" id="locationFive" name="locationFive"></li>
+              </ol>
+              <input type="submit" id="addLocation" name="addLocation" value="Add Locations">
+            </div>
+            <div class="content" style="display: none" id="sideBarRequest">Make a message request here</div>
           </div>
         </div>
 
