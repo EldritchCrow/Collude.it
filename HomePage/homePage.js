@@ -61,6 +61,16 @@ $(document).ready( function() {
         $(".tabs").css("display", "block");
         $(".arrow").html("&gt;");
     });
+
+    $("#addLocation").click(function() {
+      var break_ = false;
+      [...$(".locationSelector")].forEach(function(item, index) {
+        if(item.val() == "") {
+          alert("You must fill out all of the list items");
+          break_ = true;
+        }
+      });
+    });
     
     $(".chatBox").delay(500).animate({scrollTop: $(".chatBox").prop("scrollHeight")}, "slow");
 });

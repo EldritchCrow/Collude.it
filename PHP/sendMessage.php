@@ -2,10 +2,6 @@
 
 require_once("library.php");
 function sendMessage($message) {
-    if(!validateInput($message)) {
-        return array("success" => false,
-                    "message" => "One of the inputs did not validate");
-    }
     if(!checkSession()) {
         return array("success" => false,
                     "message" => "Session not created");
@@ -18,8 +14,8 @@ function sendMessage($message) {
     // Preventing XSS attacks
     // Stops user messages from becoming arbitrarily executable JS
     $message = str_replace("&", "&amp", $message);
-    $message = str_replace("<", "&gt", $message);
-    $message = str_replace(">", "&lt", $message);
+    $message = str_replace("<", "&lt", $message);
+    $message = str_replace(">", "&gt", $message);
     // Not sure how this is possible, but whatever
     $message = str_replace("\n", " ", $message);
     if(!file_exists(getChatsPath() . $g_id . ".txt")) {
