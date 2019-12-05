@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2019 at 12:27 AM
+-- Generation Time: Dec 04, 2019 at 07:37 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -47,6 +47,13 @@ CREATE TABLE `groups` (
   `chat_history` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`group_id`, `group_name`, `chat_history`) VALUES
+('5a59210d5acdb195560a091f', 'shut the fuck', 'no');
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +64,16 @@ CREATE TABLE `group_members` (
   `group_id` char(24) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` char(24) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `group_members`
+--
+
+INSERT INTO `group_members` (`group_id`, `user_id`) VALUES
+('5a59210d5acdb195560a091f', '5a59210d5acdb195560a091b'),
+('5a59210d5acdb195560a091f', '6a09ffb2bf7510ff8a2657ef'),
+('5a59210d5acdb195560a091f', '93c316f0939524976f7c1307'),
+('5a59210d5acdb195560a091f', 'af4336da9e48064c399b115d');
 
 -- --------------------------------------------------------
 
@@ -98,6 +115,17 @@ CREATE TABLE `users` (
   `last_update` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `real_name`, `password_hash`, `last_update`) VALUES
+('039e6821f16d082064f5c653', 'a', 'a', '$2y$10$xzXiLRN3KeNaLz6tKL/ni.u.8Zlfbx1.V6uPEbjU76WcnuHPW4R8y', '2019-12-02 20:41:55'),
+('5a59210d5acdb195560a091b', 'bob', 'bobby', '$2y$10$jjYmJ56lxH0TJi9l5kE7xe/X3KxANs9E0oDCCGQdJQtqFn9L9Ji.G', '2019-11-27 01:00:07'),
+('6a09ffb2bf7510ff8a2657ef', 'd', 'd', '$2y$10$2fx2cyZ8FMsgaH8X5.ex..LK1Gaeh3DmKRan5cS1n0aOMGRfYEw0q', '2019-12-02 21:42:16'),
+('93c316f0939524976f7c1307', 'b', 'b', '$2y$10$bQj1.m/HdPnaDY3adQq.xOak4YpG8yNPhKhSyEQcgug5zsMd.wjX6', '2019-12-02 20:45:24'),
+('af4336da9e48064c399b115d', 'c', 'c', '$2y$10$NtWTTewftwc9TokvkzS2..V8ArZ1f8Dscz/DpZB1./bgwDdL9YY4S', '2019-12-02 21:37:50');
+
 -- --------------------------------------------------------
 
 --
@@ -118,7 +146,7 @@ CREATE TABLE `votes` (
 -- Indexes for table `datetime_prefs`
 --
 ALTER TABLE `datetime_prefs`
-  ADD PRIMARY KEY (`user_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `groups`
@@ -130,14 +158,14 @@ ALTER TABLE `groups`
 -- Indexes for table `group_members`
 --
 ALTER TABLE `group_members`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `group_id` (`group_id`);
+  ADD KEY `group_id` (`group_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `location_prefs`
 --
 ALTER TABLE `location_prefs`
-  ADD PRIMARY KEY (`user_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `meetings`
@@ -156,8 +184,8 @@ ALTER TABLE `users`
 -- Indexes for table `votes`
 --
 ALTER TABLE `votes`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `meeting_id` (`meeting_id`);
+  ADD KEY `meeting_id` (`meeting_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Constraints for dumped tables

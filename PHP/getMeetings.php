@@ -1,29 +1,35 @@
 <?php
-    function getMeetings() {
-        if (checkSession()) {
-            $conn = Database::getConnection();
-            $sql = "SELECT m_time, m_location FROM meetings WHERE confirmed = 1 AND group_id = '"
-            . $_SESSION["group_id"] . "';";
-            if ($result = mysqli_query($conn, $sql)) {
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "Meeting Time: " 
-                        . $row["m_time"] 
-                        . " Location: "
-                        . $row["m_location"]
-                        . "<br>";
-                    }
-                } else {
-                    echo "0 results <br>";
-                }    
-                return true;
-            } else {
-                echo "Something fucked up:<br>" . mysqli_error($conn) . "<br>";
-                return false;
-            }  
-        } else {
-            echo "Session is not created";
-            return false;
-        }
+
+include_once("security.php");
+function getMeetings($confirmation) {
+    if(!validateInput($confirmation)) {
+        return array("success" => false,
+                    "message" => "One of the inputs did not validate");
     }
+    if (checkSession()) {
+        $conn = Database::getConnection();
+        $sql = "SELECT m_time, m_location FROM meetings WHERE confirmed = " . $confirmation . " AND group_id = '"
+        . $_SESSION["group_id"] . "';";
+        if ($result = mysqli_query($conn, $sql)) {
+            $meetings = array();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $_ = array("m_time" => $row["m_time"],
+                                "m_location" => $row["m_location"]);
+                    array_push($meetings, $_);
+                }
+            }
+            return array("success" => true,
+                        "message" => "Meetings retrieved",
+                        "data" => $meetings);
+        } else {
+            return array("success" => false,
+                        "message" => "Failed to load meetings");
+        }  
+    } else {
+        return array("success" => false,
+                    "message" => "Session has not been created");
+    }
+}
+
 ?>

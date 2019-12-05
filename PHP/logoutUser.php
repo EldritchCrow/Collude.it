@@ -1,6 +1,10 @@
 <?php
-    function logout_User() {
-        session_unset();
-        session_destroy();
-    }
+
+function logoutUser() {
+    session_unset();
+    session_destroy();
+    return array("success" => true,
+                    "message" => "Successfully logged out");
+}
+
 ?>
