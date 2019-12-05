@@ -14,7 +14,7 @@ function addLocationPreferences($location_list) {
             if ($result = mysqli_query($conn, $sql)) {
                 //echo "Preference added <br>";
             } else {
-                $failed = array_push($failed, $location_name);
+                array_push($failed, $location_name);
             }
         }
         if(sizeof($failed) != 0) {

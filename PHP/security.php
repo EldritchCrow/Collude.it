@@ -1,10 +1,5 @@
 <?php
 
-if(!defined("MAIN_APP_RUN")) {
-    http_response_code(404);
-    die();
-}
-
 function logSecurityMessage($message) {
     $fp = fopen("security_log.txt", "a");
     fwrite($fp, $message . "\n");

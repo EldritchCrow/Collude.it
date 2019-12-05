@@ -1,12 +1,7 @@
-<?php 
-
-if(!defined("MAIN_APP_RUN")) {
-    http_response_code(404);
-    die();
-}
+<?php
 
 function checkSession() {
-    if ($_SESSION["user_id"] != NULL && $_SESSION["group_id"] != NULL && !checkLastUpdate()) {
+    if (isset($_SESSION["user_id"]) && isset($_SESSION["group_id"]) && checkLastUpdate()) {
         return true;
     } else {
         return false;

@@ -1,13 +1,8 @@
 <?php
 
-if(!defined("MAIN_APP_RUN")) {
-    http_response_code(404);
-    die();
-}
-
 function addGroup($group_name) {
     $new_id = bin2hex(random_bytes(12));
-    $chat_file = CHAT_PATH . $new_id . ".txt";
+    $chat_file = getChatsPath() . $new_id . ".txt";
     $fp = fopen($chat_file, "w");
     // fwrite($fp, "user_id,timestamp,text\n");
     fclose($fp);

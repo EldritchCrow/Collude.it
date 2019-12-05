@@ -1,5 +1,7 @@
 <?php
 
+define("USER_APP_RUN", true);
+
 function loadMessages() {
     if(!checkSession()) {
         return array("success" => false,
@@ -7,7 +9,7 @@ function loadMessages() {
     }
     $conn = Database::getConnection();
     $g_id = $_SESSION["group_id"];
-    if(!file_exists(CHAT_PATH . $g_id . ".txt")) {
+    if(!file_exists(getChatsPath() . $g_id . ".txt")) {
         return array("success" => false,
                     "message" => "Could not find group chat file for group id " . $g_id);
     }
@@ -21,14 +23,14 @@ function loadMessages() {
                     "message" => "Group ID has non-hexidecimal characters");
     }
     // Doing things this way is for simplicity, but I think it is reasonably secure given the previous check
-    $chat_loc = CHAT_PATH . $g_id . ".txt";
+    $chat_loc = getChatsPath() . $g_id . ".txt";
     //$file_data = `tail -n 200 $chat_loc`;
     $_ = fopen($chat_loc, "r");
     $file_data = explode("\n", fread($_, 10000000));
     fclose($_);
-    $results = "";
+    $results = array();
     $sql = "SELECT user_id, real_name FROM users;";
-    $userNames = mysqli_query($conn, $sql)
+    $userNames = mysqli_query($conn, $sql);
     $lookup = array();
     if (!$userNames) {
     }
@@ -40,22 +42,14 @@ function loadMessages() {
             continue;
         }
         $dat = json_decode($line,true);
-        $results .= $lookup[$dat["user_id"]] . ": " . $dat["message"] . "<br>";
+        array_push($results,
+            array("name" => $lookup[$dat["user_id"]],
+                    "message" => $dat["message"]));
     }
     return array("success" => true,
                 "message" => "Loaded messages",
                 "data" => $results);
     
-}
-
-// Called by AJAX
-if(!defined("MAIN_APP_RUN")) {
-    if($_SERVER["REQUEST_METHOD"] != "GET") {
-        http_response_code(400);
-        die();
-    }
-    echo json_encode(getMeetings($_GET["confirmed"]));
-    die();
 }
 
 ?>

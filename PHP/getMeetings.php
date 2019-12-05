@@ -16,7 +16,7 @@ function getMeetings($confirmation) {
                 while ($row = $result->fetch_assoc()) {
                     $_ = array("m_time" => $row["m_time"],
                                 "m_location" => $row["m_location"]);
-                    $meetings = array_push($meetings, $_);
+                    array_push($meetings, $_);
                 }
             }
             return array("success" => true,
@@ -30,16 +30,6 @@ function getMeetings($confirmation) {
         return array("success" => false,
                     "message" => "Session has not been created");
     }
-}
-
-// Called by AJAX
-if(!defined("MAIN_APP_RUN")) {
-    if($_SERVER["REQUEST_METHOD"] != "GET" || !isset($_GET["confirmed"])) {
-        http_response_code(400);
-        die();
-    }
-    echo json_encode(getMeetings($_GET["confirmed"]));
-    die();
 }
 
 ?>

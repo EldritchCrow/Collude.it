@@ -1,0 +1,9 @@
+order deny,allow
+Deny from all
+
+<Files "finalLandingPage.php">
+    Allow from all
+</Files>
+<Files "finalHomePage.php">
+    Allow from all
+</Files>

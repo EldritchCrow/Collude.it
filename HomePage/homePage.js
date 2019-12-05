@@ -9,14 +9,21 @@ $(document).ready( function() {
   });
 
   function sendMessage() {
-    var message = $.trim($("#userMessage").val());
-    if (message != "") {
-        $(".chatBox").append( "<div class = \"message\" >"+ message + "</div>" );
-    }
-    $("#userMessage").val("");
-    $("#userMessage").attr("placeholder", "Type your message here.");
-    var d = $('.chatBox');
-    d.scrollTop(d.prop("scrollHeight"));
+    var user_message = $.trim($("#userMessage").val());
+    $.ajax({
+      type: "POST",
+      url: "user_functions/sendMessage.php",
+      data: {message: user_message},
+      dataType: "text",
+      success: function(data, status) {
+        alert(status + " : " + data);
+        console.log(data);
+      },
+      error: function(data, status) {
+        alert(status + " : " + data);
+        console.log(data);
+      },
+    });
   }
 
     $("#timeIcon").click( function() {

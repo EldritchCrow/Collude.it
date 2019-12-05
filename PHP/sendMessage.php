@@ -1,12 +1,12 @@
 <?php
 
-include_once("security.php");
+require_once("library.php");
 function sendMessage($message) {
     if(!validateInput($message)) {
         return array("success" => false,
                     "message" => "One of the inputs did not validate");
     }
-    if(checkSession()) {
+    if(!checkSession()) {
         return array("success" => false,
                     "message" => "Session not created");
     }
@@ -22,11 +22,12 @@ function sendMessage($message) {
     $message = str_replace(">", "&lt", $message);
     // Not sure how this is possible, but whatever
     $message = str_replace("\n", " ", $message);
-    if(!file_exists(CHAT_PATH . $g_id . ".txt")) {
+    if(!file_exists(getChatsPath() . $g_id . ".txt")) {
         return array("success" => false,
-                    "message" => "Could not find group chat file for group id " . $g_id);
+                    "message" => "Could not find group chat file for group id " . $g_id,
+                    "attempted" => getChatsPath() . $g_id . ".txt");
     }
-    $fp = fopen(CHAT_PATH . $g_id . ".txt", "a");
+    $fp = fopen(getChatsPath() . $g_id . ".txt", "a");
     $dat = array();
     $dat["user_id"] = $u_id;
     $dat["message"] = $message;
@@ -34,16 +35,6 @@ function sendMessage($message) {
     fclose($fp);
     return array("success" => true,
                 "message" => "Sent message");
-}
-
-// Called by AJAX
-if(!defined("MAIN_APP_RUN")) {
-    if($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["message"])) {
-        http_response_code(400);
-        die();
-    }
-    echo json_encode(sendMessage($_POST["message"]));
-    die();
 }
 
 ?>

@@ -16,7 +16,7 @@ function addTimePreferences($time_list) {
             if ($result = mysqli_query($conn, $sql)) {
                 // echo "Time preference added <br>";
             } else {
-                $failed = array_push($failed, $day . " : " . $start_time . " - " . $end_time);
+                array_push($failed, $day . " : " . $start_time . " - " . $end_time);
             }
         }
         if(sizeof($failed) != 0) {

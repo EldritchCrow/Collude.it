@@ -101,7 +101,7 @@ if(isset($_POST["add_user"])) {
 				</div>
 				
 				<div class="modal-footer d-flex justify-content-center">
-		            <input type="submit" class="btn btn-default" name="add_user" value="Log In">
+		            <input type="submit" class="btn btn-default" name="login" value="Log In">
 				</div>
               </form>
 		    </div>

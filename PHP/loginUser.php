@@ -29,16 +29,4 @@ function loginUser($username, $password) {
                 "message" => "Failed to check database to log in");
 }
 
-// Called by AJAX
-if(!defined("MAIN_APP_RUN")) {
-    if($_SERVER["REQUEST_METHOD"] != "POST"
-            || !isset($_POST["username"])
-            || !isset($_POST["password"])) {
-        http_response_code(400);
-        die();
-    }
-    echo json_encode(loginUser($_POST["username"], $_POST["password"]));
-    die();
-}
-
 ?>

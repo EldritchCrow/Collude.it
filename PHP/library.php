@@ -1,10 +1,5 @@
 <?php
 
-if(!defined("MAIN_APP_RUN")) {
-    http_response_code(404);
-    die();
-}
-
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -26,5 +21,14 @@ require_once 'registerUser.php';
 require_once 'checkSession.php';
 require_once 'security.php';
 define("CHAT_PATH", "../chats/");
+
+function getChatsPath() {
+    //print_r(scandir("."));
+    if(defined("MAIN_APP_RUN")) {
+        return CHAT_PATH;
+    } else {
+        return "../" . CHAT_PATH;
+    }
+}
 
 ?>
