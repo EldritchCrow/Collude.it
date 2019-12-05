@@ -56,7 +56,4 @@ function getTopTimes() {
     }
 }
 
-getTopTimes();
-
-
 ?>
