@@ -128,6 +128,7 @@ function Tomorrow(e){
   }else{
     $('#day').text(days[index+1]);
   }
+  clearAll();
 }
 
 function Yesterday(e){
@@ -138,6 +139,7 @@ function Yesterday(e){
   }else{
     $('#day').text(days[index-1]);
   }
+  clearAll();
 }
 
 function getIndex(query){
