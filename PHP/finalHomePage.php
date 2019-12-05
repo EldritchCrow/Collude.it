@@ -95,7 +95,9 @@ $message_data = $message_data["data"]
               <div class="arrow nopadding" alt="time">&lt;</div>
               <div class="arrow nopadding" alt="time">&lt;</div>
             </div>
-            <div class="content" id="sideBarContent">select tab to display content here</div>
+            <div class="content" style="display: none" id="sideBarTimes">Enter time preferences here</div>
+            <div class="content" style="display: none" id="sideBarLocs">Enter location preferences here</div>
+            <div class="content" style="display: none" id="sideBarRequest">Make a message request here</div>
           </div>
         </div>
 

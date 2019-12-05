@@ -31,21 +31,27 @@ $(document).ready( function() {
       $("#locationIcon").css("background", "#666");
       $("#calendarIcon").css("background", "#666");
       $("#timeIcon").css("background", "grey");
-      $("#sideBarContent").text("time preferences tab");
-      $("#notifBar").text("Notifications");
+      $("#sideBarTimes").css("display", "inherit");
+      $("#sideBarLocs").css("display", "none");
+      $("#sideBarRequest").css("display", "none");
+      $("#notifBar").text("Time Preferences");
     });
     $("#locationIcon").click( function() {
       $("#timeIcon").css("background", "#666");
       $("#calendarIcon").css("background", "#666");
       $("#locationIcon").css("background", "grey");
-      $("#sideBarContent").text("location preferences tab");
-      $("#notifBar").text("Notifications");
+      $("#sideBarTimes").css("display", "none");
+      $("#sideBarLocs").css("display", "inherit");
+      $("#sideBarRequest").css("display", "none");
+      $("#notifBar").text("Location Preferences");
     });
     $("#calendarIcon").click( function() {
       $("#locationIcon").css("background", "#666");
       $("#timeIcon").css("background", "#666");
       $("#calendarIcon").css("background", "grey");
-      $("#sideBarContent").text("upcoming meetings tab");
+      $("#sideBarTimes").css("display", "none");
+      $("#sideBarLocs").css("display", "none");
+      $("#sideBarRequest").css("display", "inherit");
       $("#notifBar").text("Request a meeting");
     });
 
@@ -72,10 +78,8 @@ function loadMessageLog() {
       });
       $(".chatBox").html(new_text);
       var new_height = $(".chatBox").prop("scrollHeight");
-      console.log(old_height + " : " + new_height);
       if(new_height > old_height) {
         $(".chatBox").animate({scrollTop: new_height}, "slow");
-        console.log("Tried to scroll");
       }
     }
   });
