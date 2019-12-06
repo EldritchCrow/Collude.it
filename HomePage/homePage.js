@@ -1,17 +1,17 @@
-    var lastSelectedRow;
-    var trs;
-    var isMouseDown = false;
-    var days = ["Sundays", "Mondays", "Tuesdays", "Wednesdays", "Thursdays", "Fridays", "Saturdays"];
+var lastSelectedRow;
+var trs;
+var isMouseDown = false;
+var days = ["Sundays", "Mondays", "Tuesdays", "Wednesdays", "Thursdays", "Fridays", "Saturdays"];
 
-$(document).ready( function() {
+$(document).ready(function () {
   $('#notifBar').hide();
-  $("#messageSend").click( function() {
-      sendMessage();
+  $("#messageSend").click(function () {
+    sendMessage();
   });
-  $(document).on('keyup',function(e) {
-  if(e.which == 13) {
+  $(document).on('keyup', function (e) {
+    if (e.which == 13) {
       sendMessage();
-  }
+    }
   });
 
   function sendMessage() {
@@ -20,13 +20,13 @@ $(document).ready( function() {
     $.ajax({
       type: "POST",
       url: "user_functions/sendMessage.php",
-      data: {message: user_message},
+      data: { message: user_message },
       dataType: "text",
-      success: function(data, status) {
+      success: function (data, status) {
         // alert(status + " : " + data);
         // console.log(data);
       },
-      error: function(data, status) {
+      error: function (data, status) {
         alert(status + " : " + data);
         console.log(data);
       },
@@ -35,144 +35,143 @@ $(document).ready( function() {
 
   $('#contentTime').hide();
 
-    $("#timeIcon").click( function() {
-      $("#locationIcon").css("width", "80%");
-      $("#calendarIcon").css("width", "80%");
-      getCurrentTimePrefs();
-      $("#locationIcon").css("background", "#666");
-      $("#calendarIcon").css("background", "#666");
-      $("#timeIcon").css("background", "grey");
+  $("#timeIcon").click(function () {
+    $("#locationIcon").css("width", "80%");
+    $("#calendarIcon").css("width", "80%");
+    getCurrentTimePrefs();
+    $("#locationIcon").css("background", "#666");
+    $("#calendarIcon").css("background", "#666");
+    $("#timeIcon").css("background", "grey");
+    $("#sideBarTimes").css("display", "inherit");
+    $("#sideBarLocs").css("display", "none");
+    $("#sideBarRequest").css("display", "none");
+    $("#timeIcon").css("width", "100%");
+
+    if ($('#openclose').text() == '>') {
+      openclose('time');
+    } else {
       $("#sideBarTimes").css("display", "inherit");
-      $("#sideBarLocs").css("display", "none");
-      $("#sideBarRequest").css("display", "none");
-      $("#timeIcon").css("width", "100%");
+      $("#notifBar").text("Time Preferences");
+    }
+  });
+  $("#locationIcon").click(function () {
+    $("#timeIcon").css("width", "80%");
+    $("#calendarIcon").css("width", "80%");
+    $("#locationIcon").css("width", "100%");
+    $("#sideBarTimes").css("display", "none");
+    $("#sideBarRequest").css("display", "none");
 
-      if ($('#openclose').text() == '>'){
-        openclose('time');
-      }else{
-        $("#sideBarTimes").css("display", "inherit");
-        $("#notifBar").text("Time Preferences");
+    if ($('#openclose').text() == '>') {
+      openclose('loc');
+    } else {
+      $("#sideBarLocs").css("display", "inherit");
+      $("#notifBar").text("Location Preferences");
+    }
+  });
+  $("#calendarIcon").click(function () {
+    $("#locationIcon").css("width", "80%");
+    $("#timeIcon").css("width", "80%");
+    $("#calendarIcon").css("width", "100%");
+    $("#sideBarTimes").css("display", "none");
+    $("#sideBarLocs").css("display", "none");
+    $("#sideBarRequest").css("display", "inherit");
+    $("#notifBar").text("Meetings");
+  });
+
+
+  if ($('#openclose').text() == '>') {
+    openclose('cal');
+  } else {
+    $("#sideBarRequest").css("display", "inherit");
+    $("#notifBar").text("Request a meeting");
+  }
+
+  // $(".expand-close").click( function() {
+  //     $(".notificationBar").css("display", "none");
+  //     $(".content").css("display", "none");
+  //     $(".tabs").css("display", "block");
+  //     $(".arrow").html("&gt;");
+  // });
+
+  $("#addLocation").click(function () {
+    var break_ = false;
+    [...$(".locationSelector")].forEach(function (item, index) {
+      if (item.value == "" && !break_) {
+        alert("You must fill out all of the list items");
+        break_ = true;
       }
     });
-    $("#locationIcon").click( function() {
-      $("#timeIcon").css("width", "80%");
-      $("#calendarIcon").css("width", "80%");
-      $("#locationIcon").css("width", "100%");
-      $("#sideBarTimes").css("display", "none");
-      $("#sideBarRequest").css("display", "none");
-
-      if ($('#openclose').text() == '>'){
-        openclose('loc');
-      }else{
-        $("#sideBarLocs").css("display", "inherit");
-        $("#notifBar").text("Location Preferences");
+    if (break_) {
+      return;
+    }
+    $.ajax({
+      type: "POST",
+      url: "user_functions/submitLocPreference.php",
+      data: {
+        locationOne: $("#locationOne").val(),
+        locationTwo: $("#locationTwo").val(),
+        locationThree: $("#locationThree").val(),
+        locationFour: $("#locationFour").val(),
+        locationFive: $("#locationFive").val()
+      },
+      error: function (data, status) {
+        console.log(data);
+        alert(status + " : " + data);
       }
     });
-    $("#calendarIcon").click( function() {
-      $("#locationIcon").css("width", "80%");
-      $("#timeIcon").css("width", "80%");
-      $("#calendarIcon").css("width", "100%");
-      $("#sideBarTimes").css("display", "none");
-      $("#sideBarLocs").css("display", "none");
-      $("#sideBarRequest").css("display", "inherit");
-      $("#notifBar").text("Meetings");
-    });
+  });
 
-
-      if ($('#openclose').text() == '>'){
-        openclose('cal');
-      }else{
-        $("#sideBarRequest").css("display", "inherit");
-        $("#notifBar").text("Request a meeting");
+  $("#requestMeeting").click(function () {
+    $.ajax({
+      type: "POST",
+      url: "user_functions/requestMeeting.php",
+      data: {
+        meeting_time: $(" #timeSelect option:selected ").val(),
+        meeting_location: $(" #locationSelect option:selected ").val()
+      },
+      error: function (data, status) {
+        console.log(data);
+        alert(status + " : " + data);
       }
-    });
+    })
+  });
 
-    // $(".expand-close").click( function() {
-    //     $(".notificationBar").css("display", "none");
-    //     $(".content").css("display", "none");
-    //     $(".tabs").css("display", "block");
-    //     $(".arrow").html("&gt;");
-    // });
+  $(".chatBox").delay(500).animate({ scrollTop: $(".chatBox").prop("scrollHeight") }, "slow");
 
-    $("#addLocation").click(function() {
-      var break_ = false;
-      [...$(".locationSelector")].forEach(function(item, index) {
-        if(item.value == "" && !break_) {
-          alert("You must fill out all of the list items");
-          break_ = true;
-        }
-      });
-      if(break_) {
-        return;
-      }
-      $.ajax({
-        type: "POST",
-        url: "user_functions/submitLocPreference.php",
-        data: {
-          locationOne: $("#locationOne").val(),
-          locationTwo:  $("#locationTwo").val(),
-          locationThree:  $("#locationThree").val(),
-          locationFour:  $("#locationFour").val(),
-          locationFive:  $("#locationFive").val()
-        },
-        error: function(data, status) {
-          console.log(data);
-          alert(status + " : " + data);
-        }
-      });
-    });
+  trs = document.getElementById('timesTable').tBodies[0].getElementsByTagName('tr');
 
-    $("#requestMeeting").click(function() {
-      $.ajax({
-        type: "POST",
-        url: "user_functions/requestMeeting.php",
-        data: {
-          meeting_time: $(" #timeSelect option:selected ").val(),
-          meeting_location: $(" #locationSelect option:selected ").val()
-        },
-        error: function(data, status) {
-          console.log(data);
-          alert(status + " : " + data);
-        }
-      })
-    });
-    
-    $(".chatBox").delay(500).animate({scrollTop: $(".chatBox").prop("scrollHeight")}, "slow");
+  $("#timesTable > tbody > tr").mousedown(function () { RowClick(this, false) })
+    .mouseover(function () { RowOver(this, false) })
+    .mouseup(function () { MouseUp(this, false) });
 
-    trs = document.getElementById('timesTable').tBodies[0].getElementsByTagName('tr');
-
-    $("#timesTable > tbody > tr").mousedown(function() {RowClick(this, false)})
-                                  .mouseover(function() {RowOver(this, false)})
-                                  .mouseup(function() {MouseUp(this,false)});
-
-    $("#yesterdayTime").click(function() {
-      submitCurrentTimePrefs();
-      Yesterday(this);
-      getCurrentTimePrefs();
-    });
-    $("#tomorrowTime").click(function() {
-      submitCurrentTimePrefs();
-      Tomorrow(this);
-      getCurrentTimePrefs();
-    });
+  $("#yesterdayTime").click(function () {
+    submitCurrentTimePrefs();
+    Yesterday(this);
+    getCurrentTimePrefs();
+  });
+  $("#tomorrowTime").click(function () {
+    submitCurrentTimePrefs();
+    Tomorrow(this);
+    getCurrentTimePrefs();
+  });
 });
 
 function submitCurrentTimePrefs() {
   var day = $("#day").text()
   day = day.substring(0, day.length - 1);
   var times = [];
-  [...trs].forEach(function(item, index) {
-    if(item.className != 'selected') {
+  [...trs].forEach(function (item, index) {
+    if (item.className != 'selected') {
       return;
     }
     var offset = 0;
     item = item.textContent;
-    if(item.indexOf("PM") != -1 && item.substring(0,2) != "12") {
+    if (item.indexOf("PM") != -1 && item.substring(0, 2) != "12") {
       offset = 12
     }
     times.push((parseInt(item.substring(0, item.indexOf(":"))) + offset) * 100);
   });
-  if(times.length == 0) {
+  if (times.length == 0) {
     return;
   }
   $.ajax({
@@ -183,7 +182,7 @@ function submitCurrentTimePrefs() {
       p_day: day,
       p_times: times
     },
-    error: function(data, status) {
+    error: function (data, status) {
       alert(status + " : " + data);
       console.log(data);
     }
@@ -200,17 +199,17 @@ function getCurrentTimePrefs() {
     data: {
       p_day: day
     },
-    success: function(data, status) {
-      data.data.forEach(function(item, index) {
+    success: function (data, status) {
+      data.data.forEach(function (item, index) {
         var start = Math.round(parseInt(item.start_time) / 100);
         var end = Math.round(parseInt(item.end_time) / 100);
-        while(start != end) {
+        while (start != end) {
           document.getElementById("timepref_" + start).parentElement.className = 'selected';
           start += 1;
         }
       });
     },
-    error: function(data, status) {
+    error: function (data, status) {
       alert(status + " : " + data);
       console.log(data);
     }
@@ -221,23 +220,23 @@ function getCurrentTimePrefs() {
 
 let notification = {};
 
-(function(notify){
+(function (notify) {
 
 
-  notify.notice = function(content, opts){
+  notify.notice = function (content, opts) {
 
-    opts = $.extend( true, {
+    opts = $.extend(true, {
 
       type: 'primary', //primary, secondary, success, danger, warning, info, light, dark
       appendType: 'append', //append, prepend
       closeBtn: false,
-       autoClose: 80000, // If you want auto close
+      autoClose: 80000, // If you want auto close
       className: '',
 
     }, opts);
 
-    let $container = $('#alert-container-'+ opts.position);
-    if(!$container.length){
+    let $container = $('#alert-container-' + opts.position);
+    if (!$container.length) {
       $container = $('<div id="alert-container-' + opts.position + '" class="alert-container"></div>');
       $('body').append($container);
     }
@@ -246,7 +245,7 @@ let notification = {};
       <div class="alert fade alert-${opts.type}" role="alert">${content}</div>
     `);
 
-    if(opts.autoClose){
+    if (opts.autoClose) {
       $el
         .append(`
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -256,7 +255,7 @@ let notification = {};
         .addClass('alert-dismissible');
     }
 
-    if(opts.autoClose){
+    if (opts.autoClose) {
 
       let t = setTimeout(() => {
         $el.alert('close');
@@ -282,15 +281,15 @@ function loadMessageLog() {
     type: "GET",
     url: "user_functions/loadMessages.php",
     dataType: "json",
-    success: function(data, status) {
+    success: function (data, status) {
       var new_text = ""
-      data.data.forEach(function(item, index) {
+      data.data.forEach(function (item, index) {
         new_text += "<div class='message'>" + item.name + ": " + item.message + "</div>";
       });
       $(".chatBox").html(new_text);
       var new_height = $(".chatBox").prop("scrollHeight");
-      if(new_height > old_height) {
-        $(".chatBox").animate({scrollTop: new_height}, "slow");
+      if (new_height > old_height) {
+        $(".chatBox").animate({ scrollTop: new_height }, "slow");
       }
     }
   });
@@ -299,7 +298,7 @@ function loadMessageLog() {
 setInterval(loadMessageLog, 1000);
 
 // disable text selection
-document.onselectstart = function() {
+document.onselectstart = function () {
   return false;
 }
 
@@ -312,9 +311,9 @@ function RowClick(currenttr, lock) {
 
   if (window.event.button === 0) {
     if (!window.event.ctrlKey && !window.event.shiftKey) {
-      if (currenttr.className == 'selected'){
+      if (currenttr.className == 'selected') {
         clearAll();
-      }else{
+      } else {
         clearAll();
         toggleRow(currenttr);
       }
@@ -327,13 +326,13 @@ function RowClick(currenttr, lock) {
   }
 }
 
-function RowOver(e, lock){
-  if(isMouseDown){
+function RowOver(e, lock) {
+  if (isMouseDown) {
     toggleRow(e);
   }
 }
 
-function MouseUp(e, lock){
+function MouseUp(e, lock) {
   isMouseDown = false;
 }
 
@@ -343,12 +342,12 @@ function toggleRow(row) {
 }
 
 function selectRowsBetweenIndexes(indexes) {
-  indexes.sort(function(a, b) {
+  indexes.sort(function (a, b) {
     return a - b;
   });
 
   for (var i = indexes[0]; i <= indexes[1]; i++) {
-    trs[i-1].className = 'selected';
+    trs[i - 1].className = 'selected';
   }
 }
 
@@ -358,33 +357,33 @@ function clearAll() {
   }
 }
 
-function Tomorrow(e){
+function Tomorrow(e) {
   var string = $('#day').text();
   var index = getIndex(string);
-  if (index == 6){
+  if (index == 6) {
     $('#day').text(days[0]);
-  }else{
-    $('#day').text(days[index+1]);
+  } else {
+    $('#day').text(days[index + 1]);
   }
   clearAll();
 }
 
-function Yesterday(e){
+function Yesterday(e) {
   var string = $('#day').text();
   var index = getIndex(string);
-  if (index == 0){
+  if (index == 0) {
     $('#day').text(days[6]);
-  }else{
-    $('#day').text(days[index-1]);
+  } else {
+    $('#day').text(days[index - 1]);
   }
   clearAll();
 }
 
-function getIndex(query){
+function getIndex(query) {
   var ret = 0;
   var i = 0;
-  days.forEach(function(item){
-    if (item == query ){
+  days.forEach(function (item) {
+    if (item == query) {
       ret = i;
     }
     i++;
@@ -406,21 +405,21 @@ function getIndex(query){
 
 function openclose(string) {
   var txt = $('#openclose').text();
-  if (txt == '>'){
+  if (txt == '>') {
     // expand
     $('#openclose').css("margin-right", "2%");
     document.getElementById("mySidebar").style.width = "40%";
     $('#openclose').text('<');
     document.getElementById("main").style.marginLeft = "40%";
-    setTimeout(function(){
+    setTimeout(function () {
 
-      if (string == 'loc'){
+      if (string == 'loc') {
         $("#sideBarLocs").css("display", "inherit");
         $("#notifBar").text("Location Preferences");
-      }else if (string == 'cal'){
+      } else if (string == 'cal') {
         $("#sideBarRequest").css("display", "inherit");
         $("#notifBar").text("Request a meeting");
-      }else{
+      } else {
         $("#sideBarTimes").css("display", "inherit");
         $("#notifBar").text("Time Preferences");
         $("#timeIcon").css("width", "100%");
@@ -431,11 +430,11 @@ function openclose(string) {
 
     }, 300);
 
-  }else{
+  } else {
     $('#openclose').css("margin-right", "25%");
     document.getElementById("mySidebar").style.width = "5%";
     $('#openclose').text('>');
-    document.getElementById("main").style.marginLeft= "5%";
+    document.getElementById("main").style.marginLeft = "5%";
 
     $("#sideBarTimes").css("display", "none");
     $("#sideBarLocs").css("display", "none");
