@@ -76,4 +76,36 @@ function addTimePreferences($time_list) {
     }
 }
 
+function getPrefsByDay($day) {
+    if (!checkSession()) {
+        return array("success" => false,
+                    "message" => "Session not created");
+    }
+    if(!validateInput($day)) {
+        logSecurityMessage($_SESSION["user_id"] . "'s day pref did not validate");
+        return array("success" => false,
+                    "message" => "Day specified did not pass input validation");
+    }
+    $conn = Database::getConnection();
+    $sql = "SELECT day, start_time, end_time
+                FROM datetime_prefs
+                WHERE day = '$day'
+                    AND user_id='" . $_SESSION["user_id"] . "';";
+    $result = mysqli_query($conn, $sql);
+    if(!$result) {
+        return array("success" => false,
+                    "message" => "Could not retrieve information from database",
+                    "sql_error" => mysqli_error($conn));
+    }
+    $ret = array();
+    while ($row = $result->fetch_assoc()) {
+        $_ = array("start_time" => $row["start_time"],
+                    "end_time" => $row["end_time"]);
+        array_push($ret, $_);
+    }
+    return array("success" => true,
+                "message" => "Successfully retrieved user preference information",
+                "data" => $ret);
+}
+
 ?>

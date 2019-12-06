@@ -35,6 +35,7 @@ $(document).ready( function() {
   $('#contentTime').hide();
 
     $("#timeIcon").click( function() {
+      getCurrentTimePrefs();
       $("#locationIcon").css("background", "#666");
       $("#calendarIcon").css("background", "#666");
       $("#timeIcon").css("background", "grey");
@@ -108,10 +109,12 @@ $(document).ready( function() {
     $("#yesterdayTime").click(function() {
       submitCurrentTimePrefs();
       Yesterday(this);
+      getCurrentTimePrefs();
     });
     $("#tomorrowTime").click(function() {
       submitCurrentTimePrefs();
-      Tomorrow(this)
+      Tomorrow(this);
+      getCurrentTimePrefs();
     });
 });
 
@@ -130,7 +133,7 @@ function submitCurrentTimePrefs() {
     }
     times.push((parseInt(item.substring(0, item.indexOf(":"))) + offset) * 100);
   });
-  if(times == []) {
+  if(times.length == 0) {
     return;
   }
   $.ajax({
@@ -140,6 +143,33 @@ function submitCurrentTimePrefs() {
     data: {
       p_day: day,
       p_times: times
+    },
+    error: function(data, status) {
+      alert(status + " : " + data);
+      console.log(data);
+    }
+  });
+}
+
+function getCurrentTimePrefs() {
+  var day = $("#day").text()
+  day = day.substring(0, day.length - 1);
+  $.ajax({
+    type: "GET",
+    url: "user_functions/getDaysTimePrefs.php",
+    dataType: "json",
+    data: {
+      p_day: day
+    },
+    success: function(data, status) {
+      data.data.forEach(function(item, index) {
+        var start = Math.round(parseInt(item.start_time) / 100);
+        var end = Math.round(parseInt(item.end_time) / 100);
+        while(start != end) {
+          document.getElementById("timepref_" + start).parentElement.className = 'selected';
+          start += 1;
+        }
+      });
     },
     error: function(data, status) {
       alert(status + " : " + data);
