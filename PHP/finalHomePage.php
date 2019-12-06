@@ -66,7 +66,7 @@ $message_data = $message_data["data"]
           <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
           <li class="nav-item">
             <?php
-              echo "<div class='nav-link'>group_id: " . $_SESSION["group_id"] . "<div>";
+              echo "<div id='groupidtag' class='nav-link'>group_id: " . $_SESSION["group_id"] . "<div>";
             ?>
           </a></li>
         </ul>

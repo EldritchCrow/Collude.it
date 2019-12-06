@@ -34,7 +34,7 @@ $(document).ready(function () {
   }
 
   $('#contentTime').hide();
-  
+
   $("#timeIcon").click(function () {
     $("#locationIcon").css("width", "80%");
     $("#calendarIcon").css("width", "80%");
@@ -355,9 +355,9 @@ function loadMessageLog() {
 setInterval(loadMessageLog, 1000);
 
 // disable text selection
-document.onselectstart = function () {
-  return false;
-}
+// document.onselectstart = function () {
+//   return false;
+// }
 
 function RowClick(currenttr, lock) {
 
