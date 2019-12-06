@@ -51,4 +51,31 @@ function addLocationPreferences($location_list) {
     }
 }
 
+function getLocPrefs() {
+    if (!checkSession()) {
+        return array("success" => false,
+                    "message" => "Session not created");
+    }
+    $conn = Database::getConnection();
+    $sql = "SELECT loc, rank
+                FROM location_prefs
+                WHERE user_id='" . $_SESSION["user_id"]
+                . "' ORDER BY rank;";
+    $result = mysqli_query($conn, $sql);
+    if(!$result) {
+        return array("success" => false,
+                    "message" => "Could not retrieve information from database",
+                    "sql_error" => mysqli_error($conn));
+    }
+    $ret = array();
+    while ($row = $result->fetch_assoc()) {
+        $_ = array("loc" => $row["loc"],
+                    "rank" => $row["rank"]);
+        array_push($ret, $_);
+    }
+    return array("success" => true,
+                "message" => "Successfully retrieved user preference information",
+                "data" => $ret);
+}
+
 ?>

@@ -51,6 +51,7 @@ $(document).ready(function () {
     }
   });
   $("#locationIcon").click(function () {
+    getCurrentLocPrefs();
     $("#timeIcon").css("width", "80%");
     $("#calendarIcon").css("width", "80%");
     $("#locationIcon").css("width", "100%");
@@ -204,6 +205,29 @@ function getCurrentTimePrefs() {
           start += 1;
         }
       });
+    },
+    error: function (data, status) {
+      alert(status + " : " + data);
+      console.log(data);
+    }
+  });
+}
+
+function getCurrentLocPrefs() {
+  $.ajax({
+    type: "GET",
+    url: "user_functions/getLocPrefs.php",
+    dataType: "json",
+    data: {},
+    success: function (data, status) {
+      if(data.data.length == 0) {
+        return;
+      }
+      $("#locationOne").val(data.data[0].loc);
+      $("#locationTwo").val(data.data[1].loc);
+      $("#locationThree").val(data.data[2].loc);
+      $("#locationFour").val(data.data[3].loc);
+      $("#locationFive").val(data.data[4].loc);
     },
     error: function (data, status) {
       alert(status + " : " + data);

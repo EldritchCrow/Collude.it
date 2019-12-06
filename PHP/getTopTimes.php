@@ -1,7 +1,7 @@
 <?php
 
 function getTopTime(&$times) {
-    $maxWeekday;
+    $maxWeekday = "";
     $maxWeektime = 0;
 
     $max = 0;
