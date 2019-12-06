@@ -4,6 +4,52 @@ body {
     height: 100%;
 }
 
+.sidebar {
+  height: 100%;
+  width: 10%;
+  position: fixed;
+  z-index: 1;
+/*  top: 0;
+  left: 0;*/
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 5%;
+  /*padding-left: 1%;*/
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  font-size: 36px;
+  float: right;
+  padding-right: 10px;
+  margin-top: 0;
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  margin-left: 20px;
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
 .headerMenuLink {
     color:gray;
     text-decoration: none;
@@ -17,6 +63,7 @@ body {
 .navbar {
     background-color: #222222;
     color: #868686;
+    z-index: 2;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -42,9 +89,11 @@ body {
     background-color: blue;
 }
 
-#contentBar {
-    height: 90vh;
-    background-color: #333;
+#main {
+  height: 90vh;
+  background-color: #333;
+  transition: margin-left .5s;
+  padding: 16px;
 }
 
 .chatBox {
@@ -170,26 +219,31 @@ background-size: 30px;
 
 #sideWindow {
   background-color: white;
+  margin-left: auto;
+  margin-right: auto; 
 }
 
 .sideBar {
-  margin-left: 0;
-  padding-left: 0;
+  margin-left: auto;
+  padding-left: auto;
   width: 100%;
   height: 100%;
   background-color: grey;
 }
 .verticalNavBar {
-  margin-left: 0;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 0;
   padding-top: 1vh;
-  width: 15%;
+  width: 60px;
   height: 100%;
   background: #333;
   float: left;
 }
 
 .tabs {
+  margin-left: auto;
+  margin-right: auto;
   list-style: none;
 }
 
@@ -210,6 +264,7 @@ background-size: 30px;
   height: 11%;
   background: lightblue;
   border-radius: 1vh;
+  display: none;
 }
 
 .notif-item {

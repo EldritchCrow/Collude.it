@@ -72,74 +72,75 @@ $message_data = $message_data["data"]
       </form>
     </header>
 
-  	<div class="container col-lg-12 d-inline-block" id="mainBody">
-      <div class="row">
-        <div class="col-lg-4 nopadding" id = "sideWindow">
-          <div class = "sideBar nopadding">
-            <!-- ------------------------------Inside Side Bar Here Please-----------------------------------------  -->
-            <aside class="verticalNavBar">
-              <ul class="tabs nopadding">
-                <li id="profileIcon"><a href="../profilePage/profilePage.html"><img class="icon nopadding" alt="account" src="../res/account.jpg"></a></li>
-                <li id="timeIcon"><img class="icon nopadding" alt="time" src="../res/clock.png"></li>
-                <li id="locationIcon"><img class="icon nopadding" alt="location" src="../res/ping.png"></li>
-                <li id="calendarIcon"><img class="icon nopadding" alt="calendar" src="../res/calendar.png"></li>
-              </ul>
-            </aside>
-            <div class="notificationBar">
-              <div class="notif-item notifs nopadding" id="notifBar">
-                Notifications
+  	<!-- <div class="container"> -->
+
+        <div id="mySidebar" class="sidebar">
+          <div class="nopadding" id = "sideWindow">
+            <div class = "sideBar nopadding">
+              <!-- ------------------------------Inside Side Bar Here Please-----------------------------------------  -->
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+              <aside class="verticalNavBar">
+                <ul class="tabs nopadding">
+                  <li id="profileIcon"><a href="../profilePage/profilePage.html"><img class="icon nopadding" alt="account" src="../res/account.jpg"></a></li>
+                  <li id="timeIcon"><img class="icon nopadding" alt="time" src="../res/clock.png"></li>
+                  <li id="locationIcon"><img class="icon nopadding" alt="location" src="../res/ping.png"></li>
+                  <li id="calendarIcon"><img class="icon nopadding" alt="calendar" src="../res/calendar.png"></li>
+                </ul>
+              </aside>
+              
+
+              <div class="content" style="display: none" id="sideBarTimes">
+                <div class="notificationBar">
+                  <div class="notif-item notifs nopadding" id="notifBar">
+                    Notifications
+                  </div>
+                </div>
+                <table id="timesTable">
+                  <thead>
+                    <tr>
+                      <th>
+                      <button class="timeButton" type="button" id="yesterdayTime">&lt;</button>
+                      <h4 id="day">Sundays</h4>
+                      <button class="timeButton" type="button" id="tomorrowTime">&gt;</button>
+                    </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>8:00 AM</td></tr>
+                    <tr><td>9:00 AM</td></tr>
+                    <tr><td>10:00 AM</td></tr>
+                    <tr><td>11:00 AM</td></tr>
+                    <tr><td>12:00 PM</td></tr>
+                    <tr><td>1:00 PM</td></tr>
+                    <tr><td>2:00 PM</td></tr>
+                    <tr><td>3:00 PM</td></tr>
+                    <tr><td>4:00 PM</td></tr>
+                    <tr><td>5:00 PM</td></tr>
+                    <tr><td>6:00 PM</td></tr>
+                    <tr><td>7:00 PM</td></tr>
+                    <tr><td>8:00 PM</td></tr>
+                    <tr><td>9:00 PM</td></tr>
+                    <tr><td>10:00 PM</td></tr>
+                  </tbody>
+                </table>
               </div>
+              <div class="content" style="display: none" id="sideBarLocs">
+                <ol>
+                  <li><input type="text" class="locationSelector" id="locationOne" name="locationOne"></li>
+                  <li><input type="text" class="locationSelector" id="locationTwo" name="locationTwo"></li>
+                  <li><input type="text" class="locationSelector" id="locationThree" name="locationThree"></li>
+                  <li><input type="text" class="locationSelector" id="locationFour" name="locationFour"></li>
+                  <li><input type="text" class="locationSelector" id="locationFive" name="locationFive"></li>
+                </ol>
+                <input type="submit" id="addLocation" name="addLocation" value="Add Locations">
+              </div>
+              <div class="content" style="display: none" id="sideBarRequest">Make a message request here</div>
             </div>
-            <div class="expand-close nopadding">
-              <div class="arrow nopadding" alt="time">&lt;</div>
-              <div class="arrow nopadding" alt="time">&lt;</div>
-              <div class="arrow nopadding" alt="time">&lt;</div>
-            </div>
-            <div class="content" style="display: none" id="sideBarTimes">
-              <table id="timesTable">
-                <thead>
-                  <tr>
-                    <th>
-                    <button class="timeButton" type="button" id="yesterdayTime">&lt;</button>
-                    <h4 id="day">Sundays</h4>
-                    <button class="timeButton" type="button" id="tomorrowTime">&gt;</button>
-                  </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>8:00 AM</td></tr>
-                  <tr><td>9:00 AM</td></tr>
-                  <tr><td>10:00 AM</td></tr>
-                  <tr><td>11:00 AM</td></tr>
-                  <tr><td>12:00 PM</td></tr>
-                  <tr><td>1:00 PM</td></tr>
-                  <tr><td>2:00 PM</td></tr>
-                  <tr><td>3:00 PM</td></tr>
-                  <tr><td>4:00 PM</td></tr>
-                  <tr><td>5:00 PM</td></tr>
-                  <tr><td>6:00 PM</td></tr>
-                  <tr><td>7:00 PM</td></tr>
-                  <tr><td>8:00 PM</td></tr>
-                  <tr><td>9:00 PM</td></tr>
-                  <tr><td>10:00 PM</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="content" style="display: none" id="sideBarLocs">
-              <ol>
-                <li><input type="text" class="locationSelector" id="locationOne" name="locationOne"></li>
-                <li><input type="text" class="locationSelector" id="locationTwo" name="locationTwo"></li>
-                <li><input type="text" class="locationSelector" id="locationThree" name="locationThree"></li>
-                <li><input type="text" class="locationSelector" id="locationFour" name="locationFour"></li>
-                <li><input type="text" class="locationSelector" id="locationFive" name="locationFive"></li>
-              </ol>
-              <input type="submit" id="addLocation" name="addLocation" value="Add Locations">
-            </div>
-            <div class="content" style="display: none" id="sideBarRequest">Make a message request here</div>
           </div>
         </div>
 
-        <div class="col-lg-8 no-gutters nopadding" id = "contentBar">
+        <div id = "main">
+          <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button> 
           <div class= "chatBox">
             <?php
             foreach($message_data as $m) {
@@ -155,8 +156,7 @@ $message_data = $message_data["data"]
           </div>
         </div>
 
-      </div>
-    </div>
+    <!-- </div> -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
