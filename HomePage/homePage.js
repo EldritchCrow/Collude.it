@@ -369,7 +369,7 @@ function Yesterday(e) {
   } else {
     $('#day').text(days[index - 1]);
   }
-  $('#day').css("width", "90%");
+  $('#day').css("width", "50%");
 
   clearAll();
 }
@@ -443,5 +443,14 @@ function openclose(string) {
 
 
 
+  }
+}
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
   }
 }
