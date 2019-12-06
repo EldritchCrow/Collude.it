@@ -1,7 +1,7 @@
 <?php
 
 function addGroup($group_name) {
-    $new_id = bin2hex(random_bytes(12));
+    $new_id = bin2hex(random_bytes(3));
     $chat_file = getChatsPath() . $new_id . ".txt";
     $fp = fopen($chat_file, "w");
     // fwrite($fp, "user_id,timestamp,text\n");

@@ -1,0 +1,9 @@
+order deny,allow
+Deny from all
+
+<Files "homePage.js">
+    Allow from all
+</Files>
+<Files "homePage.css">
+    Allow from all
+</Files>

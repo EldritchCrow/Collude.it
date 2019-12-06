@@ -48,7 +48,8 @@ function loadMessages() {
     }
     return array("success" => true,
                 "message" => "Loaded messages",
-                "data" => $results);
+                "data" => $results,
+                "users_name" => $lookup[$_SESSION["user_id"]]);
     
 }
 

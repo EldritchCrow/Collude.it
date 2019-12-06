@@ -1,0 +1,6 @@
+order deny,allow
+Deny from all
+
+<Files "landingPage.css">
+    Allow from all
+</Files>

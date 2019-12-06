@@ -34,6 +34,7 @@ if(!$message_data["success"]) {
   $message = $message_data["message"];
   //echo "<script type='text/javascript'>window.onload = function() { alert('$message'); };</script>";
 }
+$users_name = $message_data["users_name"];
 $message_data = $message_data["data"]
 
 ?>
@@ -168,7 +169,11 @@ $message_data = $message_data["data"]
           <div class= "chatBox">
             <?php
             foreach($message_data as $m) {
-              echo "<div class='message'>" . $m["name"] . ": " . $m["message"] . "</div>";
+              echo "<div class='message'";
+              if($users_name == $m["name"]) {
+                echo " style='float: left;'";
+              }
+              echo ">" . $m["name"] . ": " . $m["message"] . "</div>";
             }
             ?>
             <!-- ------------------------------Insert Chat Menu Here Please-----------------------------------------  -->

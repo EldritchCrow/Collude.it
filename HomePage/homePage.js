@@ -343,7 +343,11 @@ function loadMessageLog() {
     success: function (data, status) {
       var new_text = ""
       data.data.forEach(function (item, index) {
-        new_text += "<div class='message'>" + item.name + ": " + item.message + "</div>";
+        new_text += "<div class='message'"
+        if(data.users_name == item.name) {
+          new_text += " style='float: left;'"
+        }
+        new_text += ">" + item.name + ": " + item.message + "</div>";
       });
       $(".chatBox").html(new_text);
       var new_height = $(".chatBox").prop("scrollHeight");
