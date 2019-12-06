@@ -6,7 +6,7 @@ class Database {
     private $connection;
 
     private function __construct() {
-        $this->connection = new MySQLi("localhost", "root", "bluegrasshopperJm235813!", "collude_it");
+        $this->connection = new MySQLi("localhost", "root", "password", "collude_it");
         if ($this->connection->connect_error) {
             die("Connection failed: " . $this->connection->connect_error);
         }

@@ -31,6 +31,10 @@ function getTopTime(&$times) {
 
 
 function getTopTimes() {
+    if(!checkSession()) {
+        return array("success" => false,
+                    "message" => "Session not created");
+    }
     $conn = Database::getConnection();
     $sql = "SELECT datetime_prefs.start_time, datetime_prefs.end_time, datetime_prefs.day
                 FROM datetime_prefs
@@ -59,7 +63,8 @@ function getTopTimes() {
             return $topTime;
         }
     } else {
-        echo "Unable to get top times";
+        return array("success" => false,
+                    "message" => "Could not access database");
     }
 }
 

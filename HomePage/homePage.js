@@ -66,6 +66,7 @@ $(document).ready(function () {
     }
   });
   $("#calendarIcon").click(function () {
+    getMeetingReccs();
     $("#locationIcon").css("width", "80%");
     $("#timeIcon").css("width", "80%");
     $("#calendarIcon").css("width", "100%");
@@ -80,7 +81,7 @@ $(document).ready(function () {
     openclose('cal');
   } else {
     $("#sideBarRequest").css("display", "inherit");
-    $("#notifBar").text("Request a meeting");
+    $("#notifBar").text("Meetings");
   }
 
   // $(".expand-close").click( function() {
@@ -228,6 +229,39 @@ function getCurrentLocPrefs() {
       $("#locationThree").val(data.data[2].loc);
       $("#locationFour").val(data.data[3].loc);
       $("#locationFive").val(data.data[4].loc);
+    },
+    error: function (data, status) {
+      alert(status + " : " + data);
+      console.log(data);
+    }
+  });
+}
+
+function getMeetingReccs() {
+  $.ajax({
+    type: "GET",
+    url: "user_functions/getMeetingRecommends.php",
+    dataType: "json",
+    success: function (data, status) {
+      console.log(data);
+      var new_locs = "";
+      if(data.locs != undefined && data.locs.length != 0) {
+        data.locs.forEach(function(item, index) {
+          new_locs += "<option value = '" + item.loc + "'>" + item.loc + "</option>";
+        })
+      }
+      var new_times = "";
+      if(data.times != undefined && data.times.length != 0) {
+        data.times.forEach(function(item, index) {
+          item.time = "" + item.time;
+          new_times += "<option value = 'day=" +
+                          item.day + "&time=" + item.time + "'>"
+                            + item.day + " " + item.time.slice(0, -2) + ":" + item.time.slice(-2);
+                      + "</option>"
+        })
+      }
+      $("#locationSelect").html(new_locs);
+      $("#timeSelect").html(new_times);
     },
     error: function (data, status) {
       alert(status + " : " + data);

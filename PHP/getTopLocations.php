@@ -1,6 +1,10 @@
 <?php
 
 function getTopLocations() {
+    if(!checkSession()) {
+        return array("success" => false,
+                    "message" => "Session not created");
+    }
     $conn = Database::getConnection();
     $sql = "SELECT location_prefs.loc, location_prefs.rank
                 FROM location_prefs
@@ -19,9 +23,12 @@ function getTopLocations() {
             }
             arsort($locations);
             return $locations;
+        } else {
+            return array();
         }
     } else {
-        echo "Unable to get top locations";
+        return array("success" => false,
+                    "message" => "Could not access database");
     }
 }
 
