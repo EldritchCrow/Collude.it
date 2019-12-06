@@ -32,7 +32,7 @@ if (isset($_POST["request_meeting"])) {
     </select>
     <br><br>
     
-    <input tpe="request_meeting"
+    <input type="submit" name="request_meeting">
 </form>
 </form>
 
