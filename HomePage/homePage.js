@@ -39,10 +39,6 @@ $(document).ready( function() {
       $("#locationIcon").css("width", "80%");
       $("#calendarIcon").css("width", "80%");
       getCurrentTimePrefs();
-      $("#locationIcon").css("background", "#666");
-      $("#calendarIcon").css("background", "#666");
-      $("#timeIcon").css("background", "grey");
-      $("#sideBarTimes").css("display", "inherit");
       $("#sideBarLocs").css("display", "none");
       $("#sideBarRequest").css("display", "none");
       $("#timeIcon").css("width", "100%");
