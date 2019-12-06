@@ -155,6 +155,8 @@ $(document).ready(function () {
     Tomorrow(this);
     getCurrentTimePrefs();
   });
+  getCurrentTimePrefs();
+  getCurrentLocPrefs();
 });
 
 function submitCurrentTimePrefs() {
