@@ -72,9 +72,27 @@ $(document).ready( function() {
     $("#addLocation").click(function() {
       var break_ = false;
       [...$(".locationSelector")].forEach(function(item, index) {
-        if(item.val() == "") {
+        if(item.value == "" && !break_) {
           alert("You must fill out all of the list items");
           break_ = true;
+        }
+      });
+      if(break_) {
+        return;
+      }
+      $.ajax({
+        type: "POST",
+        url: "user_functions/submitLocPreference.php",
+        data: {
+          locationOne: $("#locationOne").val(),
+          locationTwo:  $("#locationTwo").val(),
+          locationThree:  $("#locationThree").val(),
+          locationFour:  $("#locationFour").val(),
+          locationFive:  $("#locationFive").val()
+        },
+        error: function(data, status) {
+          console.log(data);
+          alert(status + " : " + data);
         }
       });
     });

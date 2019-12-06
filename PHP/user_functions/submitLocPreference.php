@@ -12,13 +12,11 @@ if($_SERVER["REQUEST_METHOD"] != "POST"
     die();
 }
 
-if (isset($_POST["addLocation"])) {
-    $preferences = array(new LocPreference($_POST["locationOne"], 1),
-                        new LocPreference($_POST["locationTwo"], 2), 
-                        new LocPreference($_POST["locationThree"], 3),
-                        new LocPreference($_POST["locationFour"], 4),
-                        new LocPreference($_POST["locationFive"], 5));
-    addLocationPreferences($preferences);
-}
+$preferences = array(new LocPreference($_POST["locationOne"], 1),
+                    new LocPreference($_POST["locationTwo"], 2), 
+                    new LocPreference($_POST["locationThree"], 3),
+                    new LocPreference($_POST["locationFour"], 4),
+                    new LocPreference($_POST["locationFive"], 5));
+echo json_encode(addLocationPreferences($preferences));
 
 ?>
