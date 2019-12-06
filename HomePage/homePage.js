@@ -34,7 +34,7 @@ $(document).ready(function () {
   }
 
   $('#contentTime').hide();
-  
+
   $("#timeIcon").click(function () {
     $("#locationIcon").css("width", "80%");
     $("#calendarIcon").css("width", "80%");
@@ -70,8 +70,12 @@ $(document).ready(function () {
     $("#calendarIcon").css("width", "100%");
     $("#sideBarTimes").css("display", "none");
     $("#sideBarLocs").css("display", "none");
-    $("#sideBarRequest").css("display", "inherit");
-    $("#notifBar").text("Meetings");
+    if ($('#openclose').text() == '>') {
+      openclose('cal');
+    } else {
+      $("#sideBarRequest").css("display", "inherit");
+      $("#notifBar").text("Meetings");
+    }
   });
 
 

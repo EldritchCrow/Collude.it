@@ -345,6 +345,13 @@ tbody:hover {
     color: white;
 }
 
+#sideBarLocs, #sideBarRequest {
+  padding: none;
+  margin: none;
+  width: 65%;
+
+}
+
 .icon {
   margin: 10% 10%;
   width: 80%;
