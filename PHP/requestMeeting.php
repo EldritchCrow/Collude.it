@@ -2,7 +2,7 @@
 
 include_once("security.php");
 function requestMeeting($meeting_time, $meeting_location) {
-    if(!validateInput($meeting_time)
+    if(!validateInput($meeting_time."")
         || !validateInput($meeting_location)) {
         return array("success" => false,
                     "message" => "One of the inputs did not validate");
@@ -12,8 +12,8 @@ function requestMeeting($meeting_time, $meeting_location) {
         $meeting_id = bin2hex(random_bytes(12));
         $sql = "INSERT INTO meetings (meeting_id, group_id, m_time, m_location, confirmed)";
         $sql .= "VALUES ('" . $meeting_id . "', '"
-        . $_SESSION["group_id"] . "', '"
-        . $meeting_time . "', '"
+        . $_SESSION["group_id"] . "', FROM_UNIXTIME("
+        . $meeting_time . "), '"
         . $meeting_location . "', "
         . 0 . ");";
         if($result = mysqli_query($conn, $sql)){

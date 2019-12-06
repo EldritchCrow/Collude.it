@@ -26,10 +26,6 @@ class Database {
 
 $conn = $conn = Database::getConnection();
 
-if (isset($_POST["request_meeting"])) {
-    requestMeeting($_POST["meeting_time"], $_POST["meeting_location"]);
-}
-
 function getTopTime(&$times) {
     $maxWeekday;
     $maxWeektime = 0;
@@ -116,6 +112,37 @@ function getTopLocations() {
         echo "Unable to get top locations";
     }
 }
+
+function requestMeeting($meeting_time, $meeting_location) {
+    $conn = Database::getConnection();
+        $meeting_id = bin2hex(random_bytes(12));
+        $sql = "INSERT INTO meetings (meeting_id, group_id, m_time, m_location, confirmed)";
+        $sql .= "VALUES ('" . $meeting_id . "', 'f9cf65d737dc382b18f96ac9', FROM_UNIXTIME("
+        . $meeting_time . "), '"
+        . $meeting_location . "', "
+        . 0 . ");";
+        echo $sql . "<br>";
+        if($result = mysqli_query($conn, $sql)){
+            return array("success" => true,
+                        "message" => "Added meeting to database");
+        }
+        return array("success" => false,
+                    "message" => "Failed to add meeting to database");
+
+}
+
+if (isset($_POST["request_meeting"])) {
+    echo $_POST["meeting_time"] . " " . $_POST["meeting_location"] . "<br>";
+    parse_str($_POST["meeting_time"]);
+    $time_int = strtotime("next " . $day) + (36*$time) + 6*3600;
+    if (requestMeeting($time_int, $_POST["meeting_location"])["success"]) {
+        echo "yes";
+    } else {
+        echo "no";
+    }
+}
+
+
 ?>
 
 
@@ -126,7 +153,7 @@ function getTopLocations() {
 </head>
 <body>
     <form method="POST" action="meetingForm.php">
-        <select name="meeting_time">
+        <select name="meeting_location">
             <?php
                 $topLocations = getTopLocations();
                 foreach($topLocations as $locations=>$ranks) {
@@ -134,11 +161,11 @@ function getTopLocations() {
                 }
             ?>
         </select>
-        <select name="meeting_location">
+        <select name="meeting_time">
             <?php
                 $topTimes = getTopTimes();
                 foreach($topTimes as $times) {
-                    echo "<option value = '" . $times["day"] . " " . $times["time"] . "'>" . $times["day"] . " " . $times["time"] . "</option>";
+                    echo "<option value = 'day=" . $times["day"] . "&time=" . $times["time"] . "'>" . $times["day"] . " " . $times["time"] . "</option>";
                 }
             ?>
         </select>
