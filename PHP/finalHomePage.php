@@ -135,7 +135,27 @@ $message_data = $message_data["data"]
               </ol>
               <input type="submit" id="addLocation" name="addLocation" value="Add Locations">
             </div>
-            <div class="content" style="display: none" id="sideBarRequest">Make a message request here</div>
+            <div class="content" style="display: none" id="sideBarRequest">
+              <select name="meeting_location" id="locationSelect">
+                <?php
+                  $topLocations = getTopLocations();
+                  foreach($topLocations as $locations=>$ranks) {
+                      echo "<option value = '" . $locations . "'>" . $locations . "</option>";
+                  }
+                ?>
+              </select>
+              <select name="meeting_time" id="timeSelect">
+                <?php
+                  $topTimes = getTopTimes();
+                  foreach($topTimes as $times) {
+                      echo "<option value = 'day=" . $times["day"] . "&time=" . $times["time"] . "'>" . $times["day"] . " " . $times["time"] . "</option>";
+                  }
+                ?>
+              </select>
+                <br><br>
+                
+              <input type="submit" id="requestMeeting" name="requestMeeting" value="Request Meeting">
+              </div>
           </div>
         </div>
 
