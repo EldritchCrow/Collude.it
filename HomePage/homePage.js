@@ -87,10 +87,48 @@ $(document).ready( function() {
                                   .mouseover(function() {RowOver(this, false)})
                                   .mouseup(function() {MouseUp(this,false)});
     
-    $("#yesterdayTime").click(function() {Yesterday(this)});
-    $("#tomorrowTime").click(function() {Tomorrow(this)});
+    $("#yesterdayTime").click(function() {
+      submitCurrentTimePrefs();
+      Yesterday(this);
+    });
+    $("#tomorrowTime").click(function() {
+      submitCurrentTimePrefs();
+      Tomorrow(this)
+    });
 });
 
+function submitCurrentTimePrefs() {
+  var day = $("#day").text()
+  day = day.substring(0, day.length - 1);
+  var times = [];
+  [...trs].forEach(function(item, index) {
+    if(item.className != 'selected') {
+      return;
+    }
+    var offset = 0;
+    item = item.textContent;
+    if(item.indexOf("PM") != -1 && item.substring(0,2) != "12") {
+      offset = 12
+    }
+    times.push((parseInt(item.substring(0, item.indexOf(":"))) + offset) * 100);
+  });
+  if(times == []) {
+    return;
+  }
+  $.ajax({
+    type: "POST",
+    url: "user_functions/submitTimePreference.php",
+    dataType: "text",
+    data: {
+      p_day: day,
+      p_times: times
+    },
+    error: function(data, status) {
+      alert(status + " : " + data);
+      console.log(data);
+    }
+  });
+}
 
 // ------  Notification banner  ------ //
 
