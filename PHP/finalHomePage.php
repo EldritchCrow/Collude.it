@@ -64,7 +64,7 @@ $message_data = $message_data["data"]
       <div class="collapse navbar-collapse" id="navbarMenu">
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="../profilePage/profilePage.html">Profile</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="../profilePage/profilePage.html">Profile</a></li> -->
         </ul>
       </div>
       <form method="POST" action="finalLandingPage.php">
@@ -81,7 +81,7 @@ $message_data = $message_data["data"]
               <a href="#" class="closebtn" id="openclose" onclick="openclose('none')">&gt;</a>
               <aside class="verticalNavBar">
                 <ul class="tabs nopadding">
-                  <li id="profileIcon"><a href="../profilePage/profilePage.html"><img class="icon nopadding" alt="account" src="../res/account.jpg"></a></li>
+                  <!-- <li id="profileIcon"><a href="../profilePage/profilePage.html"><img class="icon nopadding" alt="account" src="../res/account.jpg"></a></li> -->
                   <li id="timeIcon"><img class="icon nopadding" alt="time" src="../res/clock.png"></li>
                   <li id="locationIcon"><img class="icon nopadding" alt="location" src="../res/ping.png"></li>
                   <li id="calendarIcon"><img class="icon nopadding" alt="calendar" src="../res/calendar.png"></li>
