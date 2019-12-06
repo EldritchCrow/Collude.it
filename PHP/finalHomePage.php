@@ -94,48 +94,48 @@ $message_data = $message_data["data"]
                   Notifications
                 </div>
               </div>
-              <div class="content" style="display: none" id="sideBarTimes">
-                <table id="timesTable">
-                  <thead>
-                    <tr>
-                      <th>
-                      <button class="timeButton" type="button" id="yesterdayTime">&lt;</button>
-                      <h4 id="day">Sundays</h4>
-                      <button class="timeButton" type="button" id="tomorrowTime">&gt;</button>
-                    </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr><td>8:00 AM</td></tr>
-                    <tr><td>9:00 AM</td></tr>
-                    <tr><td>10:00 AM</td></tr>
-                    <tr><td>11:00 AM</td></tr>
-                    <tr><td>12:00 PM</td></tr>
-                    <tr><td>1:00 PM</td></tr>
-                    <tr><td>2:00 PM</td></tr>
-                    <tr><td>3:00 PM</td></tr>
-                    <tr><td>4:00 PM</td></tr>
-                    <tr><td>5:00 PM</td></tr>
-                    <tr><td>6:00 PM</td></tr>
-                    <tr><td>7:00 PM</td></tr>
-                    <tr><td>8:00 PM</td></tr>
-                    <tr><td>9:00 PM</td></tr>
-                    <tr><td>10:00 PM</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="content" style="display: none" id="sideBarLocs">
-                <ol>
-                  <li><input type="text" class="locationSelector" id="locationOne" name="locationOne"></li>
-                  <li><input type="text" class="locationSelector" id="locationTwo" name="locationTwo"></li>
-                  <li><input type="text" class="locationSelector" id="locationThree" name="locationThree"></li>
-                  <li><input type="text" class="locationSelector" id="locationFour" name="locationFour"></li>
-                  <li><input type="text" class="locationSelector" id="locationFive" name="locationFive"></li>
-                </ol>
-                <input type="submit" id="addLocation" name="addLocation" value="Add Locations">
-              </div>
-              <div class="content" style="display: none" id="sideBarRequest">Make a message request here</div>
             </div>
+            <div class="content" style="display: none" id="sideBarTimes">
+              <table id="timesTable">
+                <thead>
+                  <tr>
+                    <th>
+                    <button class="timeButton" type="button" id="yesterdayTime">&lt;</button>
+                    <h4 id="day">Sundays</h4>
+                    <button class="timeButton" type="button" id="tomorrowTime">&gt;</button>
+                  </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td id="timepref_8">8:00 AM</td></tr>
+                  <tr><td id="timepref_9">9:00 AM</td></tr>
+                  <tr><td id="timepref_10">10:00 AM</td></tr>
+                  <tr><td id="timepref_11">11:00 AM</td></tr>
+                  <tr><td id="timepref_12">12:00 PM</td></tr>
+                  <tr><td id="timepref_13">1:00 PM</td></tr>
+                  <tr><td id="timepref_14">2:00 PM</td></tr>
+                  <tr><td id="timepref_15">3:00 PM</td></tr>
+                  <tr><td id="timepref_16">4:00 PM</td></tr>
+                  <tr><td id="timepref_17">5:00 PM</td></tr>
+                  <tr><td id="timepref_18">6:00 PM</td></tr>
+                  <tr><td id="timepref_19">7:00 PM</td></tr>
+                  <tr><td id="timepref_20">8:00 PM</td></tr>
+                  <tr><td id="timepref_21">9:00 PM</td></tr>
+                  <tr><td id="timepref_22">10:00 PM</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="content" style="display: none" id="sideBarLocs">
+              <ol>
+                <li><input type="text" class="locationSelector" id="locationOne" name="locationOne"></li>
+                <li><input type="text" class="locationSelector" id="locationTwo" name="locationTwo"></li>
+                <li><input type="text" class="locationSelector" id="locationThree" name="locationThree"></li>
+                <li><input type="text" class="locationSelector" id="locationFour" name="locationFour"></li>
+                <li><input type="text" class="locationSelector" id="locationFive" name="locationFive"></li>
+              </ol>
+              <input type="submit" id="addLocation" name="addLocation" value="Add Locations">
+            </div>
+            <div class="content" style="display: none" id="sideBarRequest">Make a message request here</div>
           </div>
         </div>
 

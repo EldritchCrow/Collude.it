@@ -1,10 +1,5 @@
 <?php
 
-if(!defined("MAIN_APP_RUN")) {
-    http_response_code(404);
-    die();
-}
-
 function getTopLocations() {
     $conn = Database::getConnection();
     $sql = "SELECT location_prefs.loc, location_prefs.rank
@@ -23,9 +18,6 @@ function getTopLocations() {
                 }
             }
             arsort($locations);
-            foreach($locations as $x=>$val) {
-                echo "$x = $val<br>";
-            }
             return $locations;
         }
     } else {

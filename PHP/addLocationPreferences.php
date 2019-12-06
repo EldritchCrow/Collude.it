@@ -1,5 +1,15 @@
 <?php
 
+class LocPreference {
+    public $location_name;
+    public $ranking;
+
+    function __construct($location, $rank) {
+        $this->location_name = $location;
+        $this->ranking = $rank;
+    }
+}
+
 function addLocationPreferences($location_list) {
     $conn = Database::getConnection();
     if (checkSession()) {
@@ -13,6 +23,11 @@ function addLocationPreferences($location_list) {
         foreach($location_list as $value) {
             $location_name = $value->location_name;
             $ranking = $value->ranking;
+            if(!validateInput($location_name)
+                || !validateInput($ranking . "")) {
+                    logSecurityMessage("One of " . $_SESSION["user_id"] . "'s location prefs did not validate");
+                    continue;
+                }
             $sql = "INSERT INTO location_prefs (user_id, loc, rank)";
             $sql.= " VALUES ('" . $u_id . "', '"
             . $location_name . "', '"

@@ -36,9 +36,13 @@ $(document).ready( function() {
   $('#contentTime').hide();
 
     $("#timeIcon").click( function() {
-
       $("#locationIcon").css("width", "80%");
       $("#calendarIcon").css("width", "80%");
+      getCurrentTimePrefs();
+      $("#locationIcon").css("background", "#666");
+      $("#calendarIcon").css("background", "#666");
+      $("#timeIcon").css("background", "grey");
+      $("#sideBarTimes").css("display", "inherit");
       $("#sideBarLocs").css("display", "none");
       $("#sideBarRequest").css("display", "none");
       $("#timeIcon").css("width", "100%");
@@ -90,9 +94,27 @@ $(document).ready( function() {
     $("#addLocation").click(function() {
       var break_ = false;
       [...$(".locationSelector")].forEach(function(item, index) {
-        if(item.val() == "") {
+        if(item.value == "" && !break_) {
           alert("You must fill out all of the list items");
           break_ = true;
+        }
+      });
+      if(break_) {
+        return;
+      }
+      $.ajax({
+        type: "POST",
+        url: "user_functions/submitLocPreference.php",
+        data: {
+          locationOne: $("#locationOne").val(),
+          locationTwo:  $("#locationTwo").val(),
+          locationThree:  $("#locationThree").val(),
+          locationFour:  $("#locationFour").val(),
+          locationFive:  $("#locationFive").val()
+        },
+        error: function(data, status) {
+          console.log(data);
+          alert(status + " : " + data);
         }
       });
     });
@@ -105,10 +127,77 @@ $(document).ready( function() {
                                   .mouseover(function() {RowOver(this, false)})
                                   .mouseup(function() {MouseUp(this,false)});
 
-    $("#yesterdayTime").click(function() {Yesterday(this)});
-    $("#tomorrowTime").click(function() {Tomorrow(this)});
+    $("#yesterdayTime").click(function() {
+      submitCurrentTimePrefs();
+      Yesterday(this);
+      getCurrentTimePrefs();
+    });
+    $("#tomorrowTime").click(function() {
+      submitCurrentTimePrefs();
+      Tomorrow(this);
+      getCurrentTimePrefs();
+    });
 });
 
+function submitCurrentTimePrefs() {
+  var day = $("#day").text()
+  day = day.substring(0, day.length - 1);
+  var times = [];
+  [...trs].forEach(function(item, index) {
+    if(item.className != 'selected') {
+      return;
+    }
+    var offset = 0;
+    item = item.textContent;
+    if(item.indexOf("PM") != -1 && item.substring(0,2) != "12") {
+      offset = 12
+    }
+    times.push((parseInt(item.substring(0, item.indexOf(":"))) + offset) * 100);
+  });
+  if(times.length == 0) {
+    return;
+  }
+  $.ajax({
+    type: "POST",
+    url: "user_functions/submitTimePreference.php",
+    dataType: "text",
+    data: {
+      p_day: day,
+      p_times: times
+    },
+    error: function(data, status) {
+      alert(status + " : " + data);
+      console.log(data);
+    }
+  });
+}
+
+function getCurrentTimePrefs() {
+  var day = $("#day").text()
+  day = day.substring(0, day.length - 1);
+  $.ajax({
+    type: "GET",
+    url: "user_functions/getDaysTimePrefs.php",
+    dataType: "json",
+    data: {
+      p_day: day
+    },
+    success: function(data, status) {
+      data.data.forEach(function(item, index) {
+        var start = Math.round(parseInt(item.start_time) / 100);
+        var end = Math.round(parseInt(item.end_time) / 100);
+        while(start != end) {
+          document.getElementById("timepref_" + start).parentElement.className = 'selected';
+          start += 1;
+        }
+      });
+    },
+    error: function(data, status) {
+      alert(status + " : " + data);
+      console.log(data);
+    }
+  });
+}
 
 // ------  Notification banner  ------ //
 

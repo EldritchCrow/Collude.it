@@ -47,7 +47,6 @@ if(isset($_POST["add_user"])) {
       <div class="collapse navbar-collapse" id="navbarMenu">
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="../homepage/homePage.html">About Us</a></li>
         </ul>
         <!--Log in and Sign up link-->
 
@@ -97,7 +96,7 @@ if(isset($_POST["add_user"])) {
 		        <div class="md-form mb-3">
 		          <!-- <i class="fas fa-lock prefix grey-text"></i> -->
 		          <label for="loginPassword">Password:</label>
-				  <input type="text" id="loginPassword" class="form-control validate" placeholder="Please enter password" name="password">
+				  <input type="password" id="loginPassword" class="form-control validate" placeholder="Please enter password" name="password">
 				</div>
 				
 				<div class="modal-footer d-flex justify-content-center">
@@ -132,11 +131,11 @@ if(isset($_POST["add_user"])) {
 		        <div class="md-form mb-3">
 		          <!-- <i class="fas fa-user prefix grey-text"></i> -->
 		          <label for="inputPassword">Password (At least 12 characters):</label>
-		          <input type="text" class="form-control" id="inputPassword" placeholder="Please enter password" name="password">
+		          <input type="password" class="form-control" id="inputPassword" placeholder="Please enter password" name="password">
 		        </div>
 				<div class="md-form mb-3">
 		          <!-- <i class="fas fa-user prefix grey-text"></i> -->
-		          <input type="text" class="form-control" id="confirmPassword" placeholder="Confirm password" name="passwordConfirm">
+		          <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" name="passwordConfirm">
 				</div>
 				<div class="md-form mb-3">
 				  <!-- <i class="fas fa-user prefix grey-text"></i> -->
