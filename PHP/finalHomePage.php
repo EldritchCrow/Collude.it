@@ -85,7 +85,7 @@ $message_data = $message_data["data"]
               <a href="#" class="closebtn" id="openclose" onclick="openclose('none')">&gt;</a>
               <aside class="verticalNavBar">
                 <ul class="tabs nopadding">
-                  <li id="profileIcon"><a href="../profilePage/profilePage.html"><img class="icon nopadding" alt="account" src="../res/account.jpg"></a></li>
+                  <!-- <li id="profileIcon"><a href="../profilePage/profilePage.html"><img class="icon nopadding" alt="account" src="../res/account.jpg"></a></li> -->
                   <li id="timeIcon"><img class="icon nopadding" alt="time" src="../res/clock.png"></li>
                   <li id="locationIcon"><img class="icon nopadding" alt="location" src="../res/ping.png"></li>
                   <li id="calendarIcon"><img class="icon nopadding" alt="calendar" src="../res/calendar.png"></li>
@@ -104,10 +104,10 @@ $message_data = $message_data["data"]
                 <thead>
                   <tr>
                     <th>
-                    <button class="timeButton" type="button" id="yesterdayTime">&lt;</button>
-                    <h4 id="day">Sundays</h4>
-                    <button class="timeButton" type="button" id="tomorrowTime">&gt;</button>
-                  </th>
+                      <button class="timeButton" type="button" id="yesterdayTime">&lt;</button>
+                      <h4 id="day">Sundays</h4>
+                      <button class="timeButton" type="button" id="tomorrowTime">&gt;</button>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -158,7 +158,7 @@ $message_data = $message_data["data"]
                 ?>
               </select>
                 <br><br>
-                
+
               <input type="submit" id="requestMeeting" name="requestMeeting" value="Request Meeting">
               </div>
           </div>

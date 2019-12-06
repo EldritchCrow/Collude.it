@@ -72,10 +72,13 @@ $(document).ready(function () {
     $("#calendarIcon").css("width", "100%");
     $("#sideBarTimes").css("display", "none");
     $("#sideBarLocs").css("display", "none");
-    $("#sideBarRequest").css("display", "inherit");
-    $("#notifBar").text("Meetings");
+    if ($('#openclose').text() == '>') {
+      openclose('cal');
+    } else {
+      $("#sideBarRequest").css("display", "inherit");
+      $("#notifBar").text("Meetings");
+    }
   });
-
 
   if ($('#openclose').text() == '>') {
     openclose('cal');
@@ -419,6 +422,7 @@ function Tomorrow(e) {
   } else {
     $('#day').text(days[index + 1]);
   }
+  $('#day').css("width", "50%");
   clearAll();
 }
 
@@ -430,6 +434,8 @@ function Yesterday(e) {
   } else {
     $('#day').text(days[index - 1]);
   }
+  $('#day').css("width", "50%");
+
   clearAll();
 }
 
@@ -502,5 +508,14 @@ function openclose(string) {
 
 
 
+  }
+}
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
   }
 }
