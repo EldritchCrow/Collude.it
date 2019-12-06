@@ -80,12 +80,6 @@ $(document).ready(function () {
     }
   });
 
-  if ($('#openclose').text() == '>') {
-    openclose('cal');
-  } else {
-    $("#sideBarRequest").css("display", "inherit");
-    $("#notifBar").text("Meetings");
-  }
 
   // $(".expand-close").click( function() {
   //     $(".notificationBar").css("display", "none");
