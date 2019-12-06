@@ -78,14 +78,6 @@ $(document).ready(function () {
     }
   });
 
-
-  if ($('#openclose').text() == '>') {
-    openclose('cal');
-  } else {
-    $("#sideBarRequest").css("display", "inherit");
-    $("#notifBar").text("Request a meeting");
-  }
-
   // $(".expand-close").click( function() {
   //     $(".notificationBar").css("display", "none");
   //     $(".content").css("display", "none");

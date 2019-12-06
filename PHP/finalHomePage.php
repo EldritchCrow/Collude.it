@@ -63,7 +63,7 @@ $message_data = $message_data["data"]
 
       <div class="collapse navbar-collapse" id="navbarMenu">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="#">Home</a></li> -->
           <!-- <li class="nav-item"><a class="nav-link" href="../profilePage/profilePage.html">Profile</a></li> -->
         </ul>
       </div>
@@ -153,7 +153,7 @@ $message_data = $message_data["data"]
                 ?>
               </select>
                 <br><br>
-                
+
               <input type="submit" id="requestMeeting" name="requestMeeting" value="Request Meeting">
               </div>
           </div>
