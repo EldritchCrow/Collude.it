@@ -100,10 +100,10 @@ $message_data = $message_data["data"]
                 <thead>
                   <tr>
                     <th>
-                    <button class="timeButton" type="button" id="yesterdayTime">&lt;</button>
-                    <h4 id="day">Sundays</h4>
-                    <button class="timeButton" type="button" id="tomorrowTime">&gt;</button>
-                  </th>
+                      <button class="timeButton" type="button" id="yesterdayTime">&lt;</button>
+                      <h4 id="day">Sundays</h4>
+                      <button class="timeButton" type="button" id="tomorrowTime">&gt;</button>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>

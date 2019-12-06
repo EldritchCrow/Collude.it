@@ -344,6 +344,7 @@ function Tomorrow(e){
   }else{
     $('#day').text(days[index+1]);
   }
+  $('#day').css("width", "50%");
   clearAll();
 }
 
@@ -355,6 +356,8 @@ function Yesterday(e){
   }else{
     $('#day').text(days[index-1]);
   }
+  $('#day').css("width", "90%");
+
   clearAll();
 }
 
