@@ -51,6 +51,11 @@ function getTopTime(&$times) {
         $times[$maxWeekday][$y] = 0;
     }
 
+    $maxWeektime = ($maxWeektime+1)*50;
+    if ($maxWeektime%100 == 50) {
+        $maxWeektime -= 20;
+    }
+
     return array("day" => $maxWeekday, "time" => $maxWeektime);
 }
 
@@ -80,6 +85,7 @@ function getTopTimes() {
             $time_three = getTopTime($times);
 
             $topTime = array($time_one, $time_two, $time_three);
+            return $topTime;
         }
     } else {
         echo "Unable to get top times";
@@ -104,9 +110,6 @@ function getTopLocations() {
                 }
             }
             arsort($locations);
-            foreach($locations as $x=>$val) {
-                echo "$x = $val<br>";
-            }
             return $locations;
         }
     } else {
@@ -126,7 +129,7 @@ function getTopLocations() {
         <select name="meeting_time">
             <?php
                 $topLocations = getTopLocations();
-                foreach($topLocations as $locations) {
+                foreach($topLocations as $locations=>$ranks) {
                     echo "<option value = '" . $locations . "'>" . $locations . "</option>";
                 }
             ?>
@@ -135,7 +138,7 @@ function getTopLocations() {
             <?php
                 $topTimes = getTopTimes();
                 foreach($topTimes as $times) {
-                    echo "<option value = '" . $times . "'>" . $times . "</option>";
+                    echo "<option value = '" . $times["day"] . " " . $times["time"] . "'>" . $times["day"] . " " . $times["time"] . "</option>";
                 }
             ?>
         </select>

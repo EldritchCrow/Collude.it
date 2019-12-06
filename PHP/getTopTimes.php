@@ -21,6 +21,11 @@ function getTopTime(&$times) {
         $times[$maxWeekday][$y] = 0;
     }
 
+    $maxWeektime = ($maxWeektime+1)*50;
+    if ($maxWeektime%100 == 50) {
+        $maxWeektime -= 20;
+    }
+
     return array("day" => $maxWeekday, "time" => $maxWeektime);
 }
 
@@ -50,6 +55,8 @@ function getTopTimes() {
             $time_three = getTopTime($times);
 
             $topTime = array($time_one, $time_two, $time_three);
+
+            return $topTime;
         }
     } else {
         echo "Unable to get top times";

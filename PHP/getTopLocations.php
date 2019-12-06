@@ -18,9 +18,6 @@ function getTopLocations() {
                 }
             }
             arsort($locations);
-            foreach($locations as $x=>$val) {
-                echo "$x = $val<br>";
-            }
             return $locations;
         }
     } else {
