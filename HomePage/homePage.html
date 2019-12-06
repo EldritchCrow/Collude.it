@@ -26,7 +26,13 @@
           <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="../profilePage/profilePage.html">Profile</a></li>
         </ul>
+
+        <!-- Temporary button - Replace with PHP -->
+        <button class="btn btn-primary" onclick="notification.notice('Notification Message Body: With JS - Stackable', {position: 'topright'})">TMP BTN Click Me</button>
+        <!-- Temporary button - Replace with PHP -->
+
       </div>
+
       <a class="headerMenuLink d-inline-block border border-gray-dark rounded-1 px-2 py-1" href="#" onclick="window.location.href='../LandingPage/landingPage.html'">Log Out</a>
     </header>
 
@@ -53,7 +59,41 @@
               <div class="arrow nopadding" alt="time">&lt;</div>
               <div class="arrow nopadding" alt="time">&lt;</div>
             </div>
-            <div class="content" id="sideBarContent">select tab to display content here</div>
+            <div class="content" id="sideBarContent">
+              <div class="contentContainer" id="contentDefault">
+                Select a tab to display content
+              </div>
+              <div class="contentContainer" id="contentTime">
+                <table id="timesTable">
+                  <thead>
+                    <tr>
+                      <th>
+                      <button class="timeButton" type="button" name="yesterday" onclick="Yesterday(this);">&lt;</button>
+                      <h4 id="day">Sundays</h4>
+                      <button class="timeButton" type="button" name="tomorrow" onclick="Tomorrow(this);">&gt;</button>
+                    </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>8:00 AM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>9:00 AM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>10:00 AM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>11:00 AM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>12:00 PM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>1:00 PM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>2:00 PM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>3:00 PM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>4:00 PM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>5:00 PM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>6:00 PM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>7:00 PM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>8:00 PM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>9:00 PM</td></tr>
+                    <tr onmousedown="RowClick(this,false);" onmouseover="RowOver(this,false);" onmouseup="MouseUp(this,false);"><td>10:00 PM</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -76,7 +116,8 @@
     </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="homePage.js"></script>

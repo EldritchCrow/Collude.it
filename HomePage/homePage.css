@@ -2,6 +2,53 @@ body {
     background-color: #333;
     font-family: 'Montserrat', sans-serif;
     height: 100%;
+    user-select: none;
+}
+
+.sidebar {
+  height: 100%;
+  width: 5%;
+  position: fixed;
+  z-index: 1;
+/*  top: 0;
+  left: 0;*/
+  background-color: #6faeff87;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 2%;
+  /*padding-left: 1%;*/
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  font-size: 36px;
+  float: right;
+  padding-right: 10px;
+  margin-top: 0;
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  margin-left: 5%;
+  transition: margin-left .5s;
+  padding: 16px;
 }
 
 .headerMenuLink {
@@ -17,6 +64,7 @@ body {
 .navbar {
     background-color: #222222;
     color: #868686;
+    z-index: 2;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -42,9 +90,11 @@ body {
     background-color: blue;
 }
 
-#contentBar {
-    height: 90vh;
-    background-color: #333;
+#main {
+  height: 90vh;
+  background-color: #333;
+  transition: margin-left .5s;
+  padding: 16px;
 }
 
 .chatBox {
@@ -170,36 +220,49 @@ background-size: 30px;
 
 #sideWindow {
   background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#openclose {
+  margin-right: 25%;
+  margin-top: 5%;
+  color: black;
 }
 
 .sideBar {
-  margin-left: 0;
-  padding-left: 0;
+  padding-left: 20%;
   width: 100%;
   height: 100%;
-  background-color: grey;
 }
 .verticalNavBar {
-  margin-left: 0;
-  margin-top: 0;
-  padding-top: 1vh;
-  width: 15%;
-  height: 100%;
-  background: #333;
+  position: fixed;
+  top: 35%;
+  left: 0.5%;
+  padding-top: 0.5%;
+  width: 4%;
+  height: 40%;
   float: left;
 }
 
 .tabs {
+  margin-left: auto;
+  margin-right: auto;
   list-style: none;
 }
 
 .tabs > li {
   width: 80%;
   height: 4vw;
-  background: #666;
+  background: none;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2vh;
+  transition: width 0.25s;
+}
+
+.tabs > li:hover {
+  cursor: pointer;
 }
 
 .notificationBar {
@@ -208,7 +271,7 @@ background-size: 30px;
   margin-top: 2vh;
   width: 73%;
   height: 11%;
-  background: lightblue;
+  background: none;
   border-radius: 1vh;
 }
 
@@ -234,21 +297,69 @@ background-size: 30px;
   padding-top: 55%;
 }
 
-
-.arrow {
-    background: #white;
-}
-
 .expand-close:hover {
   background: #AFAFAF;
 }
 
 .content {
   float: left;
+  margin-top: 8%;
+  margin-left: 20%;
   width: 83%;
   height: 100%;
   text-align: center;
-  line-height: 60vh;
+}
+
+#timesTable {
+  width: 80%;
+}
+
+#day {
+  width: 50%;
+  margin-top: 2%;
+}
+
+#groupidtag:hover {
+  color: #868686;
+  cursor: default;
+}
+
+#groupidtag {
+  user-select: all;
+}
+
+.timeButton {
+  background: none;
+  border: none;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+
+tr {
+  border: 1px solid black;
+  height: 2em;
+}
+
+th {
+  display: inline-flex;
+  width: 100%;
+  padding-left: 15%;
+}
+
+tbody:hover {
+  cursor: pointer;
+}
+
+.selected {
+    color: white;
+}
+
+#sideBarLocs, #sideBarRequest {
+  padding: none;
+  margin: none;
+  width: 65%;
+
 }
 
 .icon {
@@ -258,4 +369,16 @@ background-size: 30px;
 
 .arrow {
   width: 80%;
+}
+
+.alert-container{
+  position: fixed;
+}
+.alert-container .alert{
+  box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+}
+
+#alert-container-topright{
+  top: 10px;
+  right: 10px;
 }

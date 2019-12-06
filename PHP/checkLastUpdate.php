@@ -1,5 +1,7 @@
 <?php
-    function checkLastUpdate($last_update) {
-        return true;
-    }
+
+function checkLastUpdate() {
+    return true;
+}
+
 ?>
