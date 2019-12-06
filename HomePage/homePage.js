@@ -59,7 +59,7 @@ $(document).ready( function() {
       $("#sideBarTimes").css("display", "none");
       $("#sideBarLocs").css("display", "none");
       $("#sideBarRequest").css("display", "inherit");
-      $("#notifBar").text("Request a meeting");
+      $("#notifBar").text("Meetings");
     });
 
     $(".expand-close").click( function() {
@@ -95,6 +95,21 @@ $(document).ready( function() {
           alert(status + " : " + data);
         }
       });
+    });
+
+    $("#requestMeeting").click(function() {
+      $.ajax({
+        type: "POST",
+        url: "user_functions/requestMeeting.php",
+        data: {
+          meeting_time: $(" #timeSelect option:selected ").val(),
+          meeting_location: $(" #locationSelect option:selected ").val()
+        },
+        error: function(data, status) {
+          console.log(data);
+          alert(status + " : " + data);
+        }
+      })
     });
     
     $(".chatBox").delay(500).animate({scrollTop: $(".chatBox").prop("scrollHeight")}, "slow");
