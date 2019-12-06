@@ -78,7 +78,7 @@ $message_data = $message_data["data"]
           <div class="nopadding" id = "sideWindow">
             <div class = "sideBar nopadding">
               <!-- ------------------------------Inside Side Bar Here Please-----------------------------------------  -->
-              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+              <a href="#" class="closebtn" id="openclose" onclick="openclose('none')">&gt;</a>
               <aside class="verticalNavBar">
                 <ul class="tabs nopadding">
                   <li id="profileIcon"><a href="../profilePage/profilePage.html"><img class="icon nopadding" alt="account" src="../res/account.jpg"></a></li>
@@ -87,14 +87,14 @@ $message_data = $message_data["data"]
                   <li id="calendarIcon"><img class="icon nopadding" alt="calendar" src="../res/calendar.png"></li>
                 </ul>
               </aside>
-              
 
-              <div class="content" style="display: none" id="sideBarTimes">
-                <div class="notificationBar">
-                  <div class="notif-item notifs nopadding" id="notifBar">
-                    Notifications
-                  </div>
+
+              <div class="notificationBar" id="notifContainer">
+                <div class="notif-item notifs nopadding" id="notifBar">
+                  Notifications
                 </div>
+              </div>
+              <div class="content" style="display: none" id="sideBarTimes">
                 <table id="timesTable">
                   <thead>
                     <tr>
@@ -140,7 +140,6 @@ $message_data = $message_data["data"]
         </div>
 
         <div id = "main">
-          <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button> 
           <div class= "chatBox">
             <?php
             foreach($message_data as $m) {

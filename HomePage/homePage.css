@@ -6,15 +6,15 @@ body {
 
 .sidebar {
   height: 100%;
-  width: 10%;
+  width: 5%;
   position: fixed;
   z-index: 1;
 /*  top: 0;
   left: 0;*/
-  background-color: #111;
+  background-color: #6faeff87;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 5%;
+  padding-top: 2%;
   /*padding-left: 1%;*/
 }
 
@@ -45,7 +45,7 @@ body {
 }
 
 #main {
-  margin-left: 20px;
+  margin-left: 5%;
   transition: margin-left .5s;
   padding: 16px;
 }
@@ -220,24 +220,27 @@ background-size: 30px;
 #sideWindow {
   background-color: white;
   margin-left: auto;
-  margin-right: auto; 
+  margin-right: auto;
+}
+
+#openclose {
+  margin-right: 25%;
+  margin-top: 5%;
+  color: black;
 }
 
 .sideBar {
-  margin-left: auto;
-  padding-left: auto;
+  padding-left: 20%;
   width: 100%;
   height: 100%;
-  background-color: grey;
 }
 .verticalNavBar {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
-  padding-top: 1vh;
-  width: 60px;
-  height: 100%;
-  background: #333;
+  position: fixed;
+  top: 30%;
+  left: 0.5%;
+  padding-top: 0.5%;
+  width: 4%;
+  height: 40%;
   float: left;
 }
 
@@ -250,10 +253,15 @@ background-size: 30px;
 .tabs > li {
   width: 80%;
   height: 4vw;
-  background: #666;
+  background: none;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2vh;
+  transition: width 0.25s;
+}
+
+.tabs > li:hover {
+  cursor: pointer;
 }
 
 .notificationBar {
@@ -262,9 +270,8 @@ background-size: 30px;
   margin-top: 2vh;
   width: 73%;
   height: 11%;
-  background: lightblue;
+  background: none;
   border-radius: 1vh;
-  display: none;
 }
 
 .notif-item {
@@ -295,6 +302,7 @@ background-size: 30px;
 
 .content {
   float: left;
+  margin-top: 8%;
   width: 83%;
   height: 100%;
   text-align: center;
@@ -304,7 +312,6 @@ background-size: 30px;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2vh;
 }
 
 .timeButton {
@@ -329,7 +336,8 @@ tbody:hover {
 }
 
 .selected {
-    background: lightBlue;
+    background: grey;
+    color: white;
 }
 
 .icon {
