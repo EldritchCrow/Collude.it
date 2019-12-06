@@ -72,28 +72,28 @@ $message_data = $message_data["data"]
       </form>
     </header>
 
-  	<div class="container col-lg-12 d-inline-block" id="mainBody">
-      <div class="row">
-        <div class="col-lg-4 nopadding" id = "sideWindow">
-          <div class = "sideBar nopadding">
-            <!-- ------------------------------Inside Side Bar Here Please-----------------------------------------  -->
-            <aside class="verticalNavBar">
-              <ul class="tabs nopadding">
-                <li id="profileIcon"><a href="../profilePage/profilePage.html"><img class="icon nopadding" alt="account" src="../res/account.jpg"></a></li>
-                <li id="timeIcon"><img class="icon nopadding" alt="time" src="../res/clock.png"></li>
-                <li id="locationIcon"><img class="icon nopadding" alt="location" src="../res/ping.png"></li>
-                <li id="calendarIcon"><img class="icon nopadding" alt="calendar" src="../res/calendar.png"></li>
-              </ul>
-            </aside>
-            <div class="notificationBar">
-              <div class="notif-item notifs nopadding" id="notifBar">
-                Notifications
+  	<!-- <div class="container"> -->
+
+        <div id="mySidebar" class="sidebar">
+          <div class="nopadding" id = "sideWindow">
+            <div class = "sideBar nopadding">
+              <!-- ------------------------------Inside Side Bar Here Please-----------------------------------------  -->
+              <a href="#" class="closebtn" id="openclose" onclick="openclose('none')">&gt;</a>
+              <aside class="verticalNavBar">
+                <ul class="tabs nopadding">
+                  <li id="profileIcon"><a href="../profilePage/profilePage.html"><img class="icon nopadding" alt="account" src="../res/account.jpg"></a></li>
+                  <li id="timeIcon"><img class="icon nopadding" alt="time" src="../res/clock.png"></li>
+                  <li id="locationIcon"><img class="icon nopadding" alt="location" src="../res/ping.png"></li>
+                  <li id="calendarIcon"><img class="icon nopadding" alt="calendar" src="../res/calendar.png"></li>
+                </ul>
+              </aside>
+
+
+              <div class="notificationBar" id="notifContainer">
+                <div class="notif-item notifs nopadding" id="notifBar">
+                  Notifications
+                </div>
               </div>
-            </div>
-            <div class="expand-close nopadding">
-              <div class="arrow nopadding" alt="time">&lt;</div>
-              <div class="arrow nopadding" alt="time">&lt;</div>
-              <div class="arrow nopadding" alt="time">&lt;</div>
             </div>
             <div class="content" style="display: none" id="sideBarTimes">
               <table id="timesTable">
@@ -107,21 +107,21 @@ $message_data = $message_data["data"]
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td>8:00 AM</td></tr>
-                  <tr><td>9:00 AM</td></tr>
-                  <tr><td>10:00 AM</td></tr>
-                  <tr><td>11:00 AM</td></tr>
-                  <tr><td>12:00 PM</td></tr>
-                  <tr><td>1:00 PM</td></tr>
-                  <tr><td>2:00 PM</td></tr>
-                  <tr><td>3:00 PM</td></tr>
-                  <tr><td>4:00 PM</td></tr>
-                  <tr><td>5:00 PM</td></tr>
-                  <tr><td>6:00 PM</td></tr>
-                  <tr><td>7:00 PM</td></tr>
-                  <tr><td>8:00 PM</td></tr>
-                  <tr><td>9:00 PM</td></tr>
-                  <tr><td>10:00 PM</td></tr>
+                  <tr><td id="timepref_8">8:00 AM</td></tr>
+                  <tr><td id="timepref_9">9:00 AM</td></tr>
+                  <tr><td id="timepref_10">10:00 AM</td></tr>
+                  <tr><td id="timepref_11">11:00 AM</td></tr>
+                  <tr><td id="timepref_12">12:00 PM</td></tr>
+                  <tr><td id="timepref_13">1:00 PM</td></tr>
+                  <tr><td id="timepref_14">2:00 PM</td></tr>
+                  <tr><td id="timepref_15">3:00 PM</td></tr>
+                  <tr><td id="timepref_16">4:00 PM</td></tr>
+                  <tr><td id="timepref_17">5:00 PM</td></tr>
+                  <tr><td id="timepref_18">6:00 PM</td></tr>
+                  <tr><td id="timepref_19">7:00 PM</td></tr>
+                  <tr><td id="timepref_20">8:00 PM</td></tr>
+                  <tr><td id="timepref_21">9:00 PM</td></tr>
+                  <tr><td id="timepref_22">10:00 PM</td></tr>
                 </tbody>
               </table>
             </div>
@@ -159,7 +159,7 @@ $message_data = $message_data["data"]
           </div>
         </div>
 
-        <div class="col-lg-8 no-gutters nopadding" id = "contentBar">
+        <div id = "main">
           <div class= "chatBox">
             <?php
             foreach($message_data as $m) {
@@ -175,8 +175,7 @@ $message_data = $message_data["data"]
           </div>
         </div>
 
-      </div>
-    </div>
+    <!-- </div> -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

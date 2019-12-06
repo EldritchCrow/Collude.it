@@ -4,6 +4,7 @@
     var days = ["Sundays", "Mondays", "Tuesdays", "Wednesdays", "Thursdays", "Fridays", "Saturdays"];
 
 $(document).ready( function() {
+  $('#notifBar').hide();
   $("#messageSend").click( function() {
       sendMessage();
   });
@@ -35,40 +36,64 @@ $(document).ready( function() {
   $('#contentTime').hide();
 
     $("#timeIcon").click( function() {
+      $("#locationIcon").css("width", "80%");
+      $("#calendarIcon").css("width", "80%");
+      getCurrentTimePrefs();
       $("#locationIcon").css("background", "#666");
       $("#calendarIcon").css("background", "#666");
       $("#timeIcon").css("background", "grey");
       $("#sideBarTimes").css("display", "inherit");
       $("#sideBarLocs").css("display", "none");
       $("#sideBarRequest").css("display", "none");
-      $("#notifBar").text("Time Preferences");
+      $("#timeIcon").css("width", "100%");
+
+      if ($('#openclose').text() == '>'){
+        openclose('time');
+      }else{
+        $("#sideBarTimes").css("display", "inherit");
+        $("#notifBar").text("Time Preferences");
+      }
     });
     $("#locationIcon").click( function() {
-      $("#timeIcon").css("background", "#666");
-      $("#calendarIcon").css("background", "#666");
-      $("#locationIcon").css("background", "grey");
+      $("#timeIcon").css("width", "80%");
+      $("#calendarIcon").css("width", "80%");
+      $("#locationIcon").css("width", "100%");
       $("#sideBarTimes").css("display", "none");
-      $("#sideBarLocs").css("display", "inherit");
       $("#sideBarRequest").css("display", "none");
-      $("#notifBar").text("Location Preferences");
+
+      if ($('#openclose').text() == '>'){
+        openclose('loc');
+      }else{
+        $("#sideBarLocs").css("display", "inherit");
+        $("#notifBar").text("Location Preferences");
+      }
     });
     $("#calendarIcon").click( function() {
-      $("#locationIcon").css("background", "#666");
-      $("#timeIcon").css("background", "#666");
-      $("#calendarIcon").css("background", "grey");
+      $("#locationIcon").css("width", "80%");
+      $("#timeIcon").css("width", "80%");
+      $("#calendarIcon").css("width", "100%");
       $("#sideBarTimes").css("display", "none");
       $("#sideBarLocs").css("display", "none");
       $("#sideBarRequest").css("display", "inherit");
       $("#notifBar").text("Meetings");
     });
 
-    $(".expand-close").click( function() {
-        $(".notificationBar").css("display", "none");
-        $(".content").css("display", "none");
-        $(".tabs").css("display", "block");
-        $(".arrow").html("&gt;");
+
+      if ($('#openclose').text() == '>'){
+        openclose('cal');
+      }else{
+        $("#sideBarRequest").css("display", "inherit");
+        $("#notifBar").text("Request a meeting");
+      }
     });
-  
+
+    // $(".expand-close").click( function() {
+    //     $(".notificationBar").css("display", "none");
+    //     $(".content").css("display", "none");
+    //     $(".tabs").css("display", "block");
+    //     $(".arrow").html("&gt;");
+    // });
+
     $("#addLocation").click(function() {
       var break_ = false;
       [...$(".locationSelector")].forEach(function(item, index) {
@@ -119,14 +144,16 @@ $(document).ready( function() {
     $("#timesTable > tbody > tr").mousedown(function() {RowClick(this, false)})
                                   .mouseover(function() {RowOver(this, false)})
                                   .mouseup(function() {MouseUp(this,false)});
-    
+
     $("#yesterdayTime").click(function() {
       submitCurrentTimePrefs();
       Yesterday(this);
+      getCurrentTimePrefs();
     });
     $("#tomorrowTime").click(function() {
       submitCurrentTimePrefs();
-      Tomorrow(this)
+      Tomorrow(this);
+      getCurrentTimePrefs();
     });
 });
 
@@ -145,7 +172,7 @@ function submitCurrentTimePrefs() {
     }
     times.push((parseInt(item.substring(0, item.indexOf(":"))) + offset) * 100);
   });
-  if(times == []) {
+  if(times.length == 0) {
     return;
   }
   $.ajax({
@@ -155,6 +182,33 @@ function submitCurrentTimePrefs() {
     data: {
       p_day: day,
       p_times: times
+    },
+    error: function(data, status) {
+      alert(status + " : " + data);
+      console.log(data);
+    }
+  });
+}
+
+function getCurrentTimePrefs() {
+  var day = $("#day").text()
+  day = day.substring(0, day.length - 1);
+  $.ajax({
+    type: "GET",
+    url: "user_functions/getDaysTimePrefs.php",
+    dataType: "json",
+    data: {
+      p_day: day
+    },
+    success: function(data, status) {
+      data.data.forEach(function(item, index) {
+        var start = Math.round(parseInt(item.start_time) / 100);
+        var end = Math.round(parseInt(item.end_time) / 100);
+        while(start != end) {
+          document.getElementById("timepref_" + start).parentElement.className = 'selected';
+          start += 1;
+        }
+      });
     },
     error: function(data, status) {
       alert(status + " : " + data);
@@ -177,7 +231,7 @@ let notification = {};
       type: 'primary', //primary, secondary, success, danger, warning, info, light, dark
       appendType: 'append', //append, prepend
       closeBtn: false,
-       autoClose: 80000, // If you want auto close 
+       autoClose: 80000, // If you want auto close
       className: '',
 
     }, opts);
@@ -215,7 +269,7 @@ let notification = {};
     setTimeout(() => {
       $el.addClass('show');
     }, 50);
-    
+
     return;
 
   };
@@ -258,8 +312,12 @@ function RowClick(currenttr, lock) {
 
   if (window.event.button === 0) {
     if (!window.event.ctrlKey && !window.event.shiftKey) {
-      clearAll();
-      toggleRow(currenttr);
+      if (currenttr.className == 'selected'){
+        clearAll();
+      }else{
+        clearAll();
+        toggleRow(currenttr);
+      }
       isMouseDown = true;
     }
 
@@ -332,4 +390,64 @@ function getIndex(query){
     i++;
   });
   return ret;
+}
+
+// function openNav() {
+//   document.getElementById("mySidebar").style.width = "500px";
+//   $('#openclose').text("&lt;");
+//   document.getElementById("main").style.marginLeft = "20%";
+// }
+//
+// function closeNav() {
+//   document.getElementById("mySidebar").style.width = "20%";
+//   $('#openclose').text("&gt;");
+//   document.getElementById("main").style.marginLeft= "20%";
+// }
+
+function openclose(string) {
+  var txt = $('#openclose').text();
+  if (txt == '>'){
+    // expand
+    $('#openclose').css("margin-right", "2%");
+    document.getElementById("mySidebar").style.width = "40%";
+    $('#openclose').text('<');
+    document.getElementById("main").style.marginLeft = "40%";
+    setTimeout(function(){
+
+      if (string == 'loc'){
+        $("#sideBarLocs").css("display", "inherit");
+        $("#notifBar").text("Location Preferences");
+      }else if (string == 'cal'){
+        $("#sideBarRequest").css("display", "inherit");
+        $("#notifBar").text("Request a meeting");
+      }else{
+        $("#sideBarTimes").css("display", "inherit");
+        $("#notifBar").text("Time Preferences");
+        $("#timeIcon").css("width", "100%");
+
+      }
+      $('#notifBar').css("display", "inherit");
+      $('#notifContainer').css("border", "1px solid black");
+
+    }, 300);
+
+  }else{
+    $('#openclose').css("margin-right", "25%");
+    document.getElementById("mySidebar").style.width = "5%";
+    $('#openclose').text('>');
+    document.getElementById("main").style.marginLeft= "5%";
+
+    $("#sideBarTimes").css("display", "none");
+    $("#sideBarLocs").css("display", "none");
+    $("#sideBarRequest").css("display", "none");
+    $('#notifBar').css("display", "none");
+    $('#notifContainer').css("border", "none");
+
+    $("#locationIcon").css("width", "80%");
+    $("#timeIcon").css("width", "80%");
+    $("#calendarIcon").css("width", "80%");
+
+
+
+  }
 }
