@@ -2,6 +2,9 @@
 
 require_once("library.php");
 function sendMessage($message) {
+    if(strlen($message) > 1000) {
+        $message = substr($message, 0, 2000) . "-";
+    }
     if(!checkSession()) {
         return array("success" => false,
                     "message" => "Session not created");
