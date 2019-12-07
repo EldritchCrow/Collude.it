@@ -128,8 +128,11 @@ $(document).ready(function () {
         console.log(data);
         alert(status + " : " + data);
       }
-    })
+    });
+    retrieveMeetings(0);
+    retrieveMeetings(1);
   });
+
 
   $(".chatBox").delay(500).animate({ scrollTop: $(".chatBox").prop("scrollHeight") }, "slow");
 
@@ -152,6 +155,44 @@ $(document).ready(function () {
   getCurrentTimePrefs();
   getCurrentLocPrefs();
 });
+
+function retrieveMeetings(confirmedInt) {
+  $.ajax({
+    type: "GET",
+    url: "user_functions/getMeetings.php",
+    dataType: "json",
+    data: {
+      confirmed: confirmedInt
+    },
+    success: function (data, status){
+      var id = "";
+      if (confirmedInt == 0) {
+        id = "#proposedMeetings";
+      } else {
+        id = "#confirmedMeetings";
+      }
+      $(id).empty();
+      var meetings = data.data;
+      console.log(meetings);
+      if (meetings.length == 0) {
+        if (confirmedInt == 0) {
+          $(id).append("There are no proposed meetings");
+        } else {
+          $(id).append("There are no confirmed meetings");
+        }
+      }
+      else {
+       for (var i = 0; i < meetings.length; i++) {
+        $(id).append(meetings[i]["m_time"] + " " + meetings[i]["m_location"] + "<br>");
+       }
+      }
+    },
+    error: function (data, status) {
+      console.log(data);
+      alert(status + " : " + data);
+    }
+  });
+}
 
 function submitCurrentTimePrefs() {
   var day = $("#day").text()
