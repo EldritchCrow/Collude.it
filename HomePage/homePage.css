@@ -164,7 +164,7 @@ body {
   border-radius: 50%;
   display: inline-flex;
   margin-right: 1vw;
-  background-image: url("../res/profileIcon.jpg");
+  background-image: url("../res/profileIcon.png");
   background-size: 30px;
 }
 
