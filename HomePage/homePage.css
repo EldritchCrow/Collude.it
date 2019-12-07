@@ -154,6 +154,7 @@ body {
 .message {
     float: right;
     margin-right: 1vw;
+    overflow-wrap: break-word;
 }
 
 .message::before {

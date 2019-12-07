@@ -352,7 +352,12 @@ function loadMessageLog() {
   });
 }
 
-setInterval(loadMessageLog, 1000);
+function refreshTimeout() {
+  loadMessageLog();
+  setTimeout(refreshTimeout, 1000);
+}
+
+setTimeout(refreshTimeout, 1000);
 
 // disable text selection
 // document.onselectstart = function () {
