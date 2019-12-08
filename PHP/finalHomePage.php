@@ -141,6 +141,7 @@ $message_data = $message_data["data"]
               <input type="submit" id="addLocation" name="addLocation" value="Add Locations">
             </div>
             <div class="content" style="display: none" id="sideBarRequest">
+            <iframe name="meetingsFrame" id="meetingsFrame"></iframe>
               <select name="meeting_location" id="locationSelect">
                 <?php
                   $topLocations = getTopLocations();
@@ -160,7 +161,45 @@ $message_data = $message_data["data"]
               </select>
                 <br><br>
 
-              <input type="submit" id="requestMeeting" name="requestMeeting" value="Request Meeting">
+              <input type="submit" id="requestMeeting" name="requestMeeting" value="Request Meeting"><br>
+              <div class = "meetingHeader">Proposed Meetings:</div>
+              <div id = "proposedMeetings">
+                <?php
+                  $meetings = getMeetings(0);
+                  if ($meetings) {
+                    if (sizeof($meetings["data"]) == 0) {
+                      echo "There are no confirmed meetings <br>";
+                    } else {
+                      foreach($meetings["data"] as $meeting) {
+                        echo $meeting["m_time"] . " " . $meeting["m_location"] . "<br>";
+                      }
+                    }
+                  }
+                  else {
+                    echo "Unable to retrieve proposed meetings";
+                  }
+                  
+                ?>
+                </div>
+              <div class = "meetingHeader">Confirmed Meetings:</div>
+                <div id = "confirmedMeetings">
+                <?php
+                  $meetings = getMeetings(1);
+                  if ($meetings) {
+                    if (sizeof($meetings["data"]) == 0) {
+                      echo "There are no confirmed meetings <br>";
+                    } else {
+                      foreach($meetings["data"] as $meeting) {
+                        echo $meeting["m_time"] . " " . $meeting["m_location"] . "<br>";
+                      }
+                    }
+                  }
+                  else {
+                    echo "Unable to retrieve confirmed meetings";
+                  }
+                  
+                ?>
+                </div>
               </div>
           </div>
         </div>

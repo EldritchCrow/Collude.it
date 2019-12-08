@@ -130,7 +130,7 @@ if(isset($_POST["add_user"])) {
 		        </div>
 		        <div class="md-form mb-3">
 		          <!-- <i class="fas fa-user prefix grey-text"></i> -->
-		          <label for="inputPassword">Password (At least 12 characters):</label>
+		          <label for="inputPassword">Password (At least 12 characters and alphanumeric):</label>
 		          <input type="password" class="form-control" id="inputPassword" placeholder="Please enter password" name="password">
 		        </div>
 				<div class="md-form mb-3">
