@@ -11,6 +11,11 @@ function registerUser($username, $real_name, $password, $group_name = "", $group
                     "message" => "One of the registration inputs did not validate");
     }
 
+    if  (strlen($username) > 32) {
+        return array("success" => false,
+        "message" => "Username is too long");
+    }
+
     $successful = addUser($username, $real_name, $password);
     if(!$successful["success"]) {
         return array("success" => false,
