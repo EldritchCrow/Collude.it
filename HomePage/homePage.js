@@ -78,6 +78,8 @@ $(document).ready(function () {
       $("#sideBarRequest").css("display", "inherit");
       $("#notifBar").text("Meetings");
     }
+    retrieveMeetings(0);
+    retrieveMeetings(1);
   });
 
 
@@ -173,18 +175,40 @@ function retrieveMeetings(confirmedInt) {
       }
       $(id).empty();
       var meetings = data.data;
-      console.log(meetings);
       if (meetings.length == 0) {
         if (confirmedInt == 0) {
-          $(id).append("There are no proposed meetings");
+          $(id).text("There are no proposed meetings");
         } else {
-          $(id).append("There are no confirmed meetings");
+          $(id).text("There are no confirmed meetings");
         }
       }
       else {
-       for (var i = 0; i < meetings.length; i++) {
-        $(id).append(meetings[i]["m_time"] + " " + meetings[i]["m_location"] + "<br>");
-       }
+        var result = "";
+        var template = "<form method='POST' action='user_functions/vote.php' target='meetingsFrame'>\
+                          <input type='text' name='meeting_id' style='display: none;' value='";
+        var template2 = "'>\
+                          <input class='refreshMeetings' type='submit' name='yes' value='Yes'>\
+                          <input class='refreshMeetings' type='submit' name='no' value='No'>\
+                        </form>";
+        if(confirmedInt == 1) {
+        }
+        for (var i = 0; i < meetings.length; i++) {
+          result += meetings[i]["m_time"]
+                + " " + meetings[i]["m_location"]
+          if(confirmedInt == 0) {
+            result += template + meetings[i]["m_id"] + template2
+          }
+          result += "<br>";
+        }
+        $(id).html(result);
+      }
+      if(confirmedInt == 0) {
+        $(".refreshMeetings").click(function() {
+          setTimeout(function() {
+            retrieveMeetings(0);
+            retrieveMeetings(1);
+          }, 300);
+        });
       }
     },
     error: function (data, status) {
@@ -283,7 +307,6 @@ function getMeetingReccs() {
     url: "user_functions/getMeetingRecommends.php",
     dataType: "json",
     success: function (data, status) {
-      console.log(data);
       var new_locs = "";
       if(data.locs != undefined && data.locs.length != 0) {
         data.locs.forEach(function(item, index) {
@@ -369,7 +392,7 @@ let notification = {};
 
 })(notification);
 
-function loadMessageLog() {
+function loadMessageLog(callback) {
   var old_height = $(".chatBox").prop("scrollHeight");
   $.ajax({
     type: "GET",
@@ -389,13 +412,13 @@ function loadMessageLog() {
       if (new_height > old_height) {
         $(".chatBox").animate({ scrollTop: new_height }, "slow");
       }
+      setTimeout(callback, 10);
     }
   });
 }
 
 function refreshTimeout() {
-  loadMessageLog();
-  setTimeout(refreshTimeout, 1000);
+  loadMessageLog(function() {setTimeout(refreshTimeout, 1000);});
 }
 
 setTimeout(refreshTimeout, 1000);

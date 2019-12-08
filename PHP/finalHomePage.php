@@ -141,6 +141,7 @@ $message_data = $message_data["data"]
               <input type="submit" id="addLocation" name="addLocation" value="Add Locations">
             </div>
             <div class="content" style="display: none" id="sideBarRequest">
+            <iframe name="meetingsFrame" id="meetingsFrame"></iframe>
               <select name="meeting_location" id="locationSelect">
                 <?php
                   $topLocations = getTopLocations();

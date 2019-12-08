@@ -383,3 +383,9 @@ tbody:hover {
   top: 10px;
   right: 10px;
 }
+
+iframe {
+  border: none;
+  height: 0;
+  width: 0;
+}

@@ -9,22 +9,41 @@ function voteMeeting($meeting_id, $vote) {
     }
     $conn = Database::getConnection();
     if (checkSession()) {
-        $sql = "INSERT INTO votes (user_id, meeting_id, yes)";
-        $sql.= "VALUES ('" . $_SESSION["user_id"] . "', '"
-        . $meeting_id . "', "
-        . $vote . ");";
+        $sql = "INSERT INTO votes (user_id, meeting_id, yes)
+                VALUES ('"
+                    . $_SESSION["user_id"]
+                    . "', '" . $meeting_id
+                    . "', " . $vote . ")" . "
+                ON DUPLICATE KEY UPDATE " .
+                "user_id='". $_SESSION["user_id"] . "', " .
+                "meeting_id='" . $meeting_id . "', " .
+                "yes=" . $vote . ";";
         if ($result = mysqli_query($conn, $sql)) {
-            $sql = "SELECT group_id FROM meetings WHERE meeting_id = '" . $meeting_id . "';";
-            $group_id = mysqli_query($conn, $sql);
-            $sql = "SELECT COUNT(user_id) FROM group_members WHERE group_id = '" . $group_id . "';";
-            $group_count = mysqli_query($conn, $sql);
-            $sql = "SELECT COUNT(user_id) FROM votes WHERE meeting_id = '" . $meeting_id . "' AND yes = 1;";
-            $yes_count = mysqli_query($conn, $sql);
-            if (($group_count*2/3) < $yes_count) {
-                $sql = "UPDATE meetings SET confirmed = 1 WHERE meeting_id = '" . $meeting_id . "';";
+            if($vote == 0) {
+                return array("success" => true,
+                            "message" => "Successfully added vote");
             }
-            return array("success" => true,
-                        "message" => "Successfully added voted");
+            $sql = "SELECT
+                        COUNT(DISTINCT group_members.user_id) as pop,
+                        SUM(IFNULL(votes.yes, 0)) as yes
+                    FROM meetings
+                    JOIN group_members
+                        ON meetings.group_id=group_members.group_id
+                    LEFT JOIN votes
+                        ON votes.meeting_id=meetings.meeting_id
+                    WHERE meetings.meeting_id='" . $meeting_id . "';";
+            if($result = mysqli_query($conn, $sql)) {
+                $row = $result->fetch_assoc();
+                if ($row["yes"] >= ($row["pop"]*2/3)) {
+                    $sql = "UPDATE meetings SET confirmed = 1 WHERE meeting_id = '" . $meeting_id . "';";
+                    $_ = mysqli_query($conn, $sql);
+                    return array("success" => true,
+                                "message" => "Successfully added vote");
+                }
+            } else {
+                return array("success" => true,
+                            "message" => "Failed confirmation checking");
+            }
         } else {
             return array("success" => false,
                         "message" => "Failed vote registration");
