@@ -161,8 +161,8 @@ $message_data = $message_data["data"]
               </select>
                 <br><br>
 
-              <input type="submit" id="requestMeeting" name="requestMeeting" value="Request Meeting"><br>
-              <div class = "meetingHeader">Proposed Meetings:</div>
+              <input type="submit" id="requestMeeting" name="requestMeeting" value="Request Meeting"><br><br>
+              <h3 class = "meetingHeader">Proposed Meetings:</h3>
               <div id = "proposedMeetings">
                 <?php
                   $meetings = getMeetings(0);
@@ -181,7 +181,7 @@ $message_data = $message_data["data"]
                   
                 ?>
                 </div>
-              <div class = "meetingHeader">Confirmed Meetings:</div>
+              <h2 class = "meetingHeader">Confirmed Meetings:</h2>
                 <div id = "confirmedMeetings">
                 <?php
                   $meetings = getMeetings(1);

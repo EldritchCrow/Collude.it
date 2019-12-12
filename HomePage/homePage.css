@@ -363,6 +363,14 @@ tbody:hover {
 
 }
 
+#proposedMeetings {
+  border: 2px;
+}
+
+.meetingHeader {
+  font-size: 1em;
+}
+
 .icon {
   margin: 10% 10%;
   width: 80%;
@@ -388,4 +396,15 @@ iframe {
   border: none;
   height: 0;
   width: 0;
+}
+
+.requestMeeting {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.requestMeeting:hover {
+  background-color: #008CBA;
+  color: white;
 }
