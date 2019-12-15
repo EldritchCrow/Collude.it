@@ -35,7 +35,7 @@ if(!$message_data["success"]) {
   //echo "<script type='text/javascript'>window.onload = function() { alert('$message'); };</script>";
 }
 $users_name = $message_data["users_name"];
-$message_data = $message_data["data"]
+$message_data = $message_data["data"];
 
 ?>
 
